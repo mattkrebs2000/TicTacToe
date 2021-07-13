@@ -1,78 +1,122 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { Dimensions, StyleSheet, View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
+import TicTacToe from "./Components/TicTacToeGrid"
 
-const App = () => {
+const window = Dimensions.get("window");
+const screen = Dimensions.get("screen");
 
-  const [boxone, setBoxone] = useState("");
-  const [boxtwo, setBoxtwo] = useState("");
-  const [boxthree, setBoxthree] = useState("");
-  const [boxfour, setBoxfour] = useState("");
-  const [boxfive, setBoxfive] = useState("");
-  const [boxsix, setBoxsix] = useState("");
-  const [boxseven, setBoxseven] = useState("");
-  const [boxeight, setBoxeight] = useState("");
-  const [boxnine, setBoxnine] = useState("");
-  
+import  { Col, Row, Grid } from 'react-native-easy-grid';
 
-
-
-  return (
-    <View style={styles.container}>
-    <View style={styles.container2}>
-      <Text style= {styles.firstrow}>x|x|x</Text>
-      <View style= {styles.firstdivider}></View>
-      <Text style= {styles.secondrow}>x|x|x</Text>
-      <View style= {styles.seconddivider}></View>
-      <Text style= {styles.thirdrow}>x|x|x</Text>
-</View>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-export default App;
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  container2: {
-    width: "90%",
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  firstdivider:{ 
-    height: 10,
-    width:"100%",
-    backgroundColor: "black"
-  },
-  seconddivider:{ 
-    height: 10,
-    width:"100%",
-    backgroundColor: "black"
-  },
  
-  firstrow: {
-    fontSize: 130,
-    bottom:-12,
-   
-  },
-  secondrow: {
-    fontSize: 130,
-    marginTop: -20,
-    marginBottom: -35,
-    top:-20,
-    
-  },
-  thirdrow: {
-    fontSize: 130,
-    top:-12,
-    marginTop: -20,
-  }
+const App = () => {
+  const [spacing, setSpacing] = useState(0);
+  const [dimensions, setDimensions] = useState({ window, screen });
+   const [mode, setMode] = useState("portrait");
 
-});
+   const modeMaker = () => {
+    if (dimensions.screen.width > dimensions.screen.height) {
+      setMode("landscape") 
+      
+    } else {
+      setMode("portrait") 
+     
+    }
+    console.log(mode)
+   };
+
+ const onChange = ({ window, screen }) => {
+     setDimensions({ window, screen });
+   };
+
+ useEffect(() => {
+     Dimensions.addEventListener("change", onChange);
+
+     return () => {
+       Dimensions.removeEventListener("change", onChange),
+      modeMaker();
+     };
+
+   });
+
+
+
+
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+  
+  const getSpace = () => {
+  if (windowWidth > windowHeight){
+    setSpacing(windowWidth - windowHeight)
+  }
+  else {
+setSpacing(windowHeight-windowWidth)
+  }
+}
+  
+  useEffect(() => {
+      getSpace()
+  }, [Dimensions])
+
+      return (
+        <>
+       {mode === "portrait" ? 
+       (<SafeAreaView>
+        <TouchableOpacity>
+        <View style = {{height: spacing / 3, justifyContent:"center", alignItems: "center" }}>
+        <Text style={{fontSize: 50}}>
+     Tic Tac Toe
+        </Text>
+        
+        </View>
+        </TouchableOpacity>
+     <TouchableOpacity>
+      <TicTacToe />
+      </TouchableOpacity>
+     
+
+
+      <View>
+      
+      
+      </View> 
+      </SafeAreaView>)
+      :
+   (
+    <View style = {{flex: 1, flexDirection:"row"}}>
+    <View style = {{flex: spacing}}>
+     
+      <View style = {{backgroundColor: "white", height: windowHeight / 3, justifyContent:"center", alignItems: "center" }}>
+        <Text style={{fontSize: 50}}>
+     Tic Tac Toe
+        </Text>
+        
+        </View>
+     
+      
+
+      <View style = {{backgroundColor: "orange", height: (windowHeight / 3) * 2, justifyContent:"center", alignItems: "center"}}>
+      <Text>
+      lakj;dlsakjf;lkjsa;lkfj;lksajd;ls
+      </Text>
+      
+      </View> 
+      
+      </View>
+      <View style = {{flex: windowHeight}}>
+      <TicTacToe />
+      </View>
+      </View> )
+    
+  
+    
+    }
+
+     </>
+        
+      )
+    }
+
+
+
+  export default App;
+ 
