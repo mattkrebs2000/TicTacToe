@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { scale, ScaledSheet } from 'react-native-size-matters';
+import Mainpage from "./PrimaryPage"
+
+import {
+  useNavigation,
+  NavigationContainer,
+  DrawerActions,
+} from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
 
 import {
   View,
@@ -14,6 +23,7 @@ import {
   SafeAreaView,
   Dimensions,
 } from "react-native";
+
 import { firebase } from "../Firebase/Config.js";
 // import CryptoES from "crypto-es";
 
@@ -30,16 +40,15 @@ const SignUp = ({ navigation }) => {
   const [visibility, setVisibility] = useState(false);
   const [age, setAge] = useState(0);
 
-  useEffect(() => {
-    setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString());
-  }, [password]);
+  // useEffect(() => {
+  //   setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString());
+  // }, [password]);
 
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity onPress={() => 
-            navigation.navigate("Profile")}
-            >
+        
+        <TouchableOpacity onPress={() => navigation.navigate("PrimaryPage")}>
           <Text accessibilityLabel="Guest" style={styles.text5}>
             Guest
           </Text>
@@ -134,20 +143,7 @@ const SignUp = ({ navigation }) => {
             </Text>
           </Text>
 
-          <DateTimeModal
-            isVisible={visibility}
-            format="DD/MM/YYYY"
-            onConfirm={(date) => {
-              setBirthyear(date.getYear() + 1900);
-              setBirthdate(date.getDate());
-              setBirthmonth(date.getMonth() + 1);
-            }}
-            onCancel={() => {
-              setVisibility(false);
-            }}
-            mode="date"
-            pickerContainerStyleIOS={{backgroundColor:"white"}}
-          />
+        
         </View>
       </KeyboardAvoidingView>
 
@@ -173,6 +169,9 @@ const SignUp = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
+
+
 
 export default SignUp;
 const styles = ScaledSheet.create({
@@ -269,8 +268,8 @@ const styles = ScaledSheet.create({
     width: "20@s",
   },
   text5: {
-    color: "#004fff",
-    fontSize: "12@s",
+    color: "white",
+    fontSize: "20@s",
     marginRight: "5@s"
   },
   last: {
