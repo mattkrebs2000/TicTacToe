@@ -24,7 +24,7 @@ import {
   Dimensions,
 } from "react-native";
 
-import { firebase } from "../Firebase/Config.js";
+import firebase from "../Firebase/Config.js";
 // import CryptoES from "crypto-es";
 
 const SignUp = ({ navigation }) => {
@@ -40,6 +40,7 @@ const SignUp = ({ navigation }) => {
   const [visibility, setVisibility] = useState(false);
   const [age, setAge] = useState(0);
 
+
   // useEffect(() => {
   //   setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString());
   // }, [password]);
@@ -47,8 +48,9 @@ const SignUp = ({ navigation }) => {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        
-        <TouchableOpacity onPress={() => navigation.navigate("PrimaryPage")}>
+        <TouchableOpacity onPress={() => 
+            navigation.navigate("Profile")}
+            >
           <Text accessibilityLabel="Guest" style={styles.text5}>
             Guest
           </Text>
@@ -72,7 +74,7 @@ const SignUp = ({ navigation }) => {
         const data = {
           id: uid,
           email,
-          password: encrypt,
+          password,
           birthdate,
         };
         const usersRef = firebase.firestore().collection("users");
@@ -130,21 +132,7 @@ const SignUp = ({ navigation }) => {
           style={styles.input}
           placeholderTextColor="gray"
         />
-        <View style={styles.input2}>
-          <Text style={styles.input3}>
-            <Text
-              title="BirthDate: "
-              onPress={() => {
-                setVisibility(true);
-              }}
-            >
-              Your Birthdate:
-              {birthmonth}/{birthdate}/{birthyear}
-            </Text>
-          </Text>
-
-        
-        </View>
+      
       </KeyboardAvoidingView>
 
       {/* Sign Up Button */}
@@ -169,9 +157,6 @@ const SignUp = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-
-
 
 export default SignUp;
 const styles = ScaledSheet.create({
@@ -268,8 +253,8 @@ const styles = ScaledSheet.create({
     width: "20@s",
   },
   text5: {
-    color: "white",
-    fontSize: "20@s",
+    color: "#004fff",
+    fontSize: "12@s",
     marginRight: "5@s"
   },
   last: {
@@ -282,3 +267,4 @@ lastsection: {
   justifyContent:"center",
 }, 
 });
+
