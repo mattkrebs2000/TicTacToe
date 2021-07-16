@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { scale, ScaledSheet } from 'react-native-size-matters';
-import Mainpage from "./PrimaryPage"
+import Mainpage from "./App";
+import Selecting from "./Subcomponents/SelectingContainer";
+import Results from "./Subcomponents/ResultsContainer";
+import CryptoES from "crypto-es";
 
 import {
   useNavigation,
@@ -22,12 +25,55 @@ import {
   Image,
   SafeAreaView,
   Dimensions,
+  ScrollView,
 } from "react-native";
 
 import firebase from "../Firebase/Config.js";
 // import CryptoES from "crypto-es";
 
 const SignUp = ({ navigation }) => {
+
+  const [filteredposts, setfilteredposts] = useState([]);
+  const [posts, setposts] = useState([]);
+
+ useEffect(() => {
+  var request = new Request("https://swapi.dev/api/people/");
+
+  fetch(request)
+    .then((res) => res.json())
+    .then((data) => setfilteredposts(data.results));
+}, []);
+
+textsearched = (value) => {
+  let postss = [];
+  for (let i in posts) {
+    let match = false;
+    let postt = posts[i];
+
+    for (let prop in postt) {
+      let lower = JSON.stringify(postt[prop]).toLowerCase();
+      console.log("1", value )
+      if (lower.startsWith(value.searchtext.toString().toLowerCase(),1)) {
+        match = true;
+      }
+    }
+    if (match === true) {
+      postss.push(postt);
+    }
+  }
+console.log("HERITIS", postss)
+  setfilteredposts( postss );
+};
+
+
+
+
+
+
+
+
+
+
   console.log("SignUp");
 
   const [email, setEmail] = useState("");
@@ -41,9 +87,9 @@ const SignUp = ({ navigation }) => {
   const [age, setAge] = useState(0);
 
 
-  // useEffect(() => {
-  //   setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString());
-  // }, [password]);
+  useEffect(() => {
+    setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString());
+  }, [password]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -74,7 +120,7 @@ const SignUp = ({ navigation }) => {
         const data = {
           id: uid,
           email,
-          password,
+          password: encrypt,
           birthdate,
         };
         const usersRef = firebase.firestore().collection("users");
@@ -96,16 +142,6 @@ const SignUp = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       {/* App Header */}
-
-      <View style={styles.middle}>
-        <Image
-          source={{
-            uri:
-              "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
-          }}
-          style={styles.img}
-        />
-      </View>
 
       {/* Sign Up Form */}
       <KeyboardAvoidingView style={styles.form} behavior="height">
@@ -132,7 +168,22 @@ const SignUp = ({ navigation }) => {
           style={styles.input}
           placeholderTextColor="gray"
         />
-      
+        
+        <Selecting
+        style={styles.input}
+        height= {50}
+        width= {300}
+        textsearched={(value) => textsearched(value)}
+      />
+      <ScrollView>
+        <Results
+          style={styles.input}
+          height={50}
+          width= {300}
+         posts={filteredposts}           
+        />
+        </ScrollView>
+   
       </KeyboardAvoidingView>
 
       {/* Sign Up Button */}
@@ -175,7 +226,7 @@ const styles = ScaledSheet.create({
     alignItems: "center",
     justifyContent: "center",
     color: "white",
-    flex: .6,
+    flex: 1,
   },
   input: {
     borderWidth: "2@s",
@@ -266,5 +317,22 @@ lastsection: {
   flex: .1,
   justifyContent:"center",
 }, 
+
+  center: {
+    width: "40%",
+    height: "20%",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  selecting: {
+    flex: 1,
+  },
+  Results: {
+    flex: 2,
+  },
 });
+
+
+
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Dimensions, StyleSheet, View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
-import TicTacToe from "./Subcomponents/TicTacToeGrid"
+import TicTacToe from "./TicTacToeGrid"
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
