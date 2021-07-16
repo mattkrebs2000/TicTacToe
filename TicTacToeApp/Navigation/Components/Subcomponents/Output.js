@@ -4,6 +4,7 @@ import { StyleSheet, View, Text,Image } from "react-native";
 import { AppLoading, Font } from "expo";
 
 const Output = (props) => (
+    
   <View>
     <View style={styles.container} width={props.width - 35} maxWidth={650}>
       <View style={styles.container5}>

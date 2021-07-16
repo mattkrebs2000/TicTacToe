@@ -21,6 +21,8 @@ import Output from "./Output";
 const ResultsContainer = (props) =>
 
 
+
+
   props.posts.length > 0 && 
   props.posts.map((info, value) => (
     <View style={styles.container} key={value}>

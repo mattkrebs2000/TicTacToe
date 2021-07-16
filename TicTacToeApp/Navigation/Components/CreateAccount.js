@@ -36,21 +36,34 @@ const SignUp = ({ navigation }) => {
   const [filteredposts, setfilteredposts] = useState([]);
   const [posts, setposts] = useState([]);
 
+  useEffect(() => {
+    var request = new Request("https://swapi.dev/api/people/");
+ 
+    fetch(request)
+      .then((res) => res.json())
+      .then((data) => setfilteredposts(data.results));
+  }, []);
+ 
+
+
  useEffect(() => {
   var request = new Request("https://swapi.dev/api/people/");
 
   fetch(request)
     .then((res) => res.json())
-    .then((data) => setfilteredposts(data.results));
+    .then((data) => setposts(data.results)), console.log("these are the posts",posts);
 }, []);
 
 textsearched = (value) => {
+  console.log("Function ran", value)
   let postss = [];
   for (let i in posts) {
+    console.log("function2 ran", posts)
     let match = false;
     let postt = posts[i];
 
     for (let prop in postt) {
+      console.log("yo", postt)
       let lower = JSON.stringify(postt[prop]).toLowerCase();
       console.log("1", value )
       if (lower.startsWith(value.searchtext.toString().toLowerCase(),1)) {
