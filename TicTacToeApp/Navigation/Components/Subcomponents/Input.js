@@ -1,10 +1,17 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { StyleSheet, View, TextInput, Button } from "react-native";
 
 
 function Input (props) {
 
 const [inputentry, setInputentry] = useState("");
+
+useEffect(() => {
+    console.log("this one is running"),
+     props.textsearched(inputentry)
+}, [inputentry])
+
+
 
 return (
 
