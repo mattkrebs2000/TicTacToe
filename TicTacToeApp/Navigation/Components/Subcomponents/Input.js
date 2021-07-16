@@ -4,12 +4,12 @@ import { StyleSheet, View, TextInput, Button } from "react-native";
 
 function Input (props) {
 
-const [inputentry, setInputentry] = useState("");
+// const [inputentry, setInputentry] = useState("");
 
 useEffect(() => {
-    console.log("this one is running", inputentry),
-     props.textsearched(inputentry)
-}, [inputentry])
+    console.log("this one is running", props.inputentry),
+     props.textsearched(props.inputentry)
+}, [props.inputentry])
 
 return (
 
@@ -19,10 +19,11 @@ return (
         placeholder="Search Here"
         placeholderTextColor="white"
         style={styles.input}
-        onChangeText={(event) => setInputentry({searchtext: event})}
+        onChangeText={(event) => props.setInputentry({searchtext: event})}
+        value={props.inputentry}
       />
       <Button
-        onPress={() => props.textsearched(inputentry)}
+        onPress={() => props.textsearched(props.inputentry)}
         title="Filter!"
         color="white"
       />

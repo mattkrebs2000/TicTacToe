@@ -19,40 +19,30 @@ import Output from "./Output";
 // }
 
 
-const selectItem = item => {
 
-    this.setState({eitherone: item});
-    this.setState({display: false });
-    document.getElementById("inputt").value = item; 
-    document.getElementsByTagName("label")[2].classList.add("active");
-    console.log(item)
-  }
   
 
-const ResultsContainer = (props) => {
+const ResultsContainer = ({textsearched, height, width, posts, inputentry, setInputentry}) => {
 
     const selectItem = item => {
 
-        // this.setState({eitherone: item});
-        // this.setState({display: false });
-        // document.getElementById("inputt").value = item; 
-        // document.getElementsByTagName("label")[2].classList.add("active");
-        // console.log(item)
+     setInputentry(item),
+     textsearched(inputentry)
+     
 
-        console.log("HelloTHere")
       }
       
 return (
-  props.posts.length > 0 && 
-  props.posts.map((info, value) => (
+  posts.length > 0 && 
+  posts.map((info, value) => (
 
-    console.log("here is the info", info.name),
+
 
     <View style={styles.container} key={value}>
       <TouchableOpacity onPress={() => selectItem(info.name)}>
         <Output
-          height={props.height}
-          width={props.width}
+          height={height}
+          width={width}
           name={info.name}
           height={info.height}
           weight={info.mass}

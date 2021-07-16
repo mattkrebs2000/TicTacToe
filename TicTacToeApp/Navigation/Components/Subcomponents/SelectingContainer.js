@@ -9,6 +9,8 @@ const SelectingContainer = (props) => (
         height={props.height}
         width={props.width}
         textsearched={(value) => props.textsearched(value)}
+        inputentry={props.inputentry}
+        setInputentry={props.setInputentry}
       />
     </View>
   </View>

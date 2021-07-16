@@ -55,18 +55,17 @@ const SignUp = ({ navigation }) => {
 }, []);
 
 textsearched = (value) => {
-  console.log("Function ran", value)
+ 
   let postss = [];
   for (let i in posts) {
-    console.log("function2 ran", posts)
     let match = false;
     let postt = posts[i];
 
     for (let prop in postt) {
-      console.log("yo", postt)
+    
       let lower = JSON.stringify(postt[prop]).toLowerCase();
-      console.log("1", value )
-      if (lower.startsWith(value.searchtext.toString().toLowerCase(),1)) {
+      ("1", value )
+      if (value.searchtext && lower.startsWith(value.searchtext.toString().toLowerCase(),1)) {
         match = true;
       }
     }
@@ -74,7 +73,7 @@ textsearched = (value) => {
       postss.push(postt);
     }
   }
-console.log("HERITIS", postss)
+
   setfilteredposts( postss );
 };
 
@@ -98,6 +97,7 @@ console.log("HERITIS", postss)
   const [birthmonth, setBirthmonth] = useState("MM");
   const [visibility, setVisibility] = useState(false);
   const [age, setAge] = useState(0);
+  const [inputentry, setInputentry] = useState("");
 
 
   useEffect(() => {
@@ -187,13 +187,18 @@ console.log("HERITIS", postss)
         height= {50}
         width= {300}
         textsearched={(value) => textsearched(value)}
+      inputentry={inputentry}
+        setInputentry={setInputentry}
       />
       <ScrollView>
         <Results
           style={styles.input}
           height={50}
           width= {300}
-         posts={filteredposts}           
+         posts={filteredposts}      
+         inputentry={inputentry}
+         setInputentry={setInputentry}  
+         textsearched={(value) => textsearched(value)}   
         />
         </ScrollView>
    
