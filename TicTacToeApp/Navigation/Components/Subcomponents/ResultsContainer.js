@@ -2,7 +2,7 @@ import React from "react";
 
 // import React, { Component } from "react";
 
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import Output from "./Output";
 
 // import React, { Component } from "react";
@@ -18,15 +18,38 @@ import Output from "./Output";
 //   }
 // }
 
-const ResultsContainer = (props) =>
 
+const selectItem = item => {
 
+    this.setState({eitherone: item});
+    this.setState({display: false });
+    document.getElementById("inputt").value = item; 
+    document.getElementsByTagName("label")[2].classList.add("active");
+    console.log(item)
+  }
+  
 
+const ResultsContainer = (props) => {
 
+    const selectItem = item => {
+
+        // this.setState({eitherone: item});
+        // this.setState({display: false });
+        // document.getElementById("inputt").value = item; 
+        // document.getElementsByTagName("label")[2].classList.add("active");
+        // console.log(item)
+
+        console.log("HelloTHere")
+      }
+      
+return (
   props.posts.length > 0 && 
   props.posts.map((info, value) => (
+
+    console.log("here is the info", info.name),
+
     <View style={styles.container} key={value}>
-      <View>
+      <TouchableOpacity onPress={() => selectItem(info.name)}>
         <Output
           height={props.height}
           width={props.width}
@@ -37,9 +60,11 @@ const ResultsContainer = (props) =>
           eyes={info.eye_color}
           gender={info.gender}
         />
-      </View>
+      </TouchableOpacity>
     </View>
-  ));
+  ))
+)
+};
       
 export default ResultsContainer;
 

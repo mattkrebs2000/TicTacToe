@@ -7,11 +7,9 @@ function Input (props) {
 const [inputentry, setInputentry] = useState("");
 
 useEffect(() => {
-    console.log("this one is running"),
+    console.log("this one is running", inputentry),
      props.textsearched(inputentry)
 }, [inputentry])
-
-
 
 return (
 
