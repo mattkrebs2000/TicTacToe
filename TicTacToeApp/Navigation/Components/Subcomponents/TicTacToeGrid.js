@@ -12,26 +12,12 @@ import {
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 const TicTacToeGrid = () => {
-  const [WidthHeight, setWidthHeight] = useState(0);
 
   const windowWidth = Dimensions.get("window").width;
-  const windowHeight = Dimensions.get("window").height;
-
-  const getWidthHeightOfGrid = () => {
-    if (windowWidth > windowHeight) {
-      console.log("from grid", WidthHeight), setWidthHeight((windowHeight) * .90);
-    } else {
-      console.log("from grid", WidthHeight), setWidthHeight(windowWidth);
-    }
-  };
-
-  useEffect(() => {
-    getWidthHeightOfGrid();
-  }, []);
 
   return (
-    <Grid style={{ width: WidthHeight }}>
-      <Row style={{ height: WidthHeight / 3 }}>
+    <Grid style={{ width: windowWidth }}>
+      <Row style={{ height: windowWidth / 3 }}>
         <Col style={{ backgroundColor: "black" }}>
           <TouchableOpacity>
             <View
@@ -97,7 +83,7 @@ const TicTacToeGrid = () => {
       <Row style={{ backgroundColor: "black", height: 6 }}>
         <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
       </Row>
-      <Row style={{ height: WidthHeight / 3 }}>
+      <Row style={{ height: windowWidth / 3 }}>
       <Col style={{ backgroundColor: "black" }}>
         <TouchableOpacity>
           <View
@@ -162,7 +148,7 @@ const TicTacToeGrid = () => {
     <Row style={{ backgroundColor: "black", height: 6 }}>
         <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
       </Row>
-    <Row style={{ height: WidthHeight / 3 }}>
+    <Row style={{ height: windowWidth / 3 }}>
     <Col style={{ backgroundColor: "black" }}>
       <TouchableOpacity>
         <View
