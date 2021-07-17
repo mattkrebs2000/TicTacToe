@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { scale, ScaledSheet } from 'react-native-size-matters';
 import { StyleSheet, View, TextInput, Button } from "react-native";
 
 
@@ -16,37 +17,36 @@ return (
   <View>
     <View style={styles.container}>
       <TextInput
-        placeholder="Search Here"
-        placeholderTextColor="white"
+        placeholder="Select Group OR Create One"
+        placeholderTextColor="gray"
         style={styles.input}
         onChangeText={(event) => props.setInputentry({searchtext: event})}
         value={props.inputentry}
       />
-      <Button
-        onPress={() => props.textsearched(props.inputentry)}
-        title="Filter!"
-        color="white"
-      />
+    
     </View>
   </View>
 )};
 export default Input;
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   input: {
-    width:"80%",
-    marginHorizontal: 0,
-    color: "white",
-    fontSize: 28,
-    paddingStart: 8,
+    borderWidth: "2@s",
+    borderColor: "#004fff",
     
-  },
-  button: {
+    width: "300@s",
+   
+    borderRadius: "10@s",
+    shadowColor: "white",
+    shadowOffset: { width: "0.5@s", height: "0.5@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "0.5@s",
     color: "white",
-    width: "30%",
-    marginEnd: 0,
-    
+    lineHeight: "24@s",
+    fontSize: "20@s",
+    padding: "7@s"
   },
+ 
   container: {
     flexDirection: "row",
     flex: 1,

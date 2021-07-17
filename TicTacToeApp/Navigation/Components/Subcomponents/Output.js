@@ -6,7 +6,7 @@ import { AppLoading, Font } from "expo";
 const Output = (props) => (
     
   <View>
-    <View style={styles.container} width={props.width - 35} maxWidth={650}>
+    <View style={styles.container}  maxWidth={650}>
       <View style={styles.container5}>
         <View style={styles.container7}>
           <View style={styles.face}>

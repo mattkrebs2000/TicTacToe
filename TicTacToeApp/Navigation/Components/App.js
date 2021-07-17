@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Dimensions, StyleSheet, View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
-import TicTacToe from "./TicTacToeGrid"
+import TicTacToe from "./Subcomponents/TicTacToeGrid"
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
@@ -45,7 +45,7 @@ const App = () => {
   const windowHeight = Dimensions.get('window').height;
   
   const getSpace = () => {
-  if (windowWidth > windowHeight){
+  if (windowWidth > windowHeight) {
     setSpacing(windowWidth - windowHeight)
   }
   else {
@@ -61,14 +61,7 @@ setSpacing(windowHeight-windowWidth)
         <>
        {mode === "portrait" ? 
        (<SafeAreaView>
-        <TouchableOpacity>
-        <View style = {{height: spacing / 5, justifyContent:"center", alignItems: "center" }}>
-        <Text style={{fontSize: 50, color: "#8959DF"}}>
-     Tic Tac Toe
-        </Text>
         
-        </View>
-        </TouchableOpacity>
      <TouchableOpacity>
       <TicTacToe />
       </TouchableOpacity>
@@ -85,16 +78,11 @@ setSpacing(windowHeight-windowWidth)
     <View style = {{flex: 1, flexDirection:"row"}}>
     <View style = {{flex: spacing}}>
      
-      <View style = {{backgroundColor: "white", height: windowHeight / 5, justifyContent:"center", alignItems: "center" }}>
-        <Text style={{fontSize: 50, color: "#8959DF"}}>
-     Tic Tac Toe
-        </Text>
-        
-        </View>
+     
      
       
 
-      <View style = {{backgroundColor: "black", height: (windowHeight / 5) * 4, justifyContent:"center", alignItems: "center"}}>
+      <View style = {{backgroundColor: "black", height: (windowHeight / 5) * 5, justifyContent:"center", alignItems: "center"}}>
       <Text style = {{color:"white"}}>
       lakj;dlsakjf;lkjsa;lkfj;lksajd;ls
       </Text>
@@ -120,3 +108,4 @@ setSpacing(windowHeight-windowWidth)
 
   export default App;
  
+

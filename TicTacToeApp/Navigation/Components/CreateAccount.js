@@ -108,7 +108,7 @@ textsearched = (value) => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={() => 
-            navigation.navigate("Profile")}
+            navigation.navigate("PrimaryPage")}
             >
           <Text accessibilityLabel="Guest" style={styles.text5}>
             Guest
@@ -180,12 +180,8 @@ textsearched = (value) => {
           value={confirmPassword}
           style={styles.input}
           placeholderTextColor="gray"
-        />
-        
+        />   
         <Selecting
-        style={styles.input}
-        height= {50}
-        width= {300}
         textsearched={(value) => textsearched(value)}
       inputentry={inputentry}
         setInputentry={setInputentry}

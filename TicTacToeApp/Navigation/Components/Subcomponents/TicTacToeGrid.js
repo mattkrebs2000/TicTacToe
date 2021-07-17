@@ -18,7 +18,7 @@ const TicTacToeGrid = () => {
 
   const getWidthHeightOfGrid = () => {
     if (windowWidth > windowHeight) {
-      console.log(WidthHeight), setWidthHeight(windowHeight);
+      console.log(WidthHeight), setWidthHeight((windowHeight) * .90);
     } else {
       console.log(WidthHeight), setWidthHeight(windowWidth);
     }

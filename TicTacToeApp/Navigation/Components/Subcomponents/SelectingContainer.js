@@ -1,13 +1,12 @@
 import React from "react";
+import { scale, ScaledSheet } from 'react-native-size-matters';
 import { StyleSheet, View } from "react-native";
 import Input from "./Input";
 
 const SelectingContainer = (props) => (
-  <View style={styles.container} width={props.width - 35} maxWidth={650}>
+  <View style={styles.container} >
     <View>
       <Input
-        height={props.height}
-        width={props.width}
         textsearched={(value) => props.textsearched(value)}
         inputentry={props.inputentry}
         setInputentry={props.setInputentry}
@@ -20,16 +19,15 @@ const SelectingContainer = (props) => (
 
 export default SelectingContainer;
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
-   
-    height: 50,
+    borderRadius: "10@s",
+    height: "43@s",
     backgroundColor: "rgba(255, 255, 255, 0.1)",
-    borderWidth: 2,
-    borderColor: "red",
-    margin: 10,
     alignItems:"center",
     justifyContent: "center",
+    fontSize: "20@s",
+    width: "300@s",
   },
 
 });
