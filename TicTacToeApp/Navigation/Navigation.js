@@ -19,7 +19,7 @@ import {
 
 import SignIn from "./Components/SignIn";
 import CreateAccount from "./Components/CreateAccount";
-import PrimaryPage from "./Components/App";
+import PrimaryPage from "./Components/Game";
 
 
 

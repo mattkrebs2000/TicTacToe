@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { scale, ScaledSheet } from 'react-native-size-matters';
-import Mainpage from "./App";
+import Mainpage from "./Game";
 import Selecting from "./Subcomponents/SelectingContainer";
 import Results from "./Subcomponents/ResultsContainer";
 import CryptoES from "crypto-es";

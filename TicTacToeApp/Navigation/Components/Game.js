@@ -46,16 +46,17 @@ const App = () => {
   
   const getSpace = () => {
   if (windowWidth > windowHeight) {
-    setSpacing(windowWidth - windowHeight)
+    setSpacing(windowWidth - ((windowHeight) * .90))
   }
   else {
-setSpacing(windowHeight-windowWidth)
+setSpacing(windowHeight - windowWidth)
   }
+  console.log("Here is spacing", spacing)
 }
   
   useEffect(() => {
       getSpace()
-  }, [Dimensions])
+  }, [dimensions])
 
       return (
         <>
@@ -90,7 +91,7 @@ setSpacing(windowHeight-windowWidth)
       </View> 
       
       </View>
-      <View style = {{flex: windowHeight}}>
+      <View style = {{flex: windowWidth - spacing }}>
       <TicTacToe />
       </View>
       </View> )
