@@ -38,69 +38,45 @@ const App = () => {
 
    });
 
+useEffect(() => {
 
+  modeMaker()
+}, [dimensions])
 
 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   
   const getSpace = () => {
-  if (windowWidth > windowHeight) {
-    setSpacing(windowWidth - ((windowHeight) * .90))
+  if (dimensions.screen.width > dimensions.screen.height) {
+    setSpacing(dimensions.screen.width - ((dimensions.screen.height) * .9))
+    console.log("Here is spacing - width is bigger", spacing)
   }
   else {
-setSpacing(windowHeight - windowWidth)
+setSpacing(dimensions.screen.height - dimensions.screen.width)
+console.log("Here is spacing - height is bigger", spacing)
   }
-  console.log("Here is spacing", spacing)
+ 
 }
   
   useEffect(() => {
+ 
       getSpace()
   }, [dimensions])
 
       return (
-        <>
-       {mode === "portrait" ? 
-       (<SafeAreaView>
+   
+       
+       <SafeAreaView>
         
      <TouchableOpacity>
       <TicTacToe />
       </TouchableOpacity>
-     
-
-
+    
       <View>
-      
-      
       </View> 
-      </SafeAreaView>)
-      :
-   (
-    <View style = {{flex: 1, flexDirection:"row"}}>
-    <View style = {{flex: spacing}}>
-     
-     
-     
-      
-
-      <View style = {{backgroundColor: "black", height: (windowHeight / 5) * 5, justifyContent:"center", alignItems: "center"}}>
-      <Text style = {{color:"white"}}>
-      lakj;dlsakjf;lkjsa;lkfj;lksajd;ls
-      </Text>
-      
-      </View> 
-      
-      </View>
-      <View style = {{flex: windowWidth - spacing }}>
-      <TicTacToe />
-      </View>
-      </View> )
-    
+      </SafeAreaView>
   
-    
-    }
-
-     </>
         
       )
     }

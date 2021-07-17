@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import {
   Dimensions,
   StyleSheet,
@@ -18,15 +19,15 @@ const TicTacToeGrid = () => {
 
   const getWidthHeightOfGrid = () => {
     if (windowWidth > windowHeight) {
-      console.log(WidthHeight), setWidthHeight((windowHeight) * .90);
+      console.log("from grid", WidthHeight), setWidthHeight((windowHeight) * .90);
     } else {
-      console.log(WidthHeight), setWidthHeight(windowWidth);
+      console.log("from grid", WidthHeight), setWidthHeight(windowWidth);
     }
   };
 
   useEffect(() => {
     getWidthHeightOfGrid();
-  }, [Dimensions]);
+  }, []);
 
   return (
     <Grid style={{ width: WidthHeight }}>
