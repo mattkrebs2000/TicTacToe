@@ -91,13 +91,10 @@ const SignIn = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
         <View style={styles.section1}>
-          <Image
-            source={{
-              uri:
-                "https://github.com/mattkrebs2000/ReactNativeBrainGaugeFolder/blob/master/frontend/assets/brain.png?raw=true",
-            }}
-            style={didKeyboardShow ? styles.img2 : styles.img}
-          />
+        <Image
+        style={styles.img}
+        source={require("./Subcomponents/images/TicTacToe.png")}
+      />
         </View>
         <View style={styles.section2}>
         <Text style={didKeyboardShow ? styles.text3 : styles.text2}>Sign In</Text>
@@ -240,7 +237,7 @@ const styles = ScaledSheet.create({
   },
   img: {
     width: "170@vs",
-    height: "90@s",
+    height: "150@s",
     borderRadius: 5,
   },
   img2: {
