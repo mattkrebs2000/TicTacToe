@@ -8,8 +8,8 @@ const SelectingContainer = (props) => (
     <View>
       <Input
         textsearched={(value) => props.textsearched(value)}
-        inputentry={props.inputentry}
-        setInputentry={props.setInputentry}
+        group={props.group}
+        setgroup={props.setgroup}
       />
     </View>
   </View>

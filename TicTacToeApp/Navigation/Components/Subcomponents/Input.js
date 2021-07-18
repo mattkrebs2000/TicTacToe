@@ -5,12 +5,12 @@ import { StyleSheet, View, TextInput, Button } from "react-native";
 
 function Input (props) {
 
-// const [inputentry, setInputentry] = useState("");
+// const [group, setgroup] = useState("");
 
 useEffect(() => {
-    console.log("this one is running", props.inputentry),
-     props.textsearched(props.inputentry)
-}, [props.inputentry])
+    console.log("this one is running", props.group),
+     props.textsearched(props.group)
+}, [props.group])
 
 return (
 
@@ -20,8 +20,8 @@ return (
         placeholder="Select Group OR Create One"
         placeholderTextColor="gray"
         style={styles.input}
-        onChangeText={(event) => props.setInputentry({searchtext: event})}
-        value={props.inputentry}
+        onChange={(event) => props.setgroup({searchtext: event})}
+        value={props.group}
       />
     
     </View>

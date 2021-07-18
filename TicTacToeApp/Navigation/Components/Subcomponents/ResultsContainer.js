@@ -22,12 +22,12 @@ import Output from "./Output";
 
   
 
-const ResultsContainer = ({textsearched, height, width, posts, inputentry, setInputentry}) => {
+const ResultsContainer = ({textsearched, height, width, posts, group, setgroup}) => {
 
     const selectItem = item => {
 
-     setInputentry(item),
-     textsearched(inputentry)
+     setgroup(item),
+     textsearched(group)
      
 
       }

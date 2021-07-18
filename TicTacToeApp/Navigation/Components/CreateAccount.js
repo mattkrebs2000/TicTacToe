@@ -35,24 +35,25 @@ const SignUp = ({ navigation }) => {
 
   const [filteredposts, setfilteredposts] = useState([]);
   const [posts, setposts] = useState([]);
+  const [todos, setTodos] = useState([]);
 
-  useEffect(() => {
-    var request = new Request("https://swapi.dev/api/people/");
+  // useEffect(() => {
+  //   var request = new Request("https://swapi.dev/api/people/");
  
-    fetch(request)
-      .then((res) => res.json())
-      .then((data) => setfilteredposts(data.results));
-  }, []);
+  //   fetch(request)
+  //     .then((res) => res.json())
+  //     .then((data) => setfilteredposts(data.results));
+  // }, []);
  
 
 
- useEffect(() => {
-  var request = new Request("https://swapi.dev/api/people/");
+//  useEffect(() => {
+//   var request = new Request("https://swapi.dev/api/people/");
 
-  fetch(request)
-    .then((res) => res.json())
-    .then((data) => setposts(data.results)), console.log("these are the posts",posts);
-}, []);
+//   fetch(request)
+//     .then((res) => res.json())
+//     .then((data) => setposts(data.results)), console.log("these are the posts",posts);
+// }, []);
 
 textsearched = (value) => {
  
@@ -92,12 +93,11 @@ textsearched = (value) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [encrypt, setEncrypt] = useState("");
-  const [birthyear, setBirthyear] = useState("YYYY");
-  const [birthdate, setBirthdate] = useState("DD");
-  const [birthmonth, setBirthmonth] = useState("MM");
   const [visibility, setVisibility] = useState(false);
   const [age, setAge] = useState(0);
-  const [inputentry, setInputentry] = useState("");
+  const [group, setgroup] = useState("");
+
+  // const [group, setGroup] = useState("");
 
 
   useEffect(() => {
@@ -118,6 +118,11 @@ textsearched = (value) => {
     });
   }, []);
 
+  const usersRef = firebase
+  .firestore()
+  .collection("users");
+
+
   const onRegisterPress = () => {
     if (password !== confirmPassword) {
       alert("Passwords don't match.");
@@ -134,9 +139,13 @@ textsearched = (value) => {
           id: uid,
           email,
           password: encrypt,
-          birthdate,
+          group,
         };
-        const usersRef = firebase.firestore().collection("users");
+
+        const usersRef = firebase
+  .firestore()
+  .collection("users");
+
         usersRef
           .doc(uid)
           .set(data)
@@ -151,6 +160,39 @@ textsearched = (value) => {
         alert(error);
       });
   };
+
+
+const newfunctio = () => {
+  const usersRef = firebase
+  .firestore()
+  .collection("users");
+  
+  usersRef
+  .get()
+  .then(function (querySnapshot) {
+  querySnapshot.forEach(function (doc) {
+  let newData = doc.data();
+
+  console.log("The data", doc.data().email);
+  
+    if (todos.indexOf(newData.id) === -1) {
+setTodos((arr) => {
+            return [...arr, newData];
+          });
+          } else {
+          console.log("this is a duplicate");
+          }
+          console.log("here are all of the todos", todos, "here are all of the todos");
+        });
+      })
+      .catch((e) => console.log(e));
+  };
+
+
+  useEffect(() => {
+    newfunctio()
+  },[]);
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -183,8 +225,8 @@ textsearched = (value) => {
         />   
         <Selecting
         textsearched={(value) => textsearched(value)}
-      inputentry={inputentry}
-        setInputentry={setInputentry}
+      group={group}
+        setgroup={setgroup}
       />
       <ScrollView>
         <Results
@@ -192,8 +234,8 @@ textsearched = (value) => {
           height={50}
           width= {300}
          posts={filteredposts}      
-         inputentry={inputentry}
-         setInputentry={setInputentry}  
+         group={group}
+         setgroup={setgroup}  
          textsearched={(value) => textsearched(value)}   
         />
         </ScrollView>
@@ -346,7 +388,4 @@ lastsection: {
     flex: 2,
   },
 });
-
-
-
 
