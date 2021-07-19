@@ -3,6 +3,7 @@ import { scale, ScaledSheet } from 'react-native-size-matters';
 import Mainpage from "./Game";
 import Selecting from "./Subcomponents/SelectingContainer";
 import Results from "./Subcomponents/ResultsContainer";
+import Search from "./Subcomponents/TryThis";
 import CryptoES from "crypto-es";
 
 import {
@@ -37,30 +38,30 @@ const SignUp = ({ navigation }) => {
   const [posts, setposts] = useState([]);
   const [todos, setTodos] = useState([]);
 
-  // useEffect(() => {
-  //   var request = new Request("https://swapi.dev/api/people/");
+  useEffect(() => {
+    var request = new Request("https://swapi.dev/api/people/");
  
-  //   fetch(request)
-  //     .then((res) => res.json())
-  //     .then((data) => setfilteredposts(data.results));
-  // }, []);
+    fetch(request)
+      .then((res) => res.json())
+      .then((data) => setfilteredposts(data.results));
+  }, []);
  
 
 
-//  useEffect(() => {
-//   var request = new Request("https://swapi.dev/api/people/");
+ useEffect(() => {
+  var request = new Request("https://swapi.dev/api/people/");
 
-//   fetch(request)
-//     .then((res) => res.json())
-//     .then((data) => setposts(data.results)), console.log("these are the posts",posts);
-// }, []);
+  fetch(request)
+    .then((res) => res.json())
+    .then((data) => setposts(data.results)), console.log("these are the posts",posts);
+}, []);
 
 textsearched = (value) => {
  
   let postss = [];
-  for (let i in posts) {
+  for (let i in todos) {
     let match = false;
-    let postt = posts[i];
+    let postt = todos[i];
 
     for (let prop in postt) {
     
@@ -200,6 +201,8 @@ setTodos((arr) => {
 
       {/* Sign Up Form */}
       <KeyboardAvoidingView style={styles.form} behavior="height">
+<Search />
+
         <TextInput
           placeholder="Email"
           onChangeText={(text) => setEmail(text)}

@@ -1,7 +1,5 @@
 import React from "react";
 
-// import React, { Component } from "react";
-
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import Output from "./Output";
 
@@ -25,12 +23,9 @@ import Output from "./Output";
 const ResultsContainer = ({textsearched, height, width, posts, group, setgroup}) => {
 
     const selectItem = item => {
-
      setgroup(item),
      textsearched(group)
-     
-
-      }
+}
       
 return (
   posts.length > 0 && 
