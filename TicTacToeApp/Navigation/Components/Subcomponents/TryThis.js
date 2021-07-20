@@ -60,7 +60,8 @@ useEffect(() => {
         searching &&
         <SearchDropDown
           onPress={() => setSearching(false)}
-          dataSource={filtered} />
+          dataSource={filtered}
+          setInputtext= {setInputtext} />
       }
     </View>
   )

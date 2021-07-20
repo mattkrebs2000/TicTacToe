@@ -20,11 +20,13 @@ export default function SearchDropDown(props) {
                     dataSource.length ?
 
                         dataSource.map((item, index) => {
+                            
                             return (
-
-                                <View key={index} style={styles.itemView} >
+                                <TouchableOpacity onPress = {() => props.setInputtext(item)}>
+                                <View key={index} style={styles.itemView}>
                                     <Text style={styles.itemText}>{item}</Text>
                                 </View>
+                                </TouchableOpacity>
                             )
                         })
 
