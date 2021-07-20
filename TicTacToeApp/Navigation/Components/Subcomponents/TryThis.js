@@ -8,7 +8,7 @@ import {
   Text,
   TextInput,
 } from 'react-native';
-import SearchDropDown from "./Subsubcomponents/Searchdropdown";
+import SearchDropDown from "./Searchdropdown";
 export default function App() {
   const [dataSource] = useState(['apple', 'banana', 'cow', 'dex', 'zee', 'orange', 'air', 'bottle'])
   const [colors] = useState(['#84DCC6', '#FEC8C8', '#F7E4CF', "#E8DEF3",

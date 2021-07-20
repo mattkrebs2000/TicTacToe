@@ -8,11 +8,11 @@ import {
     TextInput,
 } from 'react-native';
 
-export default function SearchDropDown(props) {
-    const { dataSource } = props
+const SearchDropDown = ({onPress, dataSource, setInputtext}) => {
+   
     return (
         <TouchableOpacity
-            onPress={props.onPress}
+            onPress={onPress}
             style={styles.container}>
 
             <View style={styles.subContainer}>
@@ -22,7 +22,7 @@ export default function SearchDropDown(props) {
                         dataSource.map((item, index) => {
                             
                             return (
-                                <TouchableOpacity onPress = {() => props.setInputtext(item)}>
+                                <TouchableOpacity onPress = {() => setInputtext(item)}>
                                 <View key={index} style={styles.itemView}>
                                     <Text style={styles.itemText}>{item}</Text>
                                 </View>
@@ -43,6 +43,7 @@ export default function SearchDropDown(props) {
     )
 }
 
+export default SearchDropDown;
 
 const styles = StyleSheet.create({
     container: {

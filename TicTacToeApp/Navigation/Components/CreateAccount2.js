@@ -45,22 +45,43 @@ const SignUp = ({ navigation }) => {
   const [age, setAge] = useState(0);
   const [group, setgroup] = useState("");
   const [searching, setSearching] = useState(false);
-  const [dataSource] = useState(['apple', 'banana', 'cow', 'dex', 'zee', 'orange', 'air', 'bottle'])
-  const [filtered, setFiltered] = useState(dataSource);
+  // const [dataSource] = useState(['apple', 'banana', 'cow', 'dex', 'zee', 'orange', 'air', 'bottle'])
+  const [filtered, setFiltered] = useState([]);
   const [inputtext, setInputtext] = useState("");
 
   useEffect(() => {
     newfunctio()
   },[]);
 
+  
+  useEffect(() => {
+    var request = new Request("https://swapi.dev/api/people/");
+ 
+    fetch(request)
+      .then((res) => res.json())
+      .then((data) => setfilteredposts(data.results));
+  }, []);
  
 
+
+ useEffect(() => {
+  var request = new Request("https://swapi.dev/api/people/");
+
+  fetch(request)
+    .then((res) => res.json())
+    .then((data) => setposts(data.results)), console.log("these are the posts",posts);
+}, []);
+
+
+
+
   const textsearched = (text) => {
-   
+   if (text){
+     setSearching(true);
   let postss = [];
-  for (let i in todos) {
+  for (let i in posts) {
     let match = false;
-    let postt = todos[i];
+    let postt = posts[i];
 
     for (let prop in postt) {
     
@@ -69,15 +90,19 @@ const SignUp = ({ navigation }) => {
         match = true;
       }
     }
-    if (match === true ) {
-      if (!postss.includes(postt.id)) {
+    if (match === true) {
       postss.push(postt),
-      console.log("NNNNN",posts, postss, postt.id, postss.id)
-      }
+      console.log("NNNNN", postss)
     }
   }
+   setFiltered( postss )
+    console.log("WWWWW",filtered)
 
-  setFiltered( postss );
+   }
+   else {
+     setSearching(false);
+   }
+
   }
 
 useEffect(() => {
@@ -244,6 +269,16 @@ setTodos((arr) => {
         value={inputtext}
       />
 
+      {
+        searching &&
+        <Search
+          onPress={() => setSearching(false)}
+          dataSource={filtered}
+          setInputtext= {setInputtext} />
+      }
+
+
+
         <Selecting
         textsearched={(value) => console.log("YO")}
       group={group}
@@ -288,7 +323,6 @@ setTodos((arr) => {
 };
 
 export default SignUp;
-
 const styles = ScaledSheet.create({
   container: {
     flex: 1,
@@ -411,4 +445,3 @@ lastsection: {
     flex: 2,
   },
 });
-

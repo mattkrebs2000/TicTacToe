@@ -40,19 +40,7 @@ export const Navigation = ({ navigation }) => {
     const AuthStack = createStackNavigator();
   const AuthStackScreen = () => (
     <AuthStack.Navigator>
-    <AuthStack.Screen
-    name="Trial"
-    component={Trial}
-    options={{
-      title: "Trial",
-      headerTitleAlign: "center",
-      headerStyle,
-      headerTintColor: "white",
-      headerTitleStyle: {
-        fontSize: scale(12),
-       },
-    }}
-  />
+  
       <AuthStack.Screen
         name="SignIn"
         component={SignIn}
@@ -92,6 +80,19 @@ export const Navigation = ({ navigation }) => {
          },
       }}
     />
+    <AuthStack.Screen
+    name="Trial"
+    component={Trial}
+    options={{
+      title: "Trial",
+      headerTitleAlign: "center",
+      headerStyle,
+      headerTintColor: "white",
+      headerTitleStyle: {
+        fontSize: scale(12),
+       },
+    }}
+  />
     </AuthStack.Navigator>
   );
 
