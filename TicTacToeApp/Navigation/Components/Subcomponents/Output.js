@@ -3,92 +3,33 @@ import { StyleSheet, View, Text,Image } from "react-native";
 
 import { AppLoading, Font } from "expo";
 
-const Output = (props) => (
+const Output = ({height, width, username, email, group}) => (
     
   <View>
     <View style={styles.container}  maxWidth={650}>
       <View style={styles.container5}>
         <View style={styles.container7}>
           <View style={styles.face}>
-            <View style={styles.text}>
-              {props.name === "R2-D2" ? (
-                <Image
-                  style={styles.faces}
-                  source={require("./images/R2-D2.png")}
-                />
-              ) : props.name === "Beru Whitesun lars" ? (
-                <Image
-                  style={styles.faces}
-                  source={require("./images/BeruWhitesunlars.png")}
-                />
-              ) : props.name === "Biggs Darklighter" ? (
-                <Image
-                  style={styles.faces}
-                  source={require("./images/BiggsDarklighter.png")}
-                />
-              ) : props.name === "C-3PO" ? (
-                <Image
-                  style={styles.faces}
-                  source={require("./images/C-3PO.png")}
-                />
-              ) : props.name === "Darth Vader" ? (
-                <Image
-                  style={styles.faces}
-                  source={require("./images/DarthVader.png")}
-                />
-              ) : props.name === "Leia Organa" ? (
-                <Image
-                  style={styles.faces}
-                  source={require("./images/LeiaOrgana.png")}
-                />
-              ) : props.name === "Luke Skywalker" ? (
-                <Image
-                  style={styles.faces}
-                  source={require("./images/LukeSkywalker.png")}
-                />
-              ) : props.name === "Obi-Wan Kenobi" ? (
-                <Image
-                  style={styles.faces}
-                  source={require("./images/Obi-WanKenobi.png")}
-                />
-              ) : props.name === "Owen Lars" ? (
-                <Image
-                  style={styles.faces}
-                  source={require("./images/OwenLars.png")}
-                />
-              ) : props.name === "R5-D4" ? (
-                <Image
-                  style={styles.faces}
-                  source={require("./images/R5-D4.png")}
-                />
-              ) :  (
-                <Image
-                  style={styles.faces}
-                  source={require("./images/R2-D2.png")}
-                />
-              )
-               
-              }
-            </View>
+            
           </View>
         </View>
         <View style={styles.container8}>
           <View style={styles.container10}>
-            <Text style={styles.text2}>{props.name}</Text>
+            <Text style={styles.text2}>EMAIl {email}</Text>
           </View>
           <View style={styles.container11}>
             <Text style={styles.text3}>
-              Height:{props.height} Weight:{props.weight}
+              Height:{email} Weight:{username}
             </Text>
           </View>
         </View>
         <View style={styles.container9}>
-          <Text style={styles.text4}>{props.gender}</Text>
+          <Text style={styles.text4}>{email}</Text>
         </View>
       </View>
       <View style={styles.container6}>
         <Text style={styles.text3}>
-          Eyes:{props.eyes} Hair: {props.hair}
+          Eyes:{username} Hair: {email}
         </Text>
       </View>
     </View>

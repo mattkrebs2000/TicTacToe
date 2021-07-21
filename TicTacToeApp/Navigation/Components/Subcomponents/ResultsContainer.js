@@ -20,7 +20,7 @@ import Output from "./Output";
 
   
 
-const ResultsContainer = ({textsearched, height, width, posts, group, setgroup}) => {
+const ResultsContainer = ({textsearched, height, width, posts, email,username, group, setgroup}) => {
 
     const selectItem = item => {
      setgroup(item),
@@ -34,16 +34,13 @@ return (
 
 
     <View style={styles.container} key={value}>
-      <TouchableOpacity onPress={() => selectItem(info.name)}>
+      <TouchableOpacity onPress={() => selectItem(info.email)}>
         <Output
-          height={height}
-          width={width}
-          name={info.name}
           height={info.height}
-          weight={info.mass}
-          hair={info.hair_color}
-          eyes={info.eye_color}
-          gender={info.gender}
+          width={info.width}
+          email={info.email}
+          username={info.username}
+          group={info.group}
         />
       </TouchableOpacity>
     </View>

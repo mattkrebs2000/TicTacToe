@@ -23,8 +23,11 @@ const SearchDropDown = ({onPress, dataSource, setInputtext}) => {
                             
                             return (
                                 <TouchableOpacity onPress = {() => setInputtext(item)}>
-                                <View key={index} style={styles.itemView}>
-                                    <Text style={styles.itemText}>{item}</Text>
+                                <View key={item.id} style={styles.itemView}>
+                                    <Text style={styles.itemText}>
+                                   Results: 
+                                   {item.group}
+                                    </Text>
                                 </View>
                                 </TouchableOpacity>
                             )
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: '6.2%',
         left: 0, right: 0, bottom: 0,
+        width: 200,
 
     },
     subContainer: {
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
         // marginHorizontal: '10%',
         backgroundColor: 'white',
         height: 30,
-        width: '90%',
+        width: 200,
         marginBottom: 10,
         justifyContent: 'center',
         borderRadius: 4,

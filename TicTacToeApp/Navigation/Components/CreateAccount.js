@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { scale, ScaledSheet } from 'react-native-size-matters';
 import Mainpage from "./Game";
-import Selecting from "./Subcomponents/SelectingContainer";
-import Results from "./Subcomponents/ResultsContainer";
 import Search from "./Subcomponents/Searchdropdown";
 import CryptoES from "crypto-es";
+import Results from "./Subcomponents/ResultsContainer";
 
 import {
   useNavigation,
@@ -45,9 +44,9 @@ const SignUp = ({ navigation }) => {
   const [age, setAge] = useState(0);
   const [group, setgroup] = useState("");
   const [searching, setSearching] = useState(false);
-  const [dataSource] = useState(['apple', 'banana', 'cow', 'dex', 'zee', 'orange', 'air', 'bottle'])
-  const [filtered, setFiltered] = useState(dataSource);
+  const [filtered, setFiltered] = useState([]);
   const [inputtext, setInputtext] = useState("");
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     newfunctio()
@@ -72,7 +71,7 @@ const SignUp = ({ navigation }) => {
     if (match === true ) {
       if (!postss.includes(postt.id)) {
       postss.push(postt),
-      console.log("NNNNN",posts, postss, postt.id, postss.id)
+      console.log("NNNNN",filtered)
       }
     }
   }
@@ -153,6 +152,7 @@ useEffect(() => {
           email,
           password: encrypt,
           group,
+          username,
         };
 
         const usersRef = firebase
@@ -237,30 +237,32 @@ setTodos((arr) => {
           placeholderTextColor="gray"
         />   
         <TextInput
+        placeholder="Username"
+        onChangeText={(text) => setUsername(text)}
+        value={username}
         style={styles.input}
-        placeholder="Search"
+        placeholderTextColor="gray"
+      /> 
+        <TextInput
+        style={styles.input}
+        placeholder="Select a Group Or Create One"
         placeholderTextColor="gray"
         onChangeText={(text) => setInputtext(text)}
         value={inputtext}
       />
 
-        <Selecting
-        textsearched={(value) => console.log("YO")}
-      group={group}
-        setgroup={setgroup}
-      />
-
       <ScrollView>
-        <Results
-          style={styles.input}
-          height={50}
-          width= {300}
-         posts={filteredposts}      
-         group={group}
-         setgroup={setgroup}  
-         textsearched={(value) => textsearched(value)}   
-        />
-        </ScrollView>
+      <Results
+        style={styles.input}
+        height={50}
+        width= {300}
+       posts={filtered}      
+       group={group}
+       setgroup={setgroup}  
+       textsearched={(value) => textsearched(value)}   
+      />
+      </ScrollView>
+      
    
       </KeyboardAvoidingView>
 
@@ -339,6 +341,24 @@ const styles = ScaledSheet.create({
     color: "white",
     opacity: "0.8@s",
   },
+
+  input4: {
+    borderWidth: "2@s",
+    borderColor: "#004fff",
+    padding: "7@s",
+    width: "300@s",
+    marginBottom: "12@s",
+    borderRadius: "10@s",
+    shadowColor: "white",
+    shadowOffset: { width: "0.5@s", height: "0.5@s" },
+    shadowOpacity: "1@s",
+    shadowRadius: "0.5@s",
+    color: "white",
+    lineHeight: "24@s",
+    fontSize: "20@s",
+    height: 200,
+  },
+
   btn: {
     width: "300@s",
     alignItems: "center",
