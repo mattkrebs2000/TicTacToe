@@ -58,7 +58,7 @@ export const Navigation = ({ navigation }) => {
         name="CreateAccount"
         component={CreateAccount}
         options={{
-          title: "Create Account",
+          title: "Set Up",
           headerTitleAlign: "center",
           headerStyle,
           headerTitleStyle: {

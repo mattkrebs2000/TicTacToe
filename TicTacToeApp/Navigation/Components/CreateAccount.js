@@ -278,7 +278,7 @@ setTodos((arr) => {
       {/* Log In */}
       <Text style={styles.lastsection}
         accessibilityLabel="Link to Sign In page"
-        style={{ color: "#167bff", padding: scale(20), fontSize: scale(10)}}
+        style={{ color: "#8959DF", padding: scale(20), fontSize: scale(10)}}
         onPress={() => {
           navigation.navigate("SignIn");
         }}
@@ -403,7 +403,7 @@ const styles = ScaledSheet.create({
     width: "20@s",
   },
   text5: {
-    color: "#8959DF",
+    color: "white",
     fontSize: "12@s",
     marginRight: "5@s"
   },

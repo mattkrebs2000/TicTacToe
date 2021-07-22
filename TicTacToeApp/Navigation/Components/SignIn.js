@@ -138,7 +138,7 @@ const SignIn = ({ navigation }) => {
       <View style={styles.divider_bar}></View>
       <Text
         accessibilityLabel="Link to Sign In page"
-        style={{ color: "#167bff", fontSize: scale(10)}}
+        style={{ color: "#8959DF", fontSize: scale(10)}}
         onPress={() => {
           navigation.navigate("CreateAccount");
         }}
