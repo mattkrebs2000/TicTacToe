@@ -47,6 +47,7 @@ const SignUp = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [number, setNumber] = useState(0);
   const [admin, setAdmin] = useState(false);
+  const [onlyadmin, setOnlyadmin] = useState([]);
 
 
   useEffect(() => {
@@ -81,7 +82,7 @@ const SignUp = ({ navigation }) => {
   }
 
 useEffect(() => {
- console.log("here is the original array", filteredposts)
+console.log("here is the original array", filteredposts)
 }, [filteredposts])
 
 useEffect(() => {
@@ -245,8 +246,7 @@ setTodos((arr) => {
       { searching ? 
       <ScrollView >
       <Results
-        height={50}
-        width= {300}
+       
        posts={filtered}      
        group={group}
        setGroup={setGroup}  
@@ -254,6 +254,8 @@ setTodos((arr) => {
        setSearching ={setSearching}
        number={number}
        setNumber={setNumber}
+       onlyadmin = {onlyadmin}
+      setOnlyadmin = {setOnlyadmin}
       
       />
       </ScrollView>
@@ -309,7 +311,7 @@ const styles = ScaledSheet.create({
   },
   input: {
     borderWidth: "2@s",
-    borderColor: "#004fff",
+    borderColor: "#8959DF",
     padding: "7@s",
     width: "300@s",
     marginBottom: "12@s",
@@ -324,7 +326,7 @@ const styles = ScaledSheet.create({
   },
   input2: {
     borderWidth: "2@s",
-    borderColor: "#004fff",
+    borderColor: "#8959DF",
     padding: "7@s",
     width: "300@s",
     marginBottom: "25@s",
@@ -342,7 +344,7 @@ const styles = ScaledSheet.create({
 
   input4: {
     borderWidth: "2@s",
-    borderColor: "#004fff",
+    borderColor: "#8959DF",
     padding: "7@s",
     width: "300@s",
     marginBottom: "12@s",
@@ -361,7 +363,7 @@ const styles = ScaledSheet.create({
     width: "300@s",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#004fff",
+    backgroundColor: "#8959DF",
     borderRadius: "10@s",
     shadowColor: "white",
     shadowOffset: { width: "1@s", height: "1@s" },
@@ -401,7 +403,7 @@ const styles = ScaledSheet.create({
     width: "20@s",
   },
   text5: {
-    color: "#004fff",
+    color: "#8959DF",
     fontSize: "12@s",
     marginRight: "5@s"
   },
@@ -429,7 +431,7 @@ lastsection: {
     flex: 2,
   },
   scroll: {
-    backgroundColor: "green",
+    backgroundColor: "black",
     height: 150
   }
 });

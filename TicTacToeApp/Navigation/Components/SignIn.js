@@ -200,7 +200,7 @@ const styles = ScaledSheet.create({
     maxHeight: "55@s",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#004fff",
+    backgroundColor: "#8959DF",
     borderRadius: "10@s",
     shadowColor: "white",
     shadowOffset: { width: "1@s", height: "1@s" },
@@ -222,7 +222,7 @@ const styles = ScaledSheet.create({
 
   input: {
     borderWidth: "2@s",
-    borderColor: "#004fff",
+    borderColor: "#8959DF",
     padding: "10@s",
     width: "300@s",
     marginBottom: "25@s",

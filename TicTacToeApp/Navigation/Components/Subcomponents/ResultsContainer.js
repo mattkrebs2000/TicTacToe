@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { scale, ScaledSheet } from 'react-native-size-matters';
 
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import Output from "./Output";
@@ -20,7 +21,15 @@ import Output from "./Output";
 
   
 
-const ResultsContainer = ({textsearched, height, width, posts, email,username, group, setGroup, setSearching, number, setNumber}) => {
+const ResultsContainer = ({textsearched, posts, email,username, group, setGroup, setSearching, number, setNumber, onlyadmin, setOnlyadmin}) => {
+
+
+
+  useEffect(() => {
+  const filtered = posts.filter(instance => instance.admin === true)
+
+  setOnlyadmin(filtered)
+  }, [posts])
  
 
   var occurrence = function (posts, group) {
@@ -48,6 +57,7 @@ const ResultsContainer = ({textsearched, height, width, posts, email,username, g
    };
 
 
+
 useEffect(() => {
   occurrence(posts, group)
 }, [group])
@@ -60,16 +70,13 @@ useEffect(() => {
 
 
 return (
-  posts.length > 0 && 
-  posts.map((info, value) => (
-
+  onlyadmin.length > 0 && 
+  onlyadmin.map((info, value) => (
 
 
     <View style={styles.container} key={value}>
-      <TouchableOpacity onPress={() => setGroup(info.email)}>
+      <TouchableOpacity onPress={() => setGroup(info.group)}>
         <Output
-          height={info.height}
-          width={info.width}
           email={info.email}
           username={info.username}
           group={info.group}
@@ -83,22 +90,10 @@ return (
       
 export default ResultsContainer;
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
-    marginBottom: 10,
-    height: 80,
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "pink",
+
+  
   },
 
-  help: {
-   
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-    alignItems: "flex-start",
-    justifyContent: "center",
-    color: "red",
-    fontSize: 20,
-  },
 });
