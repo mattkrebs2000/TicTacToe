@@ -141,7 +141,7 @@ useEffect(() => {
             if ( admin ) {
               alert("You've just created a new group: '"+group+"'. Invite people you know to join so you can compete against them.") 
             } else {
-              alert("You've just joined the group: '"+group+"' with "+ number + " other people!")
+              alert("You've just joined the group: '"+group+"' with "+ number + " other person(s)!")
             }
           })
           .then(() => {
@@ -242,16 +242,18 @@ setTodos((arr) => {
         onChangeText={(text) => setGroup(text)}
         value={group}
       />
+
+
 <View style={styles.scroll}>
-      { searching ? 
+    
       <ScrollView >
-      <Results
-       
+      <Results   
        posts={filtered}      
        group={group}
        setGroup={setGroup}  
        textsearched={(value) => textsearched(value)}     
        setSearching ={setSearching}
+       searching ={searching}
        number={number}
        setNumber={setNumber}
        onlyadmin = {onlyadmin}
@@ -259,8 +261,6 @@ setTodos((arr) => {
       
       />
       </ScrollView>
-      : <View></View>
-      }
       </View>
       
    

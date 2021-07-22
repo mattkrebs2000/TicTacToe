@@ -4,29 +4,11 @@ import { scale, ScaledSheet } from 'react-native-size-matters';
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import Output from "./Output";
 
-// import React, { Component } from "react";
-// class ResultsContainer extends Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <View>
-//           <Output />
-//         </View>
-//       </View>
-//     );
-//   }
-// }
-
-
-
-  
-
-const ResultsContainer = ({textsearched, posts, email,username, group, setGroup, setSearching, number, setNumber, onlyadmin, setOnlyadmin}) => {
-
-
+const ResultsContainer = ({textsearched, posts, email,username, group, setGroup, setSearching, searching, number, setNumber, onlyadmin, setOnlyadmin}) => {
 
   useEffect(() => {
-  const filtered = posts.filter(instance => instance.admin === true)
+
+  const filtered = posts.filter(instance => instance.admin === true);
 
   setOnlyadmin(filtered)
   }, [posts])
@@ -61,21 +43,15 @@ const ResultsContainer = ({textsearched, posts, email,username, group, setGroup,
 useEffect(() => {
   occurrence(posts, group)
 }, [group])
- 
-
-    const selectItem = item => {
-      setGroup(item)
-}
-      
-
 
 return (
   onlyadmin.length > 0 && 
   onlyadmin.map((info, value) => (
-
-
+<View>
+{ searching ?
     <View style={styles.container} key={value}>
-      <TouchableOpacity onPress={() => setGroup(info.group)}>
+      <TouchableOpacity onPress={
+        () => {  setSearching(false); setGroup(info.group);}}>
         <Output
           email={info.email}
           username={info.username}
@@ -83,6 +59,9 @@ return (
           number={number}
         />
       </TouchableOpacity>
+    </View>
+
+      : <View></View>}
     </View>
   ))
 )
