@@ -20,7 +20,7 @@ import {
 import SignIn from "./Components/SignIn";
 import CreateAccount from "./Components/CreateAccount";
 import PrimaryPage from "./Components/Game";
-import Trial from "./Components/Subcomponents/TryThis";
+
 
 
 
@@ -80,19 +80,8 @@ export const Navigation = ({ navigation }) => {
          },
       }}
     />
-    <AuthStack.Screen
-    name="Trial"
-    component={Trial}
-    options={{
-      title: "Trial",
-      headerTitleAlign: "center",
-      headerStyle,
-      headerTintColor: "white",
-      headerTitleStyle: {
-        fontSize: scale(12),
-       },
-    }}
-  />
+  
+  
     </AuthStack.Navigator>
   );
 

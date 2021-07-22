@@ -3,7 +3,7 @@ import { StyleSheet, View, Text,Image } from "react-native";
 
 import { AppLoading, Font } from "expo";
 
-const Output = ({height, width, username, email, group}) => (
+const Output = ({height, width, username, email, group, number}) => (
     
   <View>
     <View style={styles.container}  maxWidth={650}>
@@ -24,12 +24,12 @@ const Output = ({height, width, username, email, group}) => (
           </View>
         </View>
         <View style={styles.container9}>
-          <Text style={styles.text4}>{email}</Text>
+          <Text style={styles.text4}>Size of Group: {number}</Text>
         </View>
       </View>
       <View style={styles.container6}>
         <Text style={styles.text3}>
-          Eyes:{username} Hair: {email}
+          Size of Group: {number}
         </Text>
       </View>
     </View>

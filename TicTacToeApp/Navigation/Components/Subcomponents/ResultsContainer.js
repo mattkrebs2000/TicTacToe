@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import Output from "./Output";
@@ -20,13 +20,45 @@ import Output from "./Output";
 
   
 
-const ResultsContainer = ({textsearched, height, width, posts, email,username, group, setgroup}) => {
+const ResultsContainer = ({textsearched, height, width, posts, email,username, group, setGroup, setSearching, number, setNumber}) => {
+ 
+
+  var occurrence = function (posts, group) {
+  console.log("Hi", posts.length)
+   let postss = [];
+   for (let i in posts) {
+     let match = false;
+     let postt = posts[i];
+ 
+     for (let prop in postt) {
+     
+       let lower = JSON.stringify(postt[prop]).toLowerCase();
+       if (lower.match(group.toString().toLowerCase(),1)) {
+         match = true;
+       }
+     }
+     if (match === true ) {
+       
+       postss.push(postt)
+       
+     }
+   }
+ setNumber(postss.length)
+   console.log("HelloThere", postss.length)
+   };
+
+
+useEffect(() => {
+  occurrence(posts, group)
+}, [group])
+ 
 
     const selectItem = item => {
-     setgroup(item),
-     textsearched(group)
+      setGroup(item)
 }
       
+
+
 return (
   posts.length > 0 && 
   posts.map((info, value) => (
@@ -34,13 +66,14 @@ return (
 
 
     <View style={styles.container} key={value}>
-      <TouchableOpacity onPress={() => selectItem(info.email)}>
+      <TouchableOpacity onPress={() => setGroup(info.email)}>
         <Output
           height={info.height}
           width={info.width}
           email={info.email}
           username={info.username}
           group={info.group}
+          number={number}
         />
       </TouchableOpacity>
     </View>
@@ -57,6 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.1)",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "pink",
   },
 
   help: {

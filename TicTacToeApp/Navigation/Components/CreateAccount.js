@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { scale, ScaledSheet } from 'react-native-size-matters';
 import Mainpage from "./Game";
-import Search from "./Subcomponents/Searchdropdown";
 import CryptoES from "crypto-es";
 import Results from "./Subcomponents/ResultsContainer";
 
@@ -42,11 +41,12 @@ const SignUp = ({ navigation }) => {
   const [encrypt, setEncrypt] = useState("");
   const [visibility, setVisibility] = useState(false);
   const [age, setAge] = useState(0);
-  const [group, setgroup] = useState("");
+  const [group, setGroup] = useState("");
   const [searching, setSearching] = useState(false);
   const [filtered, setFiltered] = useState([]);
-  const [inputtext, setInputtext] = useState("");
   const [username, setUsername] = useState("");
+   const [number, setNumber] = useState(0)
+
 
   useEffect(() => {
     newfunctio()
@@ -55,7 +55,7 @@ const SignUp = ({ navigation }) => {
  
 
   const textsearched = (text) => {
-   
+   setSearching(true)
   let postss = [];
   for (let i in todos) {
     let match = false;
@@ -64,7 +64,7 @@ const SignUp = ({ navigation }) => {
     for (let prop in postt) {
     
       let lower = JSON.stringify(postt[prop]).toLowerCase();
-      if (lower.startsWith(inputtext.toString().toLowerCase(),1)) {
+      if (lower.startsWith(group.toString().toLowerCase(),1)) {
         match = true;
       }
     }
@@ -175,10 +175,11 @@ useEffect(() => {
   };
 
   useEffect(() => {
-    textsearched(inputtext)
-    console.log("this has been input", inputtext)
+
+    textsearched(group)
+    console.log("this has been input", group)
     
-  }, [inputtext])
+  }, [group])
 
 
 const newfunctio = () => {
@@ -204,6 +205,7 @@ setTodos((arr) => {
       .catch((e) => console.log(e));
   };
 
+ 
 
 
 
@@ -247,21 +249,28 @@ setTodos((arr) => {
         style={styles.input}
         placeholder="Select a Group Or Create One"
         placeholderTextColor="gray"
-        onChangeText={(text) => setInputtext(text)}
-        value={inputtext}
+        onChangeText={(text) => setGroup(text)}
+        value={group}
       />
-
-      <ScrollView>
+<View style={styles.scroll}>
+      { searching ? 
+      <ScrollView >
       <Results
-        style={styles.input}
         height={50}
         width= {300}
        posts={filtered}      
        group={group}
-       setgroup={setgroup}  
-       textsearched={(value) => textsearched(value)}   
+       setGroup={setGroup}  
+       textsearched={(value) => textsearched(value)}     
+       setSearching ={setSearching}
+       number={number}
+       setNumber={setNumber}
+      
       />
       </ScrollView>
+      : <View></View>
+      }
+      </View>
       
    
       </KeyboardAvoidingView>
@@ -430,5 +439,9 @@ lastsection: {
   Results: {
     flex: 2,
   },
+  scroll: {
+    backgroundColor: "green",
+    height: 150
+  }
 });
 
