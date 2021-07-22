@@ -163,6 +163,9 @@ useEffect(() => {
           .doc(uid)
           .set(data)
           .then(() => {
+           alert("You've just joined the group: '"+group+"' with "+ number + " other people!")
+          })
+          .then(() => {
             navigation.navigate("SignIn", { user: data });
           })
           .catch((error) => {
