@@ -45,7 +45,8 @@ const SignUp = ({ navigation }) => {
   const [searching, setSearching] = useState(false);
   const [filtered, setFiltered] = useState([]);
   const [username, setUsername] = useState("");
-   const [number, setNumber] = useState(0)
+  const [number, setNumber] = useState(0);
+  const [admin, setAdmin] = useState(false);
 
 
   useEffect(() => {
@@ -89,34 +90,6 @@ useEffect(() => {
 
 
 
-// const textsearched = (value) => {
- 
-//   let postss = [];
-//   for (let i in todos) {
-//     let match = false;
-//     let postt = todos[i];
-
-//     for (let prop in postt) {
-    
-//       let lower = JSON.stringify(postt[prop]).toLowerCase();
-//       ("1", value )
-//       if (value.searchtext && lower.startsWith(value.searchtext.toString().toLowerCase(),1)) {
-//         match = true;
-//       }
-//     }
-//     if (match === true) {
-//       postss.push(postt);
-//     }
-//   }
-
-//   setfilteredposts( postss );
-//   console.log("these are the filtered posts", filteredposts)
-// };
-
- 
-
-
-
   useEffect(() => {
     setEncrypt(CryptoES.AES.encrypt(password, "Your Password").toString());
   }, [password]);
@@ -153,6 +126,7 @@ useEffect(() => {
           password: encrypt,
           group,
           username,
+          admin,
         };
 
         const usersRef = firebase
@@ -163,7 +137,11 @@ useEffect(() => {
           .doc(uid)
           .set(data)
           .then(() => {
-           alert("You've just joined the group: '"+group+"' with "+ number + " other people!")
+            if ( admin ) {
+              alert("You've just created a new group: '"+group+"'. Invite people you know to join so you can compete against them.") 
+            } else {
+              alert("You've just joined the group: '"+group+"' with "+ number + " other people!")
+            }
           })
           .then(() => {
             navigation.navigate("SignIn", { user: data });
@@ -183,6 +161,14 @@ useEffect(() => {
     console.log("this has been input", group)
     
   }, [group])
+
+  useEffect(() => {
+    if (number > 0){
+      setAdmin(false)
+    } else {
+      setAdmin( true )
+    }
+  }, [number])
 
 
 const newfunctio = () => {
