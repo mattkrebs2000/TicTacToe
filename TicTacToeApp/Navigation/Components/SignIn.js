@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { scale, ScaledSheet } from 'react-native-size-matters';
+import CryptoES from "crypto-es";
 
 import {
   View,
@@ -48,22 +49,22 @@ const SignIn = ({ navigation }) => {
 
   useEffect(() => {
     console.log("1");
-    if (email.length > 5) {
-      setEmailGlobal(email);
+    if (email2.length > 5) {
 
       setTimeout(() => {
-        console.log("Data Loaded for Page");
-        navigation.navigate("Profile");
+        console.log("You are signed in", email);
+        navigation.navigate("PrimaryPage");
       }, 100);
     } else {
       console.log("do nothing");
     }
-  }, [email]);
+  }, [email2]);
+  
 
   const onLoginPress = () => {
     firebase
       .auth()
-      .signInWithEmailAndPassword(email2, password)
+      .signInWithEmailAndPassword(email, password)
       .then((response) => {
         const uid = response.user.uid;
         const usersRef = firebase.firestore().collection("users");
@@ -76,8 +77,7 @@ const SignIn = ({ navigation }) => {
               return;
             }
             const user = firestoreDocument.data();
-            setEmail(user.email);
-            setBirthdateGlobal(user.birthdate);
+            setEmail2(user.email);
           })
           .catch((error) => {
             alert(error);
@@ -106,8 +106,8 @@ const SignIn = ({ navigation }) => {
         behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.section3}>
         <View>
           <TextInput
-            onChangeText={(text) => setEmail2(text)}
-            value={email2}
+            onChangeText={(text) => setEmail(text)}
+            value={email}
             placeholder="Email"
             style={styles.input}
             placeholderTextColor="gray"
