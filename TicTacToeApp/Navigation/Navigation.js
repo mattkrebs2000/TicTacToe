@@ -50,7 +50,7 @@ export const Navigation = ({ navigation }) => {
           headerStyle,
           headerTintColor: "white",
           headerTitleStyle: {
-            fontSize: scale(12),
+            fontSize: scale(15),
            },
         }}
       />
@@ -58,11 +58,11 @@ export const Navigation = ({ navigation }) => {
         name="CreateAccount"
         component={CreateAccount}
         options={{
-          title: "Set Up",
+          title: "Sign Up",
           headerTitleAlign: "center",
           headerStyle,
           headerTitleStyle: {
-            fontSize: scale(12),
+            fontSize: scale(15),
            },
           headerTintColor: "white",
         }}
@@ -76,7 +76,7 @@ export const Navigation = ({ navigation }) => {
         headerStyle,
         headerTintColor: "white",
         headerTitleStyle: {
-          fontSize: scale(12),
+          fontSize: scale(15),
          },
       }}
     />
