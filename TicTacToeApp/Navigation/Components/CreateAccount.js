@@ -178,11 +178,11 @@ const newfunctio = () => {
   .collection("users");
   
   usersRef
+  
   .get()
   .then(function (querySnapshot) {
   querySnapshot.forEach(function (doc) {
   let newData = doc.data();
-  
     if (todos.indexOf(newData.id) === -1) {
 setTodos((arr) => {
             return [...arr, newData];

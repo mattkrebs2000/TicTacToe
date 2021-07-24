@@ -1,6 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import { scale, ScaledSheet } from 'react-native-size-matters';
+import { scale, ScaledSheet } from "react-native-size-matters";
 import CryptoES from "crypto-es";
+import Groupdata from "./Subcomponents/Groupdata";
+import emailContext from "../Emailcontext.js";
+import groupContext from "../Groupcontext.js";
 
 import {
   View,
@@ -16,15 +19,16 @@ import {
   Platform,
 } from "react-native";
 
-import firebase  from "../Firebase/Config.js";
+import firebase from "../Firebase/Config.js";
 
 const SignIn = ({ navigation }) => {
   const [email2, setEmail2] = useState("");
   const [email, setEmail] = useState("");
-  // const { emailGlobal, setEmailGlobal } = useContext(emailContext);
-  // const { birthdateGlobal, setBirthdateGlobal } = useContext(birthdateContext);
+  const { emailGlobal, setEmailGlobal } = useContext(emailContext);
+  const { groupGlobal, setGroupGlobal } = useContext(groupContext);
   const [password, setPassword] = useState("");
-  const [ didKeyboardShow, setKeyboardShow ] = useState(false);
+  const [group, setGroup] = useState("");
+  const [didKeyboardShow, setKeyboardShow] = useState(false);
 
   useEffect(() => {
     Keyboard.addListener("keyboardDidShow", _keyboardDidShow);
@@ -38,28 +42,35 @@ const SignIn = ({ navigation }) => {
   }, []);
 
   const _keyboardDidShow = () => {
-    setKeyboardShow(true) 
-  }
+    setKeyboardShow(true);
+  };
 
   const _keyboardDidHide = () => {
-     setKeyboardShow(false)
-  }
+    setKeyboardShow(false);
+  };
 
-  console.log( "ISITTHERE", email);
+  console.log("ISITTHERE", email2);
 
   useEffect(() => {
-    console.log("1");
-    if (email2.length > 5) {
-
+    console.log(
+      "this is the email and the group",
+      emailGlobal,
+      groupGlobal,
+      "this is the email and the group"
+    );
+    if (emailGlobal.length > 2) {
       setTimeout(() => {
-        console.log("You are signed in", email);
         navigation.navigate("PrimaryPage");
       }, 100);
     } else {
       console.log("do nothing");
     }
-  }, [email2]);
-  
+  }, [emailGlobal]);
+
+  const newUserDetails = (user) => {
+    setGroupGlobal(user.group);
+    setEmailGlobal(user.email);
+  };
 
   const onLoginPress = () => {
     firebase
@@ -77,7 +88,7 @@ const SignIn = ({ navigation }) => {
               return;
             }
             const user = firestoreDocument.data();
-            setEmail2(user.email);
+            newUserDetails(user);
           })
           .catch((error) => {
             alert(error);
@@ -90,20 +101,26 @@ const SignIn = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-        <View style={styles.section1}>
+      <View style={styles.section1}>
         <Image
-        style={styles.img}
-        source={require("./Subcomponents/images/TicTacToe.png")}
-      />
-        </View>
-        <View style={styles.section2}>
-        <Text style={didKeyboardShow ? styles.text3 : styles.text2}>Sign In</Text>
-          <View style={didKeyboardShow ? styles.divider_bar2 : styles.divider_bar }></View>
-        </View>
+          style={styles.img}
+          source={require("./Subcomponents/images/TicTacToe.png")}
+        />
+      </View>
+      <View style={styles.section2}>
+        <Text style={didKeyboardShow ? styles.text3 : styles.text2}>
+          Sign In
+        </Text>
+        <View
+          style={didKeyboardShow ? styles.divider_bar2 : styles.divider_bar}
+        ></View>
+      </View>
 
-        {/* Sign Up Form */}
-        <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.section3}>
+      {/* Sign Up Form */}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.section3}
+      >
         <View>
           <TextInput
             onChangeText={(text) => setEmail(text)}
@@ -125,26 +142,26 @@ const SignIn = ({ navigation }) => {
             placeholderTextColor="gray"
           />
         </View>
-        </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
 
-        {/* Sign Up Button */}
-        <TouchableOpacity style={styles.section4} onPress={() => onLoginPress()}>
-          <Text accessibilityLabel="Sign In" style={styles.text}>
-            Sign In
-          </Text>
-        </TouchableOpacity>
-   
-<View style={styles.section5}>
-      <View style={styles.divider_bar}></View>
-      <Text
-        accessibilityLabel="Link to Sign In page"
-        style={{ color: "#8959DF", fontSize: scale(15)}}
-        onPress={() => {
-          navigation.navigate("CreateAccount");
-        }}
-      >
-        Don't have an Account? Sign Up
-      </Text>
+      {/* Sign Up Button */}
+      <TouchableOpacity style={styles.section4} onPress={() => onLoginPress()}>
+        <Text accessibilityLabel="Sign In" style={styles.text}>
+          Sign In
+        </Text>
+      </TouchableOpacity>
+
+      <View style={styles.section5}>
+        <View style={styles.divider_bar}></View>
+        <Text
+          accessibilityLabel="Link to Sign In page"
+          style={{ color: "#8959DF", fontSize: scale(15) }}
+          onPress={() => {
+            navigation.navigate("CreateAccount");
+          }}
+        >
+          Don't have an Account? Sign Up
+        </Text>
       </View>
     </SafeAreaView>
   );
@@ -172,25 +189,23 @@ const styles = ScaledSheet.create({
     width: 0,
     backgroundColor: "#FAD9C5",
     height: 0,
-    
   },
   section1: {
-    width:150,
+    width: 150,
     justifyContent: "center",
-    alignItems:"center",
-    flex: 0.40,
+    alignItems: "center",
+    flex: 0.4,
   },
   section2: {
     flex: 0.25,
     color: "white",
-    
   },
   section3: {
-    flex: .5,
+    flex: 0.5,
     alignItems: "center",
     justifyContent: "center",
     color: "white",
-  paddingTop:10,
+    paddingTop: 10,
   },
   section4: {
     width: "300@s",
@@ -209,10 +224,9 @@ const styles = ScaledSheet.create({
     color: "white",
   },
   section5: {
-    width:"100%",
-    alignItems:"center",
-    flex: .2,
-    
+    width: "100%",
+    alignItems: "center",
+    flex: 0.2,
   },
   text: {
     color: "white",
@@ -261,6 +275,4 @@ const styles = ScaledSheet.create({
     textAlign: "center",
     color: "#167bff",
   },
-
-
 });
