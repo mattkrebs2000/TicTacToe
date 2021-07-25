@@ -33,6 +33,11 @@ export const Navigation = ({ navigation }) => {
   const [emailGlobal, setEmailGlobal] = useState("");
   const [groupGlobal, setGroupGlobal] = useState("");
 
+ 
+
+ 
+
+
   const AuthStack = createStackNavigator();
   const AuthStackScreen = () => (
     <AuthStack.Navigator>

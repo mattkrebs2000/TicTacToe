@@ -5,11 +5,13 @@ import Groupdata from "./Subcomponents/Groupdata";
 import emailContext from "../Emailcontext.js";
 import groupContext from "../Groupcontext.js";
 import firebase from "../Firebase/Config.js";
+import { createStackNavigator, useHeaderHeight } from "@react-navigation/stack";
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 
 import  { Col, Row, Grid } from 'react-native-easy-grid';
+
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -19,6 +21,11 @@ const App = () => {
   const [groupmatedata, setGroupmatedata] = useState([]);
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);
+  const headerHeight = useHeaderHeight();
+
+  useEffect(() => {
+    console.log("Hello", headerHeight)
+  }, [])
 
 useEffect(() => {
   const usersRef = firebase.firestore().collection("users");
@@ -45,15 +52,15 @@ useEffect(() => {
 }, [groupmatedata]);
 
       return (
-       <SafeAreaView style={styles.container1}>
+       <SafeAreaView style={{height: (windowHeight - headerHeight), backgroundColor: "green"}}>
         <View style={styles.container2}>
-        <View  style={styles.section1}>
+        <View  style={{flex: windowWidth + headerHeight + 10}}>
      <TouchableOpacity>
       <TicTacToe />
       </TouchableOpacity>
       </View>
     
-      <View style={styles.section2}>
+      <View style={{flex: (((windowHeight - windowWidth) - headerHeight)), alignItems: "center"}}>
       {
       groupmatedata.length > 0 && 
       groupmatedata.map((info, value) => (
@@ -85,7 +92,7 @@ useEffect(() => {
   const styles = StyleSheet.create({
     container1: {
       backgroundColor: "red",
-       height: "100%",
+      
      },
     
     container2: {
@@ -95,13 +102,10 @@ useEffect(() => {
     },
    section1: {
      
-      flex: windowWidth,
-    
     },
     section2: {
 
-      flex: ((windowHeight - windowWidth) - 200),
-   
+    
     },
 
   

@@ -7,7 +7,7 @@ import { AppLoading, Font } from "expo";
 const Groupdata = ({ username, email, group}) => (
     
   <View>
-    <View maxWidth={650}>
+    <View >
      <Text style={styles.container} >{group} -- By:{username}</Text>
     </View>
   </View>
