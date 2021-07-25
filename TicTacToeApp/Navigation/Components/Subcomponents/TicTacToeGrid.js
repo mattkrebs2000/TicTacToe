@@ -18,7 +18,7 @@ const TicTacToeGrid = () => {
   return (
     <Grid style={{ width: windowWidth }}>
       <Row style={{ height: windowWidth / 3 }}>
-        <Col style={{ backgroundColor: "black" }}>
+        <Col style={{ backgroundColor: "white" }}>
           <TouchableOpacity>
             <View
               style={{
@@ -39,7 +39,7 @@ const TicTacToeGrid = () => {
 
         <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-        <Col style={{ backgroundColor: "black" }}>
+        <Col style={{ backgroundColor: "white" }}>
           <TouchableOpacity>
             <View
               style={{
@@ -60,7 +60,7 @@ const TicTacToeGrid = () => {
 
         <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-        <Col style={{ backgroundColor: "black" }}>
+        <Col style={{ backgroundColor: "white" }}>
           <TouchableOpacity>
             <View
               style={{
@@ -84,7 +84,7 @@ const TicTacToeGrid = () => {
         <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
       </Row>
       <Row style={{ height: windowWidth / 3 }}>
-      <Col style={{ backgroundColor: "black" }}>
+      <Col style={{ backgroundColor: "white" }}>
         <TouchableOpacity>
           <View
             style={{
@@ -105,7 +105,7 @@ const TicTacToeGrid = () => {
 
       <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-      <Col style={{ backgroundColor: "black" }}>
+      <Col style={{ backgroundColor: "white" }}>
         <TouchableOpacity>
           <View
             style={{
@@ -126,7 +126,7 @@ const TicTacToeGrid = () => {
 
       <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-      <Col style={{ backgroundColor: "black" }}>
+      <Col style={{ backgroundColor: "white" }}>
         <TouchableOpacity>
           <View
             style={{
@@ -149,7 +149,7 @@ const TicTacToeGrid = () => {
         <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
       </Row>
     <Row style={{ height: windowWidth / 3 }}>
-    <Col style={{ backgroundColor: "black" }}>
+    <Col style={{ backgroundColor: "white" }}>
       <TouchableOpacity>
         <View
           style={{
@@ -170,7 +170,7 @@ const TicTacToeGrid = () => {
 
     <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-    <Col style={{ backgroundColor: "black" }}>
+    <Col style={{ backgroundColor: "white" }}>
       <TouchableOpacity>
         <View
           style={{
@@ -191,7 +191,7 @@ const TicTacToeGrid = () => {
 
     <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-    <Col style={{ backgroundColor: "black" }}>
+    <Col style={{ backgroundColor: "white" }}>
       <TouchableOpacity>
         <View
           style={{
