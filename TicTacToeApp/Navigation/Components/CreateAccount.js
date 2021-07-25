@@ -128,6 +128,7 @@ useEffect(() => {
           group,
           username,
           admin,
+          active,
         };
 
         const usersRef = firebase
@@ -304,8 +305,9 @@ const styles = ScaledSheet.create({
     flexDirection: "column",
   },
   form: {
+    backgroundColor: "black",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent:"center",
     color: "white",
     flex: 1,
   },
@@ -371,6 +373,7 @@ const styles = ScaledSheet.create({
     shadowRadius: "3@s",
     color: "white",
     flex: .1,
+   
   },
   text: {
     color: "white",
@@ -399,7 +402,7 @@ const styles = ScaledSheet.create({
     color: "white",
     fontSize: "35@s",
     textAlign: "center",
-    backgroundColor: "red",
+    backgroundColor: "black",
     width: "20@s",
   },
   text5: {
@@ -432,7 +435,7 @@ lastsection: {
   },
   scroll: {
     backgroundColor: "black",
-    height: 150
+    height:"36%"
   }
 });
 

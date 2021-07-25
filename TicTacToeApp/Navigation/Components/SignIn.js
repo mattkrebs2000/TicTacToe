@@ -4,6 +4,7 @@ import CryptoES from "crypto-es";
 import Groupdata from "./Subcomponents/Groupdata";
 import emailContext from "../Emailcontext.js";
 import groupContext from "../Groupcontext.js";
+import idContext from "../Idcontext.js"
 
 import {
   View,
@@ -26,6 +27,7 @@ const SignIn = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);
+  const { idGlobal, setIdGlobal } = useContext(idContext);
   const [password, setPassword] = useState("");
   const [group, setGroup] = useState("");
   const [didKeyboardShow, setKeyboardShow] = useState(false);
@@ -56,6 +58,7 @@ const SignIn = ({ navigation }) => {
       "this is the email and the group",
       emailGlobal,
       groupGlobal,
+      idGlobal,
       "this is the email and the group"
     );
     if (emailGlobal.length > 2) {
@@ -70,6 +73,7 @@ const SignIn = ({ navigation }) => {
   const newUserDetails = (user) => {
     setGroupGlobal(user.group);
     setEmailGlobal(user.email);
+    setIdGlobal(user.id);
   };
 
   const onLoginPress = () => {

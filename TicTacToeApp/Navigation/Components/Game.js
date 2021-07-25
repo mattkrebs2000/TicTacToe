@@ -4,6 +4,7 @@ import TicTacToe from "./Subcomponents/TicTacToeGrid";
 import Groupdata from "./Subcomponents/Groupdata";
 import emailContext from "../Emailcontext.js";
 import groupContext from "../Groupcontext.js";
+import idContext from "../Idcontext.js"
 import firebase from "../Firebase/Config.js";
 import { createStackNavigator, useHeaderHeight } from "@react-navigation/stack";
 import { scale, ScaledSheet } from 'react-native-size-matters';
@@ -20,18 +21,37 @@ const windowHeight = Dimensions.get("window").height;
 const App = () => {
 
   const [groupmatedata, setGroupmatedata] = useState([]);
+  const [toggle, setToggle]= useState([]);
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);
+  const { idGlobal, setIdGlobal } = useContext(idContext);
+  
   const headerHeight = useHeaderHeight();
 
   useEffect(() => {
-    console.log("Hello", headerHeight)
+    if (idGlobal.length > 0){
+        
+    let id = idGlobal;
+    const itemtoupdate = firebase
+      .firestore()
+      .collection("users")
+      .doc(id);
+
+    itemtoupdate.update({
+      active: true,
+    });
+    }
+    getOtherusers()
   }, [])
 
-useEffect(() => {
+const getOtherusers = () => {
+
+  setGroupmatedata([])
   const usersRef = firebase.firestore().collection("users");
     usersRef
       .where("group", "==", groupGlobal)
+      .where("id", "!=", idGlobal)
+      .where("active", "==", true)
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
@@ -46,7 +66,8 @@ useEffect(() => {
               });
             })
             .catch((e) => console.log(e));
-}, [])
+}
+
 
 useEffect(() => {
   console.log("this is the group data", groupmatedata);
@@ -95,7 +116,7 @@ useEffect(() => {
 
   const styles = ScaledSheet.create({
     container1: {
-      backgroundColor: "red",
+      backgroundColor: "black",
       
      },
     

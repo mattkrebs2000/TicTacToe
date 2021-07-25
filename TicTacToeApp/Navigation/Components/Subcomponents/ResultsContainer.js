@@ -8,7 +8,7 @@ const ResultsContainer = ({textsearched, posts, email,username, group, setGroup,
 
   useEffect(() => {
 
-  const filtered = posts.filter(instance => instance.admin === true);
+  const filtered = posts.filter(instance => instance.admin === true );
 
   setOnlyadmin(filtered)
   }, [posts])

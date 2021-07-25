@@ -7,8 +7,8 @@ import { AppLoading, Font } from "expo";
 const Output = ({ username, email, group, number}) => (
     
   <View>
-    <View maxWidth={650}>
-     <Text style={styles.container} >{group} -- By:{username}</Text>
+    <View style= {styles.container}>
+     <Text style={styles.text} >{group}-{username}</Text>
     </View>
   </View>
 );
@@ -17,18 +17,23 @@ export default Output;
 
 const styles = ScaledSheet.create({
   container: {
-    borderWidth: "2@s",
+    backgroundColor:"white",
+    borderWidth: "4@s",
     borderColor: "#8959DF",
     padding: "7@s",
-    width: "300@s",
+    width: "225@s",
     marginBottom: "12@s",
-    borderRadius: "10@s",
+    borderRadius: "20@s",
     shadowColor: "white",
     shadowOffset: { width: "0.5@s", height: "0.5@s" },
     shadowOpacity: "1@s",
     shadowRadius: "0.5@s",
-    color: "white",
+    
     lineHeight: "24@s",
-    fontSize: "20@s",
+    alignItems: "center",
+  }, 
+  text: {
+  fontSize: "20@s" , 
+  color: "#8959DF",
   }
 });
