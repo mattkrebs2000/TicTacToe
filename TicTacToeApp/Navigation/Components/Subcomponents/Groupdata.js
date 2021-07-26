@@ -4,15 +4,22 @@ import { scale, ScaledSheet } from 'react-native-size-matters';
 
 import { AppLoading, Font } from "expo";
 
-const Groupdata = ({ username, email, group}) => (
-    
-  <TouchableOpacity>
-    <View style={styles.container} onPress={
-      () => { console.log("You impressed me")}}>
+const Groupdata = ({ username, email, group}) => {
+const startgame = () => {
+console.log("heello")
+}
+
+
+  return (
+
+
+  <TouchableOpacity onPress={
+    () => {startgame()}}>
+    <View style={styles.container} >
      <Text style={styles.text}>{username}</Text>
     </View>
   </TouchableOpacity>
-);
+)};
 
 export default Groupdata;
 
