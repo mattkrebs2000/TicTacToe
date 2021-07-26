@@ -34,6 +34,15 @@ const TicTacToeGrid = ({
   setTurnx,
 }) => {
 
+  const [method1, setMethod1] = useState(false);
+  const [method2, setMethod2] = useState(false);
+  const [method3, setMethod3] = useState(false);
+  const [method4, setMethod4] = useState(false);
+  const [method5, setMethod5] = useState(false);
+  const [method6, setMethod6] = useState(false);
+  const [method7, setMethod7] = useState(false);
+  const [method8, setMethod8] = useState(false);
+
 useEffect(() => {
   checkwinner()
 }, [box1,box2,box3,box4,box5,box6,box7,box8,box9])
@@ -55,10 +64,20 @@ setBox6("");
 setBox7("");
 setBox8("");
 setBox9("");
+setMethod1(false);
+setMethod2(false);
+setMethod3(false);
+setMethod4(false);
+setMethod5(false);
+setMethod6(false);
+setMethod7(false);
+setMethod8(false);
+
 }
 
   const checkwinner = () => {
     if (box1 ==="x" && box2 === "x" && box3 === "x") {
+      setMethod1(true);
       alert("'x' won");
 
       setTimeout(() => {
@@ -67,6 +86,7 @@ setBox9("");
 
     }
     if (box1 ==="o" && box2 === "o" && box3 === "o") {
+      setMethod1(true);
       alert("'o' won");
 
       setTimeout(() => {
@@ -75,6 +95,7 @@ setBox9("");
 
     }
     if (box4 ==="x" && box5 === "x" && box6 === "x") {
+      setMethod2(true);
       alert("'x' won");
 
       setTimeout(() => {
@@ -83,6 +104,7 @@ setBox9("");
 
     }
     if (box4 ==="o" && box5 === "o" && box6 === "o") {
+      setMethod2(true);
       alert("'o' won");
 
       setTimeout(() => {
@@ -91,6 +113,7 @@ setBox9("");
 
     }
     if (box7 ==="x" && box8 === "x" && box9 === "x") {
+      setMethod3(true);
       alert("'x' won");
 
       setTimeout(() => {
@@ -99,6 +122,7 @@ setBox9("");
 
     }
     if (box7 ==="o" && box8 === "o" && box9 === "o") {
+      setMethod3(true);
       alert("'o' won");
 
       setTimeout(() => {
@@ -107,6 +131,8 @@ setBox9("");
 
     }
     if (box1 ==="x" && box4 === "x" && box7 === "x") {
+
+      setMethod4(true);
       alert("'x' won");
 
       setTimeout(() => {
@@ -115,6 +141,7 @@ setBox9("");
 
     }
     if (box1 ==="o" && box4 === "o" && box7 === "o") {
+      setMethod4(true);
       alert("'o' won");
 
       setTimeout(() => {
@@ -123,6 +150,7 @@ setBox9("");
 
     }
     if (box2 ==="x" && box5 === "x" && box8 === "x") {
+      setMethod5(true);
       alert("'x' won");
 
       setTimeout(() => {
@@ -131,14 +159,18 @@ setBox9("");
 
     }
     if (box2 ==="o" && box5 === "o" && box8 === "o") {
+      setMethod5(true);
       alert("'o' won");
 
+     
       setTimeout(() => {
         reset()
       }, 2000);
 
     }
     if (box3 ==="x" && box6 === "x" && box9 === "x") {
+
+      setMethod6(true);
       alert("'x' won");
 
       setTimeout(() => {
@@ -147,6 +179,8 @@ setBox9("");
 
     }
     if (box3 ==="o" && box6 === "o" && box9 === "o") {
+
+      setMethod6(true);
       alert("'o' won");
 
       setTimeout(() => {
@@ -155,6 +189,8 @@ setBox9("");
 
     }
     if (box1 ==="x" && box5 === "x" && box9 === "x") {
+
+      setMethod7(true);
       alert("'x' won");
 
       setTimeout(() => {
@@ -163,6 +199,8 @@ setBox9("");
 
     }
     if (box1 ==="o" && box5 === "o" && box9 === "o") {
+
+      setMethod7(true);
       alert("'o' won");
 
       setTimeout(() => {
@@ -171,6 +209,8 @@ setBox9("");
 
     }
     if (box3 ==="x" && box5 === "x" && box7 === "x") {
+
+      setMethod8(true);
       alert("'x' won");
 
       setTimeout(() => {
@@ -179,6 +219,8 @@ setBox9("");
 
     }
     if (box3 ==="o" && box5 === "o" && box7 === "o") {
+
+      setMethod8(true);
       alert("'o' won");
 
       setTimeout(() => {
@@ -317,7 +359,7 @@ setBox9("");
                 height: "100%",
               }}
             >
-              <Text style={{ fontSize: 100 }}>{box1}</Text>
+              <Text style={method1 || method4 || method7 ? {fontSize: 100, color: "white"} : {fontSize: 100, color: "black" }}>{box1}</Text>
             </View>
           </TouchableOpacity>
         </Col>
@@ -336,7 +378,7 @@ setBox9("");
                 height: "100%",
               }}
             >
-              <Text style={{ fontSize: 100 }}>{box2}</Text>
+              <Text style={method1 || method5 ? {fontSize: 100, color: "white"} : {fontSize: 100, color: "black" }}>{box2}</Text>
             </View>
           </TouchableOpacity>
         </Col>
@@ -355,7 +397,7 @@ setBox9("");
                 height: "100%",
               }}
             >
-              <Text style={{ fontSize: 100 }}>{box3}</Text>
+              <Text style={method1 || method6 || method8 ? {fontSize: 100, color: "white"} : {fontSize: 100, color: "black" }}>{box3}</Text>
             </View>
           </TouchableOpacity>
         </Col>
@@ -377,7 +419,7 @@ setBox9("");
                 height: "100%",
               }}
             >
-              <Text style={{ fontSize: 100 }}>{box4}</Text>
+              <Text style={method2 || method4 ? {fontSize: 100, color: "white"} : {fontSize: 100, color: "black" }}>{box4}</Text>
             </View>
           </TouchableOpacity>
         </Col>
@@ -396,7 +438,7 @@ setBox9("");
                 height: "100%",
               }}
             >
-              <Text style={{ fontSize: 100 }}>{box5}</Text>
+              <Text style={method2 || method5 || method7 || method8 ? {fontSize: 100, color: "white"} : {fontSize: 100, color: "black" }}>{box5}</Text>
             </View>
           </TouchableOpacity>
         </Col>
@@ -415,7 +457,7 @@ setBox9("");
                 height: "100%",
               }}
             >
-              <Text style={{ fontSize: 100 }}>{box6}</Text>
+              <Text style={method2 || method6 ? {fontSize: 100, color: "white"} : {fontSize: 100, color: "black" }}>{box6}</Text>
             </View>
           </TouchableOpacity>
         </Col>
@@ -436,7 +478,7 @@ setBox9("");
                 height: "100%",
               }}
             >
-              <Text style={{ fontSize: 100 }}>{box7}</Text>
+              <Text style={method3 || method4 ||method8 ? {fontSize: 100, color: "white"} : {fontSize: 100, color: "black" }}>{box7}</Text>
             </View>
           </TouchableOpacity>
         </Col>
@@ -455,7 +497,7 @@ setBox9("");
                 height: "100%",
               }}
             >
-              <Text style={{ fontSize: 100 }}>{box8}</Text>
+              <Text style={method3 || method5 ? {fontSize: 100, color: "white"} : {fontSize: 100, color: "black" }}>{box8}</Text>
             </View>
           </TouchableOpacity>
         </Col>
@@ -474,7 +516,7 @@ setBox9("");
                 height: "100%",
               }}
             >
-              <Text style={{ fontSize: 100 }}>{box9}</Text>
+              <Text style={method3 || method6 || method7 ? {fontSize: 100, color: "white"} : {fontSize: 100, color: "black" }}>{box9}</Text>
             </View>
           </TouchableOpacity>
         </Col>
