@@ -37,7 +37,7 @@ const App = () => {
   const [box7, setBox7] = useState("");
   const [box8, setBox8] = useState("");
   const [box9, setBox9] = useState("");
-  const [turnx, setTurnx] = useState(null);
+  const [turnx, setTurnx] = useState(true);
 
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);

@@ -33,6 +33,173 @@ const TicTacToeGrid = ({
   turnx,
   setTurnx,
 }) => {
+
+useEffect(() => {
+  checkwinner()
+}, [box1,box2,box3,box4,box5,box6,box7,box8,box9])
+
+useEffect(() => {
+console.log(box1,box2,box3,box4,box5,box6,box7,box8,box9)
+}, [turnx])
+
+const reset = () => {
+
+
+
+setBox1("");
+setBox2("");
+setBox3("");
+setBox4("");
+setBox5("");
+setBox6("");
+setBox7("");
+setBox8("");
+setBox9("");
+}
+
+  const checkwinner = () => {
+    if (box1 ==="x" && box2 === "x" && box3 === "x") {
+      alert("'x' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box1 ==="o" && box2 === "o" && box3 === "o") {
+      alert("'o' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box4 ==="x" && box5 === "x" && box6 === "x") {
+      alert("'x' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box4 ==="o" && box5 === "o" && box6 === "o") {
+      alert("'o' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box7 ==="x" && box8 === "x" && box9 === "x") {
+      alert("'x' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box7 ==="o" && box8 === "o" && box9 === "o") {
+      alert("'o' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box1 ==="x" && box4 === "x" && box7 === "x") {
+      alert("'x' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box1 ==="o" && box4 === "o" && box7 === "o") {
+      alert("'o' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box2 ==="x" && box5 === "x" && box8 === "x") {
+      alert("'x' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box2 ==="o" && box5 === "o" && box8 === "o") {
+      alert("'o' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box3 ==="x" && box6 === "x" && box9 === "x") {
+      alert("'x' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box3 ==="o" && box6 === "o" && box9 === "o") {
+      alert("'o' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box1 ==="x" && box5 === "x" && box9 === "x") {
+      alert("'x' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box1 ==="o" && box5 === "o" && box9 === "o") {
+      alert("'o' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box3 ==="x" && box5 === "x" && box7 === "x") {
+      alert("'x' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box3 ==="o" && box5 === "o" && box7 === "o") {
+      alert("'o' won");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+
+    }
+    if (box1.length > 0 && box2.length > 0 && box3.length > 0 && box4.length > 0 && box5.length > 0 && box6.length > 0 && box7.length > 0 && box8.length > 0 && box9.length > 0) {
+      alert("This game was a tie!");
+
+      setTimeout(() => {
+        reset()
+      }, 2000);
+      
+    }
+    else {
+      setTurnx(!turnx);
+    }
+  };
+
+
   const determine1xo = () => {
     if (box1.length === 0){
     if (turnx === true) {
