@@ -20,6 +20,8 @@ import {
   Platform,
 } from "react-native";
 
+
+
 import firebase from "../Firebase/Config.js";
 
 const SignIn = ({ navigation }) => {
@@ -35,6 +37,7 @@ const SignIn = ({ navigation }) => {
   useEffect(() => {
     Keyboard.addListener("keyboardDidShow", _keyboardDidShow);
     Keyboard.addListener("keyboardDidHide", _keyboardDidHide);
+
 
     //  Don't forget to cleanup with remove listeners
     return () => {

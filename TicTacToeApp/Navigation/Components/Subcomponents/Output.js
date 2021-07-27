@@ -1,17 +1,19 @@
 import React from "react";
-import { StyleSheet, View, Text,Image } from "react-native";
+import { StyleSheet, View, Text,Image} from "react-native";
 import { scale, ScaledSheet } from 'react-native-size-matters';
 
 import { AppLoading, Font } from "expo";
 
-const Output = ({ username, email, group, number}) => (
+const Output = ({ username, email, group, number}) => {
+
     
+  return (
   <View>
     <View style= {styles.container}>
      <Text style={styles.text} >{group}-{username}</Text>
     </View>
   </View>
-);
+  )};
 
 export default Output;
 

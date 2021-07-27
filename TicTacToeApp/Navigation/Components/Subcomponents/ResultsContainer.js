@@ -6,6 +6,7 @@ import Output from "./Output";
 
 const ResultsContainer = ({textsearched, posts, email,username, group, setGroup, setSearching, searching, number, setNumber, onlyadmin, setOnlyadmin}) => {
 
+
   useEffect(() => {
 
   const filtered = posts.filter(instance => instance.admin === true );

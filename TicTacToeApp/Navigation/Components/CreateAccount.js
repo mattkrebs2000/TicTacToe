@@ -4,6 +4,8 @@ import Mainpage from "./Game";
 import CryptoES from "crypto-es";
 import Results from "./Subcomponents/ResultsContainer";
 
+
+
 import {
   useNavigation,
   NavigationContainer,
@@ -31,6 +33,8 @@ import firebase from "../Firebase/Config.js";
 // import CryptoES from "crypto-es";
 
 const SignUp = ({ navigation }) => {
+
+
 
   const [filteredposts, setfilteredposts] = useState([]);
   const [posts, setposts] = useState([]);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+
 import {
   Dimensions,
   StyleSheet,
@@ -20,6 +21,7 @@ import { scale, ScaledSheet } from "react-native-size-matters";
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 
+
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 const windowWidth = Dimensions.get("window").width;
@@ -38,12 +40,15 @@ const App = () => {
   const [box8, setBox8] = useState("");
   const [box9, setBox9] = useState("");
   const [turnx, setTurnx] = useState(true);
+  const [gameon, setGameon] = useState(true);
 
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);
   const { idGlobal, setIdGlobal } = useContext(idContext);
 
   const headerHeight = useHeaderHeight();
+
+
 
   useEffect(() => {
     if (idGlobal.length > 0) {
@@ -170,6 +175,8 @@ const App = () => {
             setBox9 = {setBox9}
             turnx = {turnx}
             setTurnx = {setTurnx}
+            gameon = {gameon}
+            setGameon = {setGameon}
             />
           </TouchableOpacity>
         </View>
