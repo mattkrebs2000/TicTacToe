@@ -62,63 +62,6 @@ const App = () => {
     getOtherusers();
   }, []);
 
-  // const checkwinner = () => {
-  //   if (((box1 === box2) === box3) === "x") {
-  //     alert("'x' won");
-  //   }
-  //   if (((box1 === box2) === box3) === "y") {
-  //     alert("'y' won");
-  //   }
-  //   if (((box4 === box5) === box6) === "x") {
-  //     alert("'x' won");
-  //   }
-  //   if (((box4 === box5) === box6) === "y") {
-  //     alert("'y' won");
-  //   }
-  //   if (((box7 === box8) === box9) === "x") {
-  //     alert("'x' won");
-  //   }
-  //   if (((box7 === box8) === box9) === "y") {
-  //     alert("'y' won");
-  //   }
-  //   if (((box1 === box4) === box7) === "x") {
-  //     alert("'x' won");
-  //   }
-  //   if (((box1 === box4) === box7) === "y") {
-  //     alert("'y' won");
-  //   }
-  //   if (((box2 === box5) === box8) === "x") {
-  //     alert("'x' won");
-  //   }
-  //   if (((box2 === box5) === box8) === "y") {
-  //     alert("'y' won");
-  //   }
-  //   if (((box3 === box6) === box9) === "x") {
-  //     alert("'x' won");
-  //   }
-  //   if (((box3 === box6) === box9) === "y") {
-  //     alert("'y' won");
-  //   }
-  //   if (((box1 === box5) === box9) === "x") {
-  //     alert("'x' won");
-  //   }
-  //   if (((box1 === box5) === box9) === "y") {
-  //     alert("'y' won");
-  //   }
-  //   if (((box3 === box5) === box7) === "x") {
-  //     alert("'x' won");
-  //   }
-  //   if (((box3 === box5) === box7) === "y") {
-  //     alert("'y' won");
-  //   } else {
-  //     setYourturn(!yourturn);
-  //   }
-  // };
-
-  // const game = () => {
-  //   startgame();
-  //   checkwinner();
-  // };
 
   const getOtherusers = () => {
     setGroupmatedata([]);
@@ -153,7 +96,7 @@ const App = () => {
     >
       <View style={styles.container2}>
         <View style={{ flex: windowWidth + headerHeight + 10 }}>
-          <TouchableOpacity>
+         
             <TicTacToe 
             box1 = {box1}
             setBox1 = {setBox1}
@@ -178,7 +121,7 @@ const App = () => {
             gameon = {gameon}
             setGameon = {setGameon}
             />
-          </TouchableOpacity>
+         
         </View>
 
         <View
