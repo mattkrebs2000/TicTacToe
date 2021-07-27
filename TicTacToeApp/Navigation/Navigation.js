@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { scale } from "react-native-size-matters";
-import { Button, Text, YellowBox } from "react-native";
+import { Button, Text, LogBox } from "react-native";
 import {
   useNavigation,
   NavigationContainer,
@@ -30,7 +30,9 @@ const IconBar = () => {
   </View>;
 };
 
-YellowBox.ignoreWarnings(['Setting a timer']);
+// YellowBox.ignoreWarnings(['Setting a timer']);
+
+LogBox.ignoreLogs(['Setting a timer']);
 
 export const Navigation = ({ navigation }) => {
   const [emailGlobal, setEmailGlobal] = useState("");
