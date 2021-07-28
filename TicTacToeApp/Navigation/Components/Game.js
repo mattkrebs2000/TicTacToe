@@ -17,6 +17,7 @@ import idContext from "../Idcontext.js";
 import firebase from "../Firebase/Config.js";
 import { createStackNavigator, useHeaderHeight } from "@react-navigation/stack";
 import { scale, ScaledSheet } from "react-native-size-matters";
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
@@ -27,7 +28,7 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const App = () => {
+const App = ({ navigation }) => {
   const [groupmatedata, setGroupmatedata] = useState([]);
   const [toggle, setToggle] = useState([]);
   const [box1, setBox1] = useState("");
@@ -41,12 +42,63 @@ const App = () => {
   const [box9, setBox9] = useState("");
   const [turnx, setTurnx] = useState(true);
   const [gameon, setGameon] = useState(true);
+  
 
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);
   const { idGlobal, setIdGlobal } = useContext(idContext);
 
+  const firestore = firebase.firestore();
+  const messagesRef = firestore.collection("users");
+  const query = messagesRef;
+  const [active] = useCollectionData(query, { idField: 'active' });
+
+
+  useEffect(() => {
+    if (active) {
+    getOtherusers();
+    }
+  }, [active]);
+
+
   const headerHeight = useHeaderHeight();
+
+  const leave =() => {
+      let id = idGlobal;
+      const itemtoupdate = firebase.firestore().collection("users").doc(id);
+      itemtoupdate.update({
+        active: false,
+      });
+    
+    setGroupGlobal("");
+    setEmailGlobal("");
+    setIdGlobal("");
+    navigation.navigate("SignIn");
+    console.log(
+      "this is the email and the group",
+      emailGlobal,
+      groupGlobal,
+      idGlobal,
+      "this is the email and the group"
+    );
+  }
+
+  useEffect(() => {
+
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => 
+          leave()
+        }
+            >
+          <Text accessibilityLabel="Sign Out" style={styles.text5}>
+            Sign Out
+          </Text>
+        </TouchableOpacity>
+      ),
+    });
+  }, []);
+
 
 
 
@@ -189,5 +241,10 @@ const styles = ScaledSheet.create({
   text: {
     fontSize: "20@s",
     color: "#8959DF",
+  },
+  text5: {
+    color: "white",
+    fontSize: "15@s",
+    marginRight: "5@s"
   },
 });

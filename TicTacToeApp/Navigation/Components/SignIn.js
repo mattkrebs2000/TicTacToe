@@ -25,7 +25,6 @@ import {
 import firebase from "../Firebase/Config.js";
 
 const SignIn = ({ navigation }) => {
-  const [email2, setEmail2] = useState("");
   const [email, setEmail] = useState("");
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);
@@ -33,6 +32,10 @@ const SignIn = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [group, setGroup] = useState("");
   const [didKeyboardShow, setKeyboardShow] = useState(false);
+
+  useEffect(() => {
+    setEmail("")
+  }, [navigation])
 
   useEffect(() => {
     Keyboard.addListener("keyboardDidShow", _keyboardDidShow);
@@ -54,8 +57,6 @@ const SignIn = ({ navigation }) => {
     setKeyboardShow(false);
   };
 
-  console.log("ISITTHERE", email2);
-
   useEffect(() => {
     console.log(
       "this is the email and the group",
@@ -73,10 +74,21 @@ const SignIn = ({ navigation }) => {
     }
   }, [emailGlobal]);
 
+  const gotoCreateAccount = () => {
+
+    setEmail("");
+    setPassword("");
+    setGroup("");
+    navigation.navigate("CreateAccount");
+  }
+
   const newUserDetails = (user) => {
     setGroupGlobal(user.group);
     setEmailGlobal(user.email);
     setIdGlobal(user.id);
+    setEmail("");
+    setPassword("");
+    setGroup("");
   };
 
   const onLoginPress = () => {
@@ -164,7 +176,7 @@ const SignIn = ({ navigation }) => {
           accessibilityLabel="Link to Sign In page"
           style={{ color: "#8959DF", fontSize: scale(15) }}
           onPress={() => {
-            navigation.navigate("CreateAccount");
+            gotoCreateAccount();
           }}
         >
           Don't have an Account? Sign Up
