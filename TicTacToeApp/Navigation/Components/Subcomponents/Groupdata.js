@@ -1,12 +1,49 @@
 import React from "react";
 import { StyleSheet, View, Text,Image, TouchableOpacity } from "react-native";
 import { scale, ScaledSheet } from 'react-native-size-matters';
+import firebase from "../../Firebase/Config.js";
 
 import { AppLoading, Font } from "expo";
 
-const Groupdata = ({ username, email, group}) => {
+const Groupdata = ({ username, email, group, id, idGlobal, box1, setBox1, box2, setBox2, box3, setBox3, box4, setBox4, box5, setBox5, box6, setBox6, box7, setBox7, box8, setBox8, box9, setBox9, turnx, setTurnx, gameon, setGameon, gameId, setGameId}) => {
+
 const startgame = () => {
+
+  const usersRef = firebase.firestore().collection("game")
+
+  usersRef
+  .add({
+    player1: id,
+    player2: idGlobal,
+    box1: box1,
+    box2: box2,
+    box3: box3,
+    box4: box4,
+    box5: box5,
+    box6: box6,
+    box7: box7,
+    box8: box8,
+    box9: box9,
+    turnx: false,
+    gameon: true
+
+})
+.then((docRef) => {
+  setGameId(docRef.id);
+  const itemtoupdate = firebase.firestore().collection("game").doc(docRef.id);
+      itemtoupdate.update({
+        id: docRef.id
+      });
+
+    console.log("Document written with ID: ", docRef.id);
+    
+})
+.catch((error) => {
+    console.error("Error adding document: ", error);
+});
+
 console.log("heello")
+
 }
 
 
@@ -14,7 +51,7 @@ console.log("heello")
 
 
   <TouchableOpacity onPress={
-    () => {startgame()}}>
+    () => { startgame()}}>
     <View style={styles.container} >
      <Text style={styles.text}>{username}</Text>
     </View>
