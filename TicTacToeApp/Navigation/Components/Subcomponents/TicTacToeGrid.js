@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import firebase from "../../Firebase/Config.js";
+
 import {
   Dimensions,
   StyleSheet,
@@ -37,6 +39,7 @@ const TicTacToeGrid = ({
   setTurnx,
   gameon,
   setGameon,
+  gameId,
 }) => {
   const [method1, setMethod1] = useState(false);
   const [method2, setMethod2] = useState(false);
@@ -239,6 +242,20 @@ const TicTacToeGrid = ({
       null;
     }
   };
+
+  useEffect(() => {
+   let id = gameId; 
+    if (box1.length > 0) {
+      let box = box1;
+      const itemtoupdate = firebase.firestore().collection("game").doc(id);
+
+      itemtoupdate.update({
+        box1: box,
+      });
+    }
+  }, [box1])
+
+
   const determine2xo = () => {
     if (gameon) {
       if (box2.length === 0) {
@@ -254,6 +271,18 @@ const TicTacToeGrid = ({
       null;
     }
   };
+
+  useEffect(() => {
+    let id = gameId; 
+     if (box2.length > 0) {
+       let box = box2;
+       const itemtoupdate = firebase.firestore().collection("game").doc(id);
+ 
+       itemtoupdate.update({
+         box2: box,
+       });
+     }
+   }, [box2])
 
   const determine3xo = () => {
     if (gameon) {
@@ -271,6 +300,18 @@ const TicTacToeGrid = ({
     }
   };
 
+  useEffect(() => {
+    let id = gameId; 
+     if (box3.length > 0) {
+       let box = box3;
+       const itemtoupdate = firebase.firestore().collection("game").doc(id);
+ 
+       itemtoupdate.update({
+         box3: box,
+       });
+     }
+   }, [box3])
+
   const determine4xo = () => {
     if (gameon) {
       if (box4.length === 0) {
@@ -286,6 +327,20 @@ const TicTacToeGrid = ({
       null;
     }
   };
+
+  useEffect(() => {
+    let id = gameId; 
+     if (box4.length > 0) {
+       let box = box4;
+       const itemtoupdate = firebase.firestore().collection("game").doc(id);
+ 
+       itemtoupdate.update({
+         box4: box,
+       });
+     }
+   }, [box4])
+
+
   const determine5xo = () => {
     if (gameon) {
       if (box5.length === 0) {
@@ -301,6 +356,20 @@ const TicTacToeGrid = ({
       null;
     }
   };
+
+  useEffect(() => {
+    let id = gameId; 
+     if (box5.length > 0) {
+       let box = box5;
+       const itemtoupdate = firebase.firestore().collection("game").doc(id);
+ 
+       itemtoupdate.update({
+         box5: box,
+       });
+     }
+   }, [box5])
+
+
   const determine6xo = () => {
     if (gameon) {
       if (box6.length === 0) {
@@ -317,6 +386,18 @@ const TicTacToeGrid = ({
     }
   };
 
+  useEffect(() => {
+    let id = gameId; 
+     if (box6.length > 0) {
+       let box = box6;
+       const itemtoupdate = firebase.firestore().collection("game").doc(id);
+ 
+       itemtoupdate.update({
+         box6: box,
+       });
+     }
+   }, [box6])
+
   const determine7xo = () => {
     if (gameon) {
       if (box7.length === 0) {
@@ -332,6 +413,19 @@ const TicTacToeGrid = ({
       null;
     }
   };
+
+  useEffect(() => {
+    let id = gameId; 
+     if (box7.length > 0) {
+       let box = box7;
+       const itemtoupdate = firebase.firestore().collection("game").doc(id);
+ 
+       itemtoupdate.update({
+         box7: box,
+       });
+     }
+   }, [box7])
+
   const determine8xo = () => {
     if (gameon) {
       if (box8.length === 0) {
@@ -348,6 +442,18 @@ const TicTacToeGrid = ({
     }
   };
 
+  useEffect(() => {
+    let id = gameId; 
+     if (box8.length > 0) {
+       let box = box8;
+       const itemtoupdate = firebase.firestore().collection("game").doc(id);
+ 
+       itemtoupdate.update({
+         box8: box,
+       });
+     }
+   }, [box8])
+
   const determine9xo = () => {
     if (gameon) {
       if (box9.length === 0) {
@@ -363,6 +469,18 @@ const TicTacToeGrid = ({
       null;
     }
   };
+
+  useEffect(() => {
+    let id = gameId; 
+     if (box9.length > 0) {
+       let box = box9;
+       const itemtoupdate = firebase.firestore().collection("game").doc(id);
+ 
+       itemtoupdate.update({
+         box9: box,
+       });
+     }
+   }, [box9])
 
   const windowWidth = Dimensions.get("window").width;
 

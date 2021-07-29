@@ -83,12 +83,17 @@ const SignIn = ({ navigation }) => {
   }
 
   const newUserDetails = (user) => {
-    setGroupGlobal(user.group);
-    setEmailGlobal(user.email);
-    setIdGlobal(user.id);
+    
     setEmail("");
     setPassword("");
     setGroup("");
+
+    setTimeout(() => {
+      setGroupGlobal(user.group);
+      setIdGlobal(user.id);
+      setEmailGlobal(user.email);
+    }, 1000);
+    
   };
 
   const onLoginPress = () => {

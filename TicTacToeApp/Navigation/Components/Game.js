@@ -63,12 +63,13 @@ const App = ({ navigation }) => {
  
   const gameRef = firestore.collection("game");
   const query2 = gameRef;
-  const [checkGame] = useCollectionData(query2, {idField: "id", idField: "box1"});
+  const [checkGame] = useCollectionData(query2, {idField: "id"});
 
   useEffect(() => {
 
     if (checkGame) {
-      console.log("something happened");
+      console.log("this is being run now");
+     updategame();
     }
   }, [checkGame]);
 
@@ -142,6 +143,41 @@ const App = ({ navigation }) => {
       .catch((e) => console.log(e));
   };
 
+  const updategame = () => {
+if (gameId.length > 2){
+
+    return firebase
+      .firestore()
+      .collection("game")
+      .doc(gameId)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          console.log("We have found the game:", doc.data());
+          setBox1(doc.data().box1);
+          setBox2(doc.data().box2);
+          setBox3(doc.data().box3);
+          setBox4(doc.data().box4);
+          setBox5(doc.data().box5);
+          setBox6(doc.data().box6);
+          setBox7(doc.data().box7);
+          setBox8(doc.data().box8);
+          setBox9(doc.data().box9);
+console.log("we have updated the game");
+          
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+  }).catch((error) => {
+      console.log("Error getting document:", error);
+      })
+      .catch((e) => console.log(e));
+    }
+  };
+
+
+
   return (
     <SafeAreaView
       style={{ height: windowHeight - headerHeight, backgroundColor: "black" }}
@@ -171,6 +207,7 @@ const App = ({ navigation }) => {
             setTurnx={setTurnx}
             gameon={gameon}
             setGameon={setGameon}
+            gameId={gameId}
           />
         </View>
 

@@ -35,7 +35,7 @@ const startgame = () => {
         id: docRef.id
       });
 
-    console.log("Document written with ID: ", docRef.id);
+    console.log("Document written with GameID: ", docRef.id);
     
 })
 .catch((error) => {
