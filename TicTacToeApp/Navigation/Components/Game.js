@@ -132,6 +132,7 @@ const App = ({ navigation }) => {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data();
+          console.log("this is the document data", doc.data(), "this is the document data");
           if (groupmatedata.indexOf(newData.id) === -1) {
             setGroupmatedata((arr) => {
               return [...arr, newData];
