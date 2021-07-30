@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, View, Text,Image, TouchableOpacity } from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, View, Text,Image, TouchableOpacity} from "react-native";
 import { scale, ScaledSheet } from 'react-native-size-matters';
 import firebase from "../../Firebase/Config.js";
 
@@ -55,7 +55,11 @@ const startgame = () => {
 console.log("heello")
 
 }
-
+useEffect(() => {
+  if (gameId.length > 2){
+ console.log("this knows that there is a game", gameId)
+  }
+}, [gameId])
 
   return (
 

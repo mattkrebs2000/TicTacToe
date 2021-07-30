@@ -56,6 +56,7 @@ const App = ({ navigation }) => {
 
   useEffect(() => {
     if (active) {
+      console.log("this one got activated")
       getOtherusers();
     }
   }, [active]);
