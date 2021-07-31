@@ -40,6 +40,7 @@ const TicTacToeGrid = ({
   gameon,
   setGameon,
   gameId,
+  setGameId,
 }) => {
   const [method1, setMethod1] = useState(false);
   const [method2, setMethod2] = useState(false);
@@ -55,8 +56,23 @@ const TicTacToeGrid = ({
   }, [box1, box2, box3, box4, box5, box6, box7, box8, box9]);
 
   useEffect(() => {
-    console.log(box1, box2, box3, box4, box5, box6, box7, box8, box9);
+    if (gameId.length > 2){
+      const itemtoupdate = firebase.firestore().collection("game").doc(gameId);
+      itemtoupdate.update({
+        turnx: turnx
+      });
+    }
   }, [turnx]);
+
+useEffect(() => {
+  if (!gameon) {
+  const itemtoupdate = firebase.firestore().collection("game").doc(gameId);
+  itemtoupdate.update({
+    gameon: false 
+  });
+}
+}, [gameon])
+
 
   const reset = () => {
     setBox1("");
@@ -76,7 +92,7 @@ const TicTacToeGrid = ({
     setMethod6(false);
     setMethod7(false);
     setMethod8(false);
-    setGameon(true);
+    setGameId("")
   };
 
   const checkwinner = () => {
@@ -219,6 +235,7 @@ const TicTacToeGrid = ({
       box8.length > 0 &&
       box9.length > 0
     ) {
+      setGameon(false);
       setTimeout(() => {
         reset();
       }, 2000);

@@ -39,7 +39,7 @@ const App = ({ navigation }) => {
   const [box7, setBox7] = useState("");
   const [box8, setBox8] = useState("");
   const [box9, setBox9] = useState("");
-  const [turnx, setTurnx] = useState(true);
+  const [turnx, setTurnx] = useState(false);
   const [gameon, setGameon] = useState(true);
   const [player1, setPlayer1] = useState("");
   const [player2, setPlayer2] = useState("");
@@ -156,7 +156,7 @@ const App = ({ navigation }) => {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data();
           console.log(newData, "yyyyyyo")
-          setBox1("x")
+          setBox1(newData.box1)
           setBox2(newData.box2)
           setBox3(newData.box3)
           setBox4(newData.box4)
@@ -165,6 +165,7 @@ const App = ({ navigation }) => {
           setBox7(newData.box7)
           setBox8(newData.box8)
           setBox9(newData.box9)   
+          setTurnx(newData.turnx)
         });
        
       })
@@ -205,6 +206,7 @@ const App = ({ navigation }) => {
             gameon={gameon}
             setGameon={setGameon}
             gameId={gameId}
+            setGameId = {setGameId}
           />
         </View>
 
