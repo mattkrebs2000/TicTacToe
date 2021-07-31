@@ -69,8 +69,8 @@ const App = ({ navigation }) => {
   useEffect(() => {
 
     if (checkGame) {
-      console.log("this is being run now");
-     updategame();
+      console.log("this is being run now", gameId);
+     populate();
     }
   }, [checkGame]);
 
@@ -145,38 +145,33 @@ const App = ({ navigation }) => {
       .catch((e) => console.log(e));
   };
 
-  const updategame = () => {
-if (gameId.length > 2){
 
-    return firebase
-      .firestore()
-      .collection("game")
-      .doc(gameId)
+  const populate = (data) => {
+    console.log("this here has been", gameId, "this here has been")
+    const usersRef = firebase.firestore().collection("game");
+    usersRef
+      .where("id", "==", gameId)
       .get()
-      .then((doc) => {
-        if (doc.exists) {
-          console.log("We have found the game:", doc.data());
-          setBox1(doc.data().box1);
-          setBox2(doc.data().box2);
-          setBox3(doc.data().box3);
-          setBox4(doc.data().box4);
-          setBox5(doc.data().box5);
-          setBox6(doc.data().box6);
-          setBox7(doc.data().box7);
-          setBox8(doc.data().box8);
-          setBox9(doc.data().box9);
-console.log("we have updated the game");
-          
-      } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-      }
-  }).catch((error) => {
-      console.log("Error getting document:", error);
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          let newData = doc.data();
+          console.log(newData, "yyyyyyo")
+          setBox1("x")
+          setBox2(newData.box2)
+          setBox3(newData.box3)
+          setBox4(newData.box4)
+          setBox5(newData.box5)
+          setBox6(newData.box6)
+          setBox7(newData.box7)
+          setBox8(newData.box8)
+          setBox9(newData.box9)   
+        });
+       
       })
       .catch((e) => console.log(e));
     }
-  };
+
+
 
 
 
@@ -185,7 +180,7 @@ console.log("we have updated the game");
       style={{ height: windowHeight - headerHeight, backgroundColor: "black" }}
     >
       <View style={styles.container2}>
-        <View style={{ flex: windowWidth + headerHeight + 10 }}>
+        <View style={{ flex: windowWidth + headerHeight + 50 }}>
           <TicTacToe
             box1={box1}
             setBox1={setBox1}
@@ -258,6 +253,7 @@ console.log("we have updated the game");
                         setGameon={setGameon}
                         gameId={gameId}
                         setGameId={setGameId}
+                        populate={populate}
                       />
                     </View>
                   </View>

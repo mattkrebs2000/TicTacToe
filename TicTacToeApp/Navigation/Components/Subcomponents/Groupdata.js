@@ -5,67 +5,141 @@ import firebase from "../../Firebase/Config.js";
 
 import { AppLoading, Font } from "expo";
 
-const Groupdata = ({ username, email, group, id, idGlobal, box1, setBox1, box2, setBox2, box3, setBox3, box4, setBox4, box5, setBox5, box6, setBox6, box7, setBox7, box8, setBox8, box9, setBox9, turnx, setTurnx, gameon, setGameon, gameId, setGameId}) => {
+const Groupdata = ({ username, email, group, id, idGlobal, box1, setBox1, box2, setBox2, box3, setBox3, box4, setBox4, box5, setBox5, box6, setBox6, box7, setBox7, box8, setBox8, box9, setBox9, turnx, setTurnx, gameon, setGameon, gameId, setGameId, populate}) => {
 
-const startgame = () => {
 
-  const usersRef = firebase.firestore().collection("game")
+  useEffect(() => {
+    if (gameId.length > 2){
+   setGameon(true)
+    }
+  }, [gameId])
 
-  usersRef
-  .add({
-    player1: id,
-    player2: idGlobal,
-    box1: box1,
-    box2: box2,
-    box3: box3,
-    box4: box4,
-    box5: box5,
-    box6: box6,
-    box7: box7,
-    box8: box8,
-    box9: box9,
-    turnx: false,
-    gameon: true
 
-})
+useEffect(() => {
+  if (gameon){
+ populate()
+  }
+}, [gameon])
+
+const addGame = () => {
+
+const db = firebase.firestore().collection("game")
+
+db.add({
+  player1: id,
+  player2: idGlobal,
+  box1: box1,
+  box2: box2,
+  box3: box3,
+  box4: box4,
+  box5: box5,
+  box6: box6,
+  box7: box7,
+  box8: box8,
+  box9: box9,
+  turnx: false,
+  gameon: true })
+
 .then((docRef) => {
-  setGameId(docRef.id);
+  setGameId(docRef.id)
   const itemtoupdate = firebase.firestore().collection("game").doc(docRef.id);
-  const itemtoupdate2 = firebase.firestore().collection("users").doc(id);
-  const itemtoupdate3 = firebase.firestore().collection("users").doc(idGlobal);
-
-      itemtoupdate.update({
-        id: docRef.id
-      });
-      itemtoupdate2.update({
-        gameId: docRef.id
-      });
-      itemtoupdate3.update({
-        gameId: docRef.id
-      });
-     
-
-    console.log("Document written with GameID: ", docRef.id);
-    
+  itemtoupdate.update({
+    id: docRef.id
+  });
+  console.log("Document written with ID: ", docRef.id);
 })
 .catch((error) => {
-    console.error("Error adding document: ", error);
+  console.error("Error adding document: ", error);
 });
 
-console.log("heello")
-
 }
-useEffect(() => {
-  if (gameId.length > 2){
- console.log("this knows that there is a game", gameId)
-  }
-}, [gameId])
+
+
+  // const populate = (data) => {
+
+  //   const usersRef = firebase.firestore().collection("game");
+  //   usersRef
+  //     .where("player1", "==", id)
+  //     .where("player2", "==", idGlobal)
+  //     .where("gameon", "==", true)
+  //     .get()
+  //     .then(function (querySnapshot) {
+  //       querySnapshot.forEach(function (doc) {
+  //         let newData = doc.data();
+  //         setBox1(newData.box1)
+  //         setBox2(newData.box2)
+  //         setBox3(newData.box3)
+  //         setBox4(newData.box4)
+  //         setBox5(newData.box5)
+  //         setBox6(newData.box6)
+  //         setBox7(newData.box7)
+  //         setBox8(newData.box8)
+  //         setBox9(newData.box9)         
+  //       });
+  //     })
+  //     .catch((e) => console.log(e));
+  //   }
+
+
+
+
+
+
+// const startgame = () => {
+
+//   const usersRef = firebase.firestore().collection("game")
+
+//   usersRef
+//   .add({
+//     player1: id,
+//     player2: idGlobal,
+//     box1: box1,
+//     box2: box2,
+//     box3: box3,
+//     box4: box4,
+//     box5: box5,
+//     box6: box6,
+//     box7: box7,
+//     box8: box8,
+//     box9: box9,
+//     turnx: false,
+//     gameon: true
+
+// })
+// .then((docRef) => {
+//   setGameId(docRef.id);
+//   const itemtoupdate = firebase.firestore().collection("game").doc(docRef.id);
+//   const itemtoupdate2 = firebase.firestore().collection("users").doc(id);
+//   const itemtoupdate3 = firebase.firestore().collection("users").doc(idGlobal);
+
+//       itemtoupdate.update({
+//         id: docRef.id
+//       });
+//       itemtoupdate2.update({
+//         gameId: docRef.id
+//       });
+//       itemtoupdate3.update({
+//         gameId: docRef.id
+//       });
+     
+
+//     console.log("Document written with GameID: ", docRef.id);
+    
+// })
+// .catch((error) => {
+//     console.error("Error adding document: ", error);
+// });
+
+// console.log("heello")
+
+// }
+
 
   return (
 
 
   <TouchableOpacity onPress={
-    () => { startgame()}}>
+    () => { addGame()}}>
     <View style={styles.container} >
      <Text style={styles.text}>{username}</Text>
     </View>
