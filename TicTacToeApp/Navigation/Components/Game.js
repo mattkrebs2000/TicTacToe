@@ -166,6 +166,8 @@ const App = ({ navigation }) => {
           setBox8(newData.box8)
           setBox9(newData.box9)   
           setTurnx(newData.turnx)
+          setPlayer1(newData.player1)
+          setPlayer2(newData.player2)
         });
        
       })
@@ -207,6 +209,8 @@ const App = ({ navigation }) => {
             setGameon={setGameon}
             gameId={gameId}
             setGameId = {setGameId}
+            player1 = {player1}
+            player2 = {player2}
           />
         </View>
 
