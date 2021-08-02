@@ -77,6 +77,9 @@ const App = ({ navigation }) => {
   const headerHeight = useHeaderHeight();
 
   const leave = () => {
+
+    if (gameId.length > 2){
+
     let id = idGlobal;
     const itemtoupdate = firebase.firestore().collection("users").doc(id);
     itemtoupdate.update({
@@ -94,9 +97,13 @@ const App = ({ navigation }) => {
       idGlobal,
       "this is the email and the group"
     );
+    } else {
+      navigation.navigate("SignIn");
+    }
   };
 
   useEffect(() => {
+    if (idGlobal.length > 2) {
     navigation.setOptions({
       headerLeft: () => (
         <TouchableOpacity onPress={() => leave()}>
@@ -104,8 +111,20 @@ const App = ({ navigation }) => {
             Sign Out
           </Text>
         </TouchableOpacity>
-      ),
+    ),
     });
+  } else {
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => leave()}>
+          <Text accessibilityLabel="Sign Out" style={styles.text5}>
+            Sign In
+          </Text>
+        </TouchableOpacity>
+    ),
+    });
+
+  }
   }, []);
 
   useEffect(() => {

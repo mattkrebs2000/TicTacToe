@@ -71,12 +71,14 @@ const { idGlobal, setIdGlobal } = useContext(idContext);
   }, [turnx]);
 
 useEffect(() => {
+  if (gameId.length > 2){
   if (!gameon) {
   const itemtoupdate = firebase.firestore().collection("game").doc(gameId);
   itemtoupdate.update({
     gameon: false 
   });
 }
+  }
 }, [gameon])
 
 
@@ -250,6 +252,116 @@ useEffect(() => {
     }
   };
 
+
+  const auto1xo = () => {
+      if (box1.length === 0) {
+        if (turnx === true) {
+          setBox1("x");
+        } else {
+          setBox1("o");
+        }
+      } else {
+        null;
+      }
+    };
+
+  const auto2xo = () => {
+    if (box2.length === 0) {
+      if (turnx === true) {
+        setBox2("x");
+      } else {
+        setBox2("o");
+      }
+    } else {
+      null;
+    }
+  };
+  
+
+const auto3xo = () => {
+  if (box3.length === 0) {
+    if (turnx === true) {
+      setBox3("x");
+    } else {
+      setBox3("o");
+    }
+  } else {
+    null;
+  }
+};
+
+const auto4xo = () => {
+  if (box4.length === 0) {
+    if (turnx === true) {
+      setBox4("x");
+    } else {
+      setBox4("o");
+    }
+  } else {
+    null;
+  }
+};
+
+const auto5xo = () => {
+  if (box5.length === 0) {
+    if (turnx === true) {
+      setBox5("x");
+    } else {
+      setBox5("o");
+    }
+  } else {
+    null;
+  }
+};
+
+const auto6xo = () => {
+  if (box6.length === 0) {
+    if (turnx === true) {
+      setBox6("x");
+    } else {
+      setBox6("o");
+    }
+  } else {
+    null;
+  }
+};
+
+const auto7xo = () => {
+  if (box7.length === 0) {
+    if (turnx === true) {
+      setBox7("x");
+    } else {
+      setBox7("o");
+    }
+  } else {
+    null;
+  }
+};
+
+const auto8xo = () => {
+  if (box8.length === 0) {
+    if (turnx === true) {
+      setBox8("x");
+    } else {
+      setBox8("o");
+    }
+  } else {
+    null;
+  }
+};
+
+const auto9xo = () => {
+  if (box9.length === 0) {
+    if (turnx === true) {
+      setBox9("x");
+    } else {
+      setBox9("o");
+    }
+  } else {
+    null;
+  }
+};
+
   const determine1xo = () => {
     if (gameon) {
       if (box1.length === 0) {
@@ -267,6 +379,7 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    if (idGlobal.length > 2) {
    let id = gameId; 
     if (box1.length > 0) {
       let box = box1;
@@ -276,6 +389,7 @@ useEffect(() => {
         box1: box,
       });
     }
+  }
   }, [box1])
 
 
@@ -296,6 +410,7 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    if (idGlobal.length > 2) {
     let id = gameId; 
      if (box2.length > 0) {
        let box = box2;
@@ -305,6 +420,7 @@ useEffect(() => {
          box2: box,
        });
      }
+    }
    }, [box2])
 
   const determine3xo = () => {
@@ -324,6 +440,7 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    if (idGlobal.length > 2) {
     let id = gameId; 
      if (box3.length > 0) {
        let box = box3;
@@ -333,6 +450,7 @@ useEffect(() => {
          box3: box,
        });
      }
+    }
    }, [box3])
 
   const determine4xo = () => {
@@ -352,6 +470,7 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    if (idGlobal.length > 2) {
     let id = gameId; 
      if (box4.length > 0) {
        let box = box4;
@@ -361,6 +480,7 @@ useEffect(() => {
          box4: box,
        });
      }
+    }
    }, [box4])
 
 
@@ -381,6 +501,7 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    if (idGlobal.length > 2) {
     let id = gameId; 
      if (box5.length > 0) {
        let box = box5;
@@ -390,6 +511,7 @@ useEffect(() => {
          box5: box,
        });
      }
+    }
    }, [box5])
 
 
@@ -410,6 +532,7 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    if (idGlobal.length > 2) {
     let id = gameId; 
      if (box6.length > 0) {
        let box = box6;
@@ -419,6 +542,7 @@ useEffect(() => {
          box6: box,
        });
      }
+    }
    }, [box6])
 
   const determine7xo = () => {
@@ -438,6 +562,7 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    if (idGlobal.length > 2) {
     let id = gameId; 
      if (box7.length > 0) {
        let box = box7;
@@ -447,6 +572,7 @@ useEffect(() => {
          box7: box,
        });
      }
+    }
    }, [box7])
 
   const determine8xo = () => {
@@ -466,6 +592,7 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    if (idGlobal.length > 2) {
     let id = gameId; 
      if (box8.length > 0) {
        let box = box8;
@@ -475,6 +602,7 @@ useEffect(() => {
          box8: box,
        });
      }
+    }
    }, [box8])
 
   const determine9xo = () => {
@@ -494,6 +622,7 @@ useEffect(() => {
   };
 
   useEffect(() => {
+    if (idGlobal.length > 2) {
     let id = gameId; 
      if (box9.length > 0) {
        let box = box9;
@@ -503,14 +632,285 @@ useEffect(() => {
          box9: box,
        });
      }
+    }
    }, [box9])
 
   const windowWidth = Dimensions.get("window").width;
 
   return (
     <View>
-    { idGlobal == player1 && turnx == true ? 
+    {idGlobal.length < 2 ? 
 
+      <Grid style={{ width: windowWidth }}>
+      <Row style={{ height: windowWidth / 3 }}>
+        <Col style={{ backgroundColor: "white" }}>
+
+
+         <TouchableOpacity
+            onPress={() => {
+              auto1xo();
+            }}> 
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#8959DF",
+                height: "100%",
+              }}
+            >
+              <Text
+                style={
+                  method1 || method4 || method7
+                    ? { fontSize: 100, color: "white" }
+                    : { fontSize: 100, color: "black" }
+                }
+              >
+                {box1}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </Col>
+
+        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+        <Col style={{ backgroundColor: "white" }}>
+          <TouchableOpacity
+            onPress={() => {
+              auto2xo();
+            }}
+          >
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#8959DF",
+                height: "100%",
+              }}
+            >
+              <Text
+                style={
+                  method1 || method5
+                    ? { fontSize: 100, color: "white" }
+                    : { fontSize: 100, color: "black" }
+                }
+              >
+                {box2}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </Col>
+
+        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+        <Col style={{ backgroundColor: "white" }}>
+          <TouchableOpacity
+            onPress={() => {
+              auto3xo();
+            }}
+          >
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#8959DF",
+                height: "100%",
+              }}
+            >
+              <Text
+                style={
+                  method1 || method6 || method8
+                    ? { fontSize: 100, color: "white" }
+                    : { fontSize: 100, color: "black" }
+                }
+              >
+                {box3}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </Col>
+      </Row>
+
+      <Row style={{ backgroundColor: "black", height: 6 }}>
+        <Col style={{ backgroundColor: "black", width: "100%"}}></Col>
+      </Row>
+
+      <Row style={{ height: windowWidth / 3 }}>
+        <Col style={{ backgroundColor: "white" }}>
+          <TouchableOpacity
+            onPress={() => {
+              auto4xo();
+            }}
+          >
+            <View
+              style={{
+                alignItems: "center",
+
+                backgroundColor: "#8959DF",
+                height: "100%",
+              }}
+            >
+              <Text
+                style={
+                  method2 || method4
+                    ? { fontSize: 100, color: "white" }
+                    : { fontSize: 100, color: "black" }
+                }
+              >
+                {box4}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </Col>
+
+        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+        <Col style={{ backgroundColor: "white" }}>
+          <TouchableOpacity
+            onPress={() => {
+              auto5xo();
+            }}
+          >
+            <View
+              style={{
+                alignItems: "center",
+
+                backgroundColor: "#8959DF",
+                height: "100%",
+              }}
+            >
+              <Text
+                style={
+                  method2 || method5 || method7 || method8
+                    ? { fontSize: 100, color: "white" }
+                    : { fontSize: 100, color: "black" }
+                }
+              >
+                {box5}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </Col>
+
+        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+        <Col style={{ backgroundColor: "white" }}>
+          <TouchableOpacity
+            onPress={() => {
+              auto6xo();
+            }}
+          >
+            <View
+              style={{
+                alignItems: "center",
+
+                backgroundColor: "#8959DF",
+                height: "100%",
+              }}
+            >
+              <Text
+                style={
+                  method2 || method6
+                    ? { fontSize: 100, color: "white" }
+                    : { fontSize: 100, color: "black" }
+                }
+              >
+                {box6}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </Col>
+      </Row>
+      <Row style={{ backgroundColor: "black", height: 6 }}>
+        <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+      </Row>
+      <Row style={{ height: windowWidth / 3 }}>
+        <Col style={{ backgroundColor: "white" }}>
+          <TouchableOpacity
+            onPress={() => {
+              auto7xo();
+            }}
+          >
+            <View
+              style={{
+                alignItems: "center",
+
+                backgroundColor: "#8959DF",
+                height: "100%",
+              }}
+            >
+              <Text
+                style={
+                  method3 || method4 || method8
+                    ? { fontSize: 100, color: "white" }
+                    : { fontSize: 100, color: "black" }
+                }
+              >
+                {box7}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </Col>
+
+        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+        <Col style={{ backgroundColor: "white" }}>
+          <TouchableOpacity
+            onPress={() => {
+              auto8xo();
+            }}
+          >
+            <View
+              style={{
+                alignItems: "center",
+
+                backgroundColor: "#8959DF",
+                height: "100%",
+              }}
+            >
+              <Text
+                style={
+                  method3 || method5
+                    ? { fontSize: 100, color: "white" }
+                    : { fontSize: 100, color: "black" }
+                }
+              >
+                {box8}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </Col>
+
+        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+        <Col style={{ backgroundColor: "white" }}>
+          <TouchableOpacity
+            onPress={() => {
+              auto9xo();
+            }}
+          >
+            <View
+              style={{
+                alignItems: "center",
+
+                backgroundColor: "#8959DF",
+                height: "100%",
+              }}
+            >
+              <Text
+                style={
+                  method3 || method6 || method7
+                    ? { fontSize: 100, color: "white" }
+                    : { fontSize: 100, color: "black" }
+                }
+              >
+                {box9}
+              </Text>
+            </View>
+          </TouchableOpacity>
+          </Col>
+          </Row>
+          </Grid>
+      : idGlobal == player1 && turnx == true ? 
       <Grid style={{ width: windowWidth }}>
       <Row style={{ height: windowWidth / 3 }}>
         <Col style={{ backgroundColor: "white" }}>
