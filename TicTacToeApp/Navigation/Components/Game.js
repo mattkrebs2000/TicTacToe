@@ -75,7 +75,8 @@ const App = ({ navigation }) => {
   const headerHeight = useHeaderHeight();
 
   const leave = () => {
-    if (gameId.length > 2) {
+
+    if (gameId.length > 2 ) {
       let id = idGlobal;
       const itemtoupdate = firebase.firestore().collection("users").doc(id);
       itemtoupdate.update({
@@ -99,7 +100,7 @@ const App = ({ navigation }) => {
   };
 
   useEffect(() => {
-    if (idGlobal.length > 2) {
+    if (idGlobal.length > 2 && gameon == false) {
       navigation.setOptions({
         headerLeft: () => (
           <TouchableOpacity onPress={() => leave()}>
@@ -109,7 +110,7 @@ const App = ({ navigation }) => {
           </TouchableOpacity>
         ),
       });
-    } else {
+    } else if (idGlobal.length < 2){
       navigation.setOptions({
         headerLeft: () => (
           <TouchableOpacity onPress={() => leave()}>
@@ -119,6 +120,8 @@ const App = ({ navigation }) => {
           </TouchableOpacity>
         ),
       });
+    } else {
+      null
     }
   }, []);
 
