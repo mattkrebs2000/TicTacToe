@@ -187,6 +187,7 @@ const App = ({ navigation }) => {
           setTurnx(newData.turnx)
           setPlayer1(newData.player1)
           setPlayer2(newData.player2)
+          setGameon(newData.gameon)
         });
        
       })
