@@ -73,6 +73,7 @@ export const Navigation = ({ navigation }) => {
         component={PrimaryPage}
         options={{
           title: "Tic Tac Toe",
+          headerLeft: null,
           headerTitleAlign: "center",
           headerStyle,
           headerTintColor: "white",

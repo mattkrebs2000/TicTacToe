@@ -1180,6 +1180,8 @@ const auto9xo = () => {
           </Col>
           </Row>
           </Grid>
+
+
           : idGlobal == player1 && turnx == false ?
 
          <Grid style={{ width: windowWidth }}>
@@ -1645,8 +1647,7 @@ const auto9xo = () => {
           </Col>
           </Row>
           </Grid>
-          
-          : 
+          : idGlobal == player2 && turnx == false ?
           <Grid style={{ width: windowWidth }}>
           <Row style={{ height: windowWidth / 3 }}>
           <Col style={{ backgroundColor: "white" }}>
@@ -1891,6 +1892,239 @@ const auto9xo = () => {
             determine9xo();
           }}
         >
+          <View
+            style={{
+              alignItems: "center",
+
+              backgroundColor: "#8959DF",
+              height: "100%",
+            }}
+          >
+            <Text
+              style={
+                method3 || method6 || method7
+                  ? { fontSize: 100, color: "white" }
+                  : { fontSize: 100, color: "black" }
+              }
+            >
+              {box9}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        
+        </Col>
+      </Row>
+      </Grid>
+      :
+      <Grid style={{ width: windowWidth }}>
+          <Row style={{ height: windowWidth / 3 }}>
+          <Col style={{ backgroundColor: "white" }}>
+          <TouchableOpacity> 
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#8959DF",
+              height: "100%",
+            }}
+          >
+            <Text
+              style={
+                method1 || method4 || method7
+                  ? { fontSize: 100, color: "white" }
+                  : { fontSize: 100, color: "black" }
+              }
+            >
+              {box1}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </Col>
+
+      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+      <Col style={{ backgroundColor: "white" }}>
+        <TouchableOpacity>
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#8959DF",
+              height: "100%",
+            }}
+          >
+            <Text
+              style={
+                method1 || method5
+                  ? { fontSize: 100, color: "white" }
+                  : { fontSize: 100, color: "black" }
+              }
+            >
+              {box2}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </Col>
+
+      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+      <Col style={{ backgroundColor: "white" }}>
+        <TouchableOpacity>
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#8959DF",
+              height: "100%",
+            }}
+          >
+            <Text
+              style={
+                method1 || method6 || method8
+                  ? { fontSize: 100, color: "white" }
+                  : { fontSize: 100, color: "black" }
+              }
+            >
+              {box3}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </Col>
+    </Row>
+
+    <Row style={{ backgroundColor: "black", height: 6 }}>
+      <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+    </Row>
+    <Row style={{ height: windowWidth / 3 }}>
+      <Col style={{ backgroundColor: "white" }}>
+        <TouchableOpacity>
+          <View
+            style={{
+              alignItems: "center",
+
+              backgroundColor: "#8959DF",
+              height: "100%",
+            }}
+          >
+            <Text
+              style={
+                method2 || method4
+                  ? { fontSize: 100, color: "white" }
+                  : { fontSize: 100, color: "black" }
+              }
+            >
+              {box4}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </Col>
+
+      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+      <Col style={{ backgroundColor: "white" }}>
+        <TouchableOpacity>
+          <View
+            style={{
+              alignItems: "center",
+
+              backgroundColor: "#8959DF",
+              height: "100%",
+            }}
+          >
+            <Text
+              style={
+                method2 || method5 || method7 || method8
+                  ? { fontSize: 100, color: "white" }
+                  : { fontSize: 100, color: "black" }
+              }
+            >
+              {box5}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </Col>
+
+      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+      <Col style={{ backgroundColor: "white" }}>
+        <TouchableOpacity>
+          <View
+            style={{
+              alignItems: "center",
+
+              backgroundColor: "#8959DF",
+              height: "100%",
+            }}
+          >
+            <Text
+              style={
+                method2 || method6
+                  ? { fontSize: 100, color: "white" }
+                  : { fontSize: 100, color: "black" }
+              }
+            >
+              {box6}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </Col>
+    </Row>
+    <Row style={{ backgroundColor: "black", height: 6 }}>
+      <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+    </Row>
+    <Row style={{ height: windowWidth / 3 }}>
+      <Col style={{ backgroundColor: "white" }}>
+        <TouchableOpacity>
+          <View
+            style={{
+              alignItems: "center",
+
+              backgroundColor: "#8959DF",
+              height: "100%",
+            }}
+          >
+            <Text
+              style={
+                method3 || method4 || method8
+                  ? { fontSize: 100, color: "white" }
+                  : { fontSize: 100, color: "black" }
+              }
+            >
+              {box7}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </Col>
+
+      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+      <Col style={{ backgroundColor: "white" }}>
+        <TouchableOpacity>
+          <View
+            style={{
+              alignItems: "center",
+
+              backgroundColor: "#8959DF",
+              height: "100%",
+            }}
+          >
+            <Text
+              style={
+                method3 || method5
+                  ? { fontSize: 100, color: "white" }
+                  : { fontSize: 100, color: "black" }
+              }
+            >
+              {box8}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </Col>
+
+      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+      <Col style={{ backgroundColor: "white" }}>
+        <TouchableOpacity>
           <View
             style={{
               alignItems: "center",

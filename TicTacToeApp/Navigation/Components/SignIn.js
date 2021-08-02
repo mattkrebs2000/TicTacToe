@@ -34,6 +34,21 @@ const SignIn = ({ navigation }) => {
   const [didKeyboardShow, setKeyboardShow] = useState(false);
 
   useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity onPress={() => 
+            navigation.navigate("CreateAccount")}
+            >
+          <Text accessibilityLabel="Guest" style={styles.text5}>
+            Sign Up
+          </Text>
+        </TouchableOpacity>
+      ),
+    });
+  }, []);
+
+
+  useEffect(() => {
     setEmail("")
   }, [navigation])
 
@@ -298,5 +313,10 @@ const styles = ScaledSheet.create({
     fontSize: "10@s",
     textAlign: "center",
     color: "#167bff",
+  },
+  text5: {
+    color: "white",
+    fontSize: "15@s",
+    marginRight: "5@s"
   },
 });

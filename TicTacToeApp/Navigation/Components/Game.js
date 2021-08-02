@@ -56,47 +56,43 @@ const App = ({ navigation }) => {
 
   useEffect(() => {
     if (active) {
-      console.log("this one got activated")
+      console.log("this one got activated");
       getOtherusers();
     }
   }, [active]);
 
- 
   const gameRef = firestore.collection("game");
   const query2 = gameRef;
-  const [checkGame] = useCollectionData(query2, {idField: "id"});
+  const [checkGame] = useCollectionData(query2, { idField: "id" });
 
   useEffect(() => {
-
     if (checkGame) {
       console.log("this is being run now", gameId);
-     populate();
+      populate();
     }
   }, [checkGame]);
 
   const headerHeight = useHeaderHeight();
 
   const leave = () => {
+    if (gameId.length > 2) {
+      let id = idGlobal;
+      const itemtoupdate = firebase.firestore().collection("users").doc(id);
+      itemtoupdate.update({
+        active: false,
+      });
 
-    if (gameId.length > 2){
-
-    let id = idGlobal;
-    const itemtoupdate = firebase.firestore().collection("users").doc(id);
-    itemtoupdate.update({
-      active: false,
-    });
-
-    setGroupGlobal("");
-    setEmailGlobal("");
-    setIdGlobal("");
-    navigation.navigate("SignIn");
-    console.log(
-      "this is the email and the group",
-      emailGlobal,
-      groupGlobal,
-      idGlobal,
-      "this is the email and the group"
-    );
+      setGroupGlobal("");
+      setEmailGlobal("");
+      setIdGlobal("");
+      navigation.navigate("SignIn");
+      console.log(
+        "this is the email and the group",
+        emailGlobal,
+        groupGlobal,
+        idGlobal,
+        "this is the email and the group"
+      );
     } else {
       navigation.navigate("SignIn");
     }
@@ -104,27 +100,26 @@ const App = ({ navigation }) => {
 
   useEffect(() => {
     if (idGlobal.length > 2) {
-    navigation.setOptions({
-      headerLeft: () => (
-        <TouchableOpacity onPress={() => leave()}>
-          <Text accessibilityLabel="Sign Out" style={styles.text5}>
-            Sign Out
-          </Text>
-        </TouchableOpacity>
-    ),
-    });
-  } else {
-    navigation.setOptions({
-      headerLeft: () => (
-        <TouchableOpacity onPress={() => leave()}>
-          <Text accessibilityLabel="Sign Out" style={styles.text5}>
-            Sign In
-          </Text>
-        </TouchableOpacity>
-    ),
-    });
-
-  }
+      navigation.setOptions({
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => leave()}>
+            <Text accessibilityLabel="Sign Out" style={styles.text5}>
+              Sign Out
+            </Text>
+          </TouchableOpacity>
+        ),
+      });
+    } else {
+      navigation.setOptions({
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => leave()}>
+            <Text accessibilityLabel="Sign Out" style={styles.text5}>
+              Sign In
+            </Text>
+          </TouchableOpacity>
+        ),
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -139,7 +134,6 @@ const App = ({ navigation }) => {
     getOtherusers();
   }, []);
 
-
   const getOtherusers = () => {
     setGroupmatedata([]);
     const usersRef = firebase.firestore().collection("users");
@@ -151,7 +145,11 @@ const App = ({ navigation }) => {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data();
-          console.log("this is the document data", doc.data(), "this is the document data");
+          console.log(
+            "this is the document data",
+            doc.data(),
+            "this is the document data"
+          );
           if (groupmatedata.indexOf(newData.id) === -1) {
             setGroupmatedata((arr) => {
               return [...arr, newData];
@@ -164,9 +162,8 @@ const App = ({ navigation }) => {
       .catch((e) => console.log(e));
   };
 
-
   const populate = (data) => {
-    console.log("this here has been", gameId, "this here has been")
+    console.log("this here has been", gameId, "this here has been");
     const usersRef = firebase.firestore().collection("game");
     usersRef
       .where("id", "==", gameId)
@@ -174,29 +171,24 @@ const App = ({ navigation }) => {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data();
-          console.log(newData, "yyyyyyo")
-          setBox1(newData.box1)
-          setBox2(newData.box2)
-          setBox3(newData.box3)
-          setBox4(newData.box4)
-          setBox5(newData.box5)
-          setBox6(newData.box6)
-          setBox7(newData.box7)
-          setBox8(newData.box8)
-          setBox9(newData.box9)   
-          setTurnx(newData.turnx)
-          setPlayer1(newData.player1)
-          setPlayer2(newData.player2)
-          setGameon(newData.gameon)
+          console.log(newData, "yyyyyyo");
+          setBox1(newData.box1);
+          setBox2(newData.box2);
+          setBox3(newData.box3);
+          setBox4(newData.box4);
+          setBox5(newData.box5);
+          setBox6(newData.box6);
+          setBox7(newData.box7);
+          setBox8(newData.box8);
+          setBox9(newData.box9);
+          setTurnx(newData.turnx);
+          setPlayer1(newData.player1);
+          setPlayer2(newData.player2);
+          setGameon(newData.gameon);
         });
-       
       })
       .catch((e) => console.log(e));
-    }
-
-
-
-
+  };
 
   return (
     <SafeAreaView
@@ -228,65 +220,106 @@ const App = ({ navigation }) => {
             gameon={gameon}
             setGameon={setGameon}
             gameId={gameId}
-            setGameId = {setGameId}
-            player1 = {player1}
-            player2 = {player2}
+            setGameId={setGameId}
+            player1={player1}
+            player2={player2}
           />
         </View>
 
-        <View
-          style={{
-            flex: windowHeight - windowWidth - headerHeight,
-            alignItems: "center",
-          }}
-        >
-          <View style={styles.container}>
-            <Text style={styles.text}> Choose an available player</Text>
-          </View>
-          <ScrollView>
-            {groupmatedata.length > 0 &&
-              groupmatedata.map((info, value) => (
-                <View key={value}>
-                  <View>
-                    <View style={styles.scrollview}>
-                      <Groupdata
-                        email={info.email}
-                        username={info.username}
-                        group={info.group}
-                        id={info.id}
-                        idGlobal={idGlobal}
-                        box1={box1}
-                        setBox1={setBox1}
-                        box2={box2}
-                        setBox2={setBox2}
-                        box3={box3}
-                        setBox3={setBox3}
-                        box4={box4}
-                        setBox4={setBox4}
-                        box5={box5}
-                        setBox5={setBox5}
-                        box6={box6}
-                        setBox6={setBox6}
-                        box7={box7}
-                        setBox7={setBox7}
-                        box8={box8}
-                        setBox8={setBox8}
-                        box9={box9}
-                        setBox9={setBox9}
-                        turnx={turnx}
-                        setTurnx={setTurnx}
-                        gameon={gameon}
-                        setGameon={setGameon}
-                        gameId={gameId}
-                        setGameId={setGameId}
-                        populate={populate}
-                      />
+        {gameId.length < 1 && idGlobal.length > 2 ? (
+          <View
+            style={{
+              flex: windowHeight - windowWidth - headerHeight,
+              alignItems: "center",
+            }}
+          >
+            <View style={styles.container}>
+              <Text style={styles.text}> Choose an available player</Text>
+            </View>
+            <ScrollView>
+              {groupmatedata.length > 0 &&
+                groupmatedata.map((info, value) => (
+                  <View key={value}>
+                    <View>
+                      <View style={styles.scrollview}>
+                        <Groupdata
+                          email={info.email}
+                          username={info.username}
+                          group={info.group}
+                          id={info.id}
+                          idGlobal={idGlobal}
+                          box1={box1}
+                          setBox1={setBox1}
+                          box2={box2}
+                          setBox2={setBox2}
+                          box3={box3}
+                          setBox3={setBox3}
+                          box4={box4}
+                          setBox4={setBox4}
+                          box5={box5}
+                          setBox5={setBox5}
+                          box6={box6}
+                          setBox6={setBox6}
+                          box7={box7}
+                          setBox7={setBox7}
+                          box8={box8}
+                          setBox8={setBox8}
+                          box9={box9}
+                          setBox9={setBox9}
+                          turnx={turnx}
+                          setTurnx={setTurnx}
+                          gameon={gameon}
+                          setGameon={setGameon}
+                          gameId={gameId}
+                          setGameId={setGameId}
+                          populate={populate}
+                        />
+                      </View>
                     </View>
                   </View>
+                ))}
+            </ScrollView>
+          </View>
+        )   : gameId.length > 2 && idGlobal.length > 2 ? (
+          <View
+            style={{
+              flex: windowHeight - windowWidth - headerHeight,
+              alignItems: "center",
+            }}
+          >
+            <View style={styles.container}>
+              <Text style={styles.text}> Player Records </Text>
+            </View>
+            <ScrollView>
+              <View>
+                <View>
+                  <View style={styles.scrollview}></View>
                 </View>
-              ))}
-          </ScrollView>
-        </View>
+              </View>
+            </ScrollView>
+          </View>
+        ): (<View
+        style={{
+          flex: windowHeight - windowWidth - headerHeight,
+          alignItems: "center",
+        }}
+      >
+        <TouchableOpacity style={styles.container} onPress={() =>  navigation.navigate("SignIn")}>
+          <Text style={styles.text}>Sign In to Compete</Text>
+        </TouchableOpacity>
+        <ScrollView>
+          {groupmatedata.length > 0 &&
+            groupmatedata.map((info, value) => (
+              <View key={value}>
+                <View>
+                  <View style={styles.scrollview}>
+                  
+                  </View>
+                </View>
+              </View>
+            ))}
+        </ScrollView>
+      </View>) }
       </View>
     </SafeAreaView>
   );

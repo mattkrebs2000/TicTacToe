@@ -52,6 +52,7 @@ const SignUp = ({ navigation }) => {
   const [number, setNumber] = useState(0);
   const [admin, setAdmin] = useState(false);
   const [onlyadmin, setOnlyadmin] = useState([]);
+  
 
 
   useEffect(() => {
@@ -110,6 +111,15 @@ useEffect(() => {
           </Text>
         </TouchableOpacity>
       ),
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => 
+            navigation.navigate("SignIn")}
+            >
+          <Text accessibilityLabel="Guest" style={styles.text5}>
+            Sign In
+          </Text>
+        </TouchableOpacity>
+      ),
     });
   }, []);
 
@@ -133,6 +143,9 @@ useEffect(() => {
           username,
           admin,
           active,
+          wins,
+          losses,
+          ties, 
         };
 
         const usersRef = firebase
