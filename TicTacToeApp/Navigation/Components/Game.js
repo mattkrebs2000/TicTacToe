@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import TicTacToe from "./Subcomponents/TicTacToeGrid";
 import Groupdata from "./Subcomponents/Groupdata";
+import Records from "./Subcomponents/Records";
 import emailContext from "../Emailcontext.js";
 import groupContext from "../Groupcontext.js";
 import idContext from "../Idcontext.js";
@@ -29,6 +30,9 @@ const windowHeight = Dimensions.get("window").height;
 
 const App = ({ navigation }) => {
   const [groupmatedata, setGroupmatedata] = useState([]);
+  const [recordsdata, setRecordsdata] = useState([]);
+  const [allrecordsdata, setAllrecordsdata] = useState([]);
+
   const [toggle, setToggle] = useState([]);
   const [box1, setBox1] = useState("");
   const [box2, setBox2] = useState("");
@@ -45,6 +49,7 @@ const App = ({ navigation }) => {
   const [player2, setPlayer2] = useState("");
   const [gameId, setGameId] = useState("");
   const [whourplaying, setWhourplaying] = useState("");
+  const [grouponly, setGrouponly] = useState(true);
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);
   const { idGlobal, setIdGlobal } = useContext(idContext);
@@ -71,6 +76,20 @@ const App = ({ navigation }) => {
       populate();
     }
   }, [checkGame]);
+
+  
+  const [gameon2] = useCollectionData(query2, { idField: "gameon" });
+
+  useEffect(() => {
+    if (gameon2) {
+    getRecords();
+    getAllrecords();
+    }
+}, [gameon2]);
+
+
+
+
 
   const headerHeight = useHeaderHeight();
 
@@ -164,6 +183,61 @@ const App = ({ navigation }) => {
       })
       .catch((e) => console.log(e));
   };
+
+
+  const getRecords = () => {
+    setRecordsdata([]);
+    const usersRef = firebase.firestore().collection("users");
+    usersRef
+      .where("group", "==", groupGlobal)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          let newData = doc.data();
+          console.log(
+            "this is the new data",
+            doc.data(),
+            "this is the document data"
+          );
+          if (recordsdata.indexOf(newData.id) === -1) {
+            setRecordsdata((arr) => {
+              return [...arr, newData];
+            });
+          } else {
+            console.log("this is a duplicate");
+          }
+        });
+      })
+      .catch((e) => console.log(e));
+  };
+
+
+  const getAllrecords = () => {
+    setAllrecordsdata([]);
+    const usersRef = firebase.firestore().collection("users");
+    usersRef
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          let newData = doc.data();
+          console.log(
+            "this is the new data",
+            doc.data(),
+            "this is the document data"
+          );
+          if (recordsdata.indexOf(newData.id) === -1) {
+            setAllrecordsdata((arr) => {
+              return [...arr, newData];
+            });
+          } else {
+            console.log("this is a duplicate");
+          }
+        });
+      })
+      .catch((e) => console.log(e));
+  };
+
+
 
   const populate = (data) => {
     console.log("this here has been", gameId, "this here has been");
@@ -283,25 +357,65 @@ const App = ({ navigation }) => {
                 ))}
             </ScrollView>
           </View>
-        )   : gameId.length > 2 && idGlobal.length > 2 ? (
+        )   : gameId.length > 2 && idGlobal.length > 2 && grouponly ? (
           <View
             style={{
               flex: windowHeight - windowWidth - headerHeight,
               alignItems: "center",
             }}
           >
-            <View style={styles.container}>
-              <Text style={styles.text}> Player Records </Text>
-            </View>
+            <TouchableOpacity style={styles.container} onPress={
+              () => {setGrouponly(false)}}>
+              <Text style={styles.text}>Players in your Group</Text>
+            </TouchableOpacity>
             <ScrollView>
-              <View>
-                <View>
-                  <View style={styles.scrollview}></View>
-                </View>
-              </View>
+              {recordsdata.length > 0 &&
+                recordsdata.map((info, value) => (
+                  <View key={value}>
+                    <View>
+                      <View style={styles.scrollview}>
+                        <Records
+                          email={info.email}
+                          username={info.username}
+                          group={info.group}
+                          id={info.id}
+                          idGlobal={idGlobal}
+                        />
+                      </View>
+                    </View>
+                  </View>
+                ))}
             </ScrollView>
-          </View>
-        ): (<View
+          </View>) : gameId.length > 2 && idGlobal.length > 2 && !grouponly ? (
+            <View
+              style={{
+                flex: windowHeight - windowWidth - headerHeight,
+                alignItems: "center",
+              }}
+            >
+              <TouchableOpacity style={styles.container} onPress={
+                () => {setGrouponly(true)}}>
+                <Text style={styles.text}>All Players</Text>
+              </TouchableOpacity>
+              <ScrollView>
+                {allrecordsdata.length > 0 &&
+                  allrecordsdata.map((info, value) => (
+                    <View key={value}>
+                      <View>
+                        <View style={styles.scrollview}>
+                          <Records
+                            email={info.email}
+                            username={info.username}
+                            group={info.group}
+                            id={info.id}
+                            idGlobal={idGlobal}
+                          />
+                        </View>
+                      </View>
+                    </View>
+                  ))}
+              </ScrollView>
+            </View>): (<View
         style={{
           flex: windowHeight - windowWidth - headerHeight,
           alignItems: "center",

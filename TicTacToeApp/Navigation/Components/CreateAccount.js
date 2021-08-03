@@ -143,9 +143,9 @@ useEffect(() => {
           username,
           admin,
           active,
-          wins,
-          losses,
-          ties, 
+          wins: 0,
+          losses: 0,
+          ties: 0, 
         };
 
         const usersRef = firebase
