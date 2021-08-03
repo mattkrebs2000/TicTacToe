@@ -77,16 +77,67 @@ const App = ({ navigation }) => {
     }
   }, [checkGame]);
 
-  
-  const [gameon2] = useCollectionData(query2, { idField: "gameon" });
+ 
+  const query3 = gameRef;
+  const [gameon2] = useCollectionData(query3, { idField: "gameon" });
 
   useEffect(() => {
-    if (gameon2) {
+    if (gameon == true) {
+   
     getRecords();
     getAllrecords();
-    }
-}, [gameon2]);
+    
+  }
+}, [gameon]);
 
+
+
+const getRecords = () => {
+  setRecordsdata([]);
+  const usersRef = firebase.firestore().collection("users");
+  usersRef
+    .where("group", "==", groupGlobal)
+    .get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        let newData = doc.data();
+        if (recordsdata.indexOf(newData.id)=== -1) {
+          console.log("include this in the data", newData.id);
+          setRecordsdata((arr) => {
+            return [...arr, newData];
+          });
+        } else {
+          console.log("this is a duplicate");
+        }
+      });
+    })
+    .catch((e) => console.log(e));
+};
+
+
+const getAllrecords = () => {
+  setAllrecordsdata([]);
+  const usersRef = firebase.firestore().collection("users");
+  usersRef
+    .get()
+    .then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        let newData = doc.data();
+       
+        if (recordsdata.indexOf(newData.id)=== -1) {
+          console.log("include this in the data", newData.id);
+          setAllrecordsdata((arr) => {
+            return [...arr, newData];
+          });
+        } else {
+          console.log("this is a duplicate");
+        }
+      });
+      console.log("yo", allrecordsdata, "yo");
+    })
+    
+    .catch((e) => console.log(e));
+};
 
 
 
@@ -144,17 +195,17 @@ const App = ({ navigation }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (idGlobal.length > 0) {
-      let id = idGlobal;
-      const itemtoupdate = firebase.firestore().collection("users").doc(id);
+  // useEffect(() => {
+  //   if (idGlobal.length > 0) {
+  //     let id = idGlobal;
+  //     const itemtoupdate = firebase.firestore().collection("users").doc(id);
 
-      itemtoupdate.update({
-        active: true,
-      });
-    }
-    getOtherusers();
-  }, []);
+  //     itemtoupdate.update({
+  //       active: true,
+  //     });
+  //   }
+  //   getOtherusers();
+  // }, []);
 
   const getOtherusers = () => {
     setGroupmatedata([]);
@@ -174,59 +225,6 @@ const App = ({ navigation }) => {
           );
           if (groupmatedata.indexOf(newData.id) === -1) {
             setGroupmatedata((arr) => {
-              return [...arr, newData];
-            });
-          } else {
-            console.log("this is a duplicate");
-          }
-        });
-      })
-      .catch((e) => console.log(e));
-  };
-
-
-  const getRecords = () => {
-    setRecordsdata([]);
-    const usersRef = firebase.firestore().collection("users");
-    usersRef
-      .where("group", "==", groupGlobal)
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          let newData = doc.data();
-          console.log(
-            "this is the new data",
-            doc.data(),
-            "this is the document data"
-          );
-          if (recordsdata.indexOf(newData.id) === -1) {
-            setRecordsdata((arr) => {
-              return [...arr, newData];
-            });
-          } else {
-            console.log("this is a duplicate");
-          }
-        });
-      })
-      .catch((e) => console.log(e));
-  };
-
-
-  const getAllrecords = () => {
-    setAllrecordsdata([]);
-    const usersRef = firebase.firestore().collection("users");
-    usersRef
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          let newData = doc.data();
-          console.log(
-            "this is the new data",
-            doc.data(),
-            "this is the document data"
-          );
-          if (recordsdata.indexOf(newData.id) === -1) {
-            setAllrecordsdata((arr) => {
               return [...arr, newData];
             });
           } else {
@@ -366,7 +364,7 @@ const App = ({ navigation }) => {
           >
             <TouchableOpacity style={styles.container} onPress={
               () => {setGrouponly(false)}}>
-              <Text style={styles.text}>Players in your Group</Text>
+              <Text style={styles.text}>Players in your Group (W-L-T)</Text>
             </TouchableOpacity>
             <ScrollView>
               {recordsdata.length > 0 &&
@@ -395,7 +393,7 @@ const App = ({ navigation }) => {
             >
               <TouchableOpacity style={styles.container} onPress={
                 () => {setGrouponly(true)}}>
-                <Text style={styles.text}>All Players</Text>
+                <Text style={styles.text}>All Players (W-L-T)</Text>
               </TouchableOpacity>
               <ScrollView>
                 {allrecordsdata.length > 0 &&

@@ -7,6 +7,8 @@ import { AppLoading, Font } from "expo";
 
 const Groupdata = ({ username, email, group, id, idGlobal, box1, setBox1, box2, setBox2, box3, setBox3, box4, setBox4, box5, setBox5, box6, setBox6, box7, setBox7, box8, setBox8, box9, setBox9, turnx, setTurnx, gameon, setGameon, gameId, setGameId, populate}) => {
 
+    
+
 
 //   useEffect(() => {
 //     if (gameId.length > 2){
