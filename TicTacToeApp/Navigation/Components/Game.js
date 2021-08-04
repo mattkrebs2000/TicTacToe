@@ -54,14 +54,13 @@ const App = ({ navigation }) => {
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);
   const { idGlobal, setIdGlobal } = useContext(idContext);
 
+
   useEffect(() => {
     const itemtoupdate = firebase.firestore().collection("users").doc(idGlobal);
-      itemtoupdate.update({
-        active: true,
-      });
-
+    itemtoupdate.update({
+      active: true,
+    });
   }, []);
-
 
   const firestore = firebase.firestore();
   const messagesRef = firestore.collection("users");
@@ -70,7 +69,7 @@ const App = ({ navigation }) => {
 
   useEffect(() => {
     if (active) {
-      console.log("this one got activated", idGlobal, groupGlobal, active, "this one got activated");
+      console.log("this one got activated",gameId, idGlobal, groupGlobal, active, "this one got activated");
       getOtherusers();
     }
   }, [active]);
@@ -85,7 +84,6 @@ const App = ({ navigation }) => {
       populate();
     }
   }, [checkGame]);
-
  
   const query3 = gameRef;
   const [gameon2] = useCollectionData(query3, { idField: "gameon" });
@@ -154,7 +152,8 @@ const getAllrecords = () => {
   const headerHeight = useHeaderHeight();
 
   const leave = () => {
-
+    console.log("leave function was just run", gameId, "leave function was just run");
+   
       let id = idGlobal;
       const itemtoupdate = firebase.firestore().collection("users").doc(id);
       itemtoupdate.update({
@@ -173,7 +172,7 @@ const getAllrecords = () => {
         idGlobal,
         "this is the email and the group"
       );
-   
+ 
   };
 
   useEffect(() => {
@@ -215,7 +214,6 @@ const getAllrecords = () => {
   // }, []);
 
   const getOtherusers = () => {
-    console.log("is this getOtherUsers running")
     setGroupmatedata([]);
     const usersRef = firebase.firestore().collection("users");
     usersRef
@@ -226,7 +224,7 @@ const getAllrecords = () => {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data();
-          // setGameId(newData.gameId);
+          setGameId(newData.gameId)
           console.log(
             "this is the document data",
             doc.data(),
