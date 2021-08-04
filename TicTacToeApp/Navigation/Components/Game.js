@@ -54,6 +54,15 @@ const App = ({ navigation }) => {
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);
   const { idGlobal, setIdGlobal } = useContext(idContext);
 
+  useEffect(() => {
+    const itemtoupdate = firebase.firestore().collection("users").doc(idGlobal);
+      itemtoupdate.update({
+        active: true,
+      });
+
+  }, []);
+
+
   const firestore = firebase.firestore();
   const messagesRef = firestore.collection("users");
   const query = messagesRef;
@@ -61,7 +70,7 @@ const App = ({ navigation }) => {
 
   useEffect(() => {
     if (active) {
-      console.log("this one got activated");
+      console.log("this one got activated", idGlobal, groupGlobal, active, "this one got activated");
       getOtherusers();
     }
   }, [active]);
@@ -82,7 +91,7 @@ const App = ({ navigation }) => {
   const [gameon2] = useCollectionData(query3, { idField: "gameon" });
 
   useEffect(() => {
-    if (gameon == true) {
+    if (gameon == true && gameId.length>2) {
    
     getRecords();
     getAllrecords();
@@ -146,11 +155,11 @@ const getAllrecords = () => {
 
   const leave = () => {
 
-    if (gameId.length > 2 ) {
       let id = idGlobal;
       const itemtoupdate = firebase.firestore().collection("users").doc(id);
       itemtoupdate.update({
         active: false,
+        gameId: "",
       });
 
       setGroupGlobal("");
@@ -164,13 +173,11 @@ const getAllrecords = () => {
         idGlobal,
         "this is the email and the group"
       );
-    } else {
-      navigation.navigate("SignIn");
-    }
+   
   };
 
   useEffect(() => {
-    if (idGlobal.length > 2 && gameon == false) {
+    // if (idGlobal.length > 2 && gameon == false) {
       navigation.setOptions({
         headerLeft: () => (
           <TouchableOpacity onPress={() => leave()}>
@@ -180,19 +187,19 @@ const getAllrecords = () => {
           </TouchableOpacity>
         ),
       });
-    } else if (idGlobal.length < 2){
-      navigation.setOptions({
-        headerLeft: () => (
-          <TouchableOpacity onPress={() => leave()}>
-            <Text accessibilityLabel="Sign Out" style={styles.text5}>
-              Sign In
-            </Text>
-          </TouchableOpacity>
-        ),
-      });
-    } else {
-      null
-    }
+    // } else if (idGlobal.length < 2){
+    //   navigation.setOptions({
+    //     headerLeft: () => (
+    //       <TouchableOpacity onPress={() => leave()}>
+    //         <Text accessibilityLabel="Sign Out" style={styles.text5}>
+    //           Sign In
+    //         </Text>
+    //       </TouchableOpacity>
+    //     ),
+    //   });
+    // } else {
+    //   null
+    // }
   }, []);
 
   // useEffect(() => {
@@ -208,6 +215,7 @@ const getAllrecords = () => {
   // }, []);
 
   const getOtherusers = () => {
+    console.log("is this getOtherUsers running")
     setGroupmatedata([]);
     const usersRef = firebase.firestore().collection("users");
     usersRef
@@ -218,6 +226,7 @@ const getAllrecords = () => {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data();
+          // setGameId(newData.gameId);
           console.log(
             "this is the document data",
             doc.data(),
