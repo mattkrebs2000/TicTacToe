@@ -54,12 +54,92 @@ const TicTacToeGrid = ({
   const [method6, setMethod6] = useState(false);
   const [method7, setMethod7] = useState(false);
   const [method8, setMethod8] = useState(false);
+  const [remaining, setRemaining] = useState([])
+  const [output, setOutput] = useState(0)
 const { idGlobal, setIdGlobal } = useContext(idContext);
 
 
   useEffect(() => {
     checkwinner();
   }, [box1, box2, box3, box4, box5, box6, box7, box8, box9]);
+
+useEffect(() => {
+ if (idGlobal.length < 2) {
+  random();
+ }
+}, [turnx])
+
+const random = () => {
+  setRemaining([])
+if (box1.length < 1){
+  remaining.push(1);
+}
+if (box2.length < 1){
+  remaining.push(2);
+}
+if (box3.length < 1){
+  remaining.push(3);
+}
+if (box4.length < 1){
+  remaining.push(4);
+}
+if (box5.length < 1){
+  remaining.push(5);
+}
+if (box6.length < 1){
+  remaining.push(6);
+}
+if (box7.length < 1){
+  remaining.push(7);
+}
+if (box8.length < 1){
+  remaining.push(8);
+}
+if (box9.length < 1){
+  remaining.push(9);
+}
+const newNumber = Math.floor(Math.random() * remaining.length)
+
+setTimeout(() => {
+  setOutput(remaining[newNumber]);
+}, 500);
+}
+
+useEffect(() => {
+  console.log("this is the output", output)
+
+if (turnx == false && idGlobal.length < 2 && remaining.length < 9) {
+
+ if (output == 1) {
+   setBox1("o")
+ }
+ else if (output == 2) {
+  setBox2("o")
+}
+else if (output == 3) {
+  setBox3("o")
+}
+else if (output == 4) {
+  setBox4("o")
+}
+else if (output == 5) {
+  setBox5("o")
+}
+else if (output == 6) {
+  setBox6("o")
+}
+else if (output == 7) {
+  setBox7("o")
+}
+else if (output == 8) {
+  setBox8("o")
+}
+else {
+  setBox9("o")
+}
+  console.log("THIS IS WHAT IT PUT OUT",output, box1, box2, box3, box4, box5, box6, box7, box8, box9, )
+}
+}, [ output ])
 
   useEffect(() => {
     if (gameId.length > 2){
@@ -254,24 +334,16 @@ useEffect(() => {
 
 
   const auto1xo = () => {
-      if (box1.length === 0) {
-        if (turnx === true) {
+      if (box1.length === 0 && turnx == true) {
           setBox1("x");
-        } else {
-          setBox1("o");
-        }
       } else {
         null;
       }
     };
 
   const auto2xo = () => {
-    if (box2.length === 0) {
-      if (turnx === true) {
+    if (box2.length === 0 && turnx == true) {
         setBox2("x");
-      } else {
-        setBox2("o");
-      }
     } else {
       null;
     }
@@ -279,84 +351,56 @@ useEffect(() => {
   
 
 const auto3xo = () => {
-  if (box3.length === 0) {
-    if (turnx === true) {
+  if (box3.length === 0 && turnx == true) {
       setBox3("x");
-    } else {
-      setBox3("o");
-    }
   } else {
     null;
   }
 };
 
 const auto4xo = () => {
-  if (box4.length === 0) {
-    if (turnx === true) {
+  if (box4.length === 0 && turnx == true) {
       setBox4("x");
-    } else {
-      setBox4("o");
-    }
   } else {
     null;
   }
 };
 
 const auto5xo = () => {
-  if (box5.length === 0) {
-    if (turnx === true) {
+  if (box5.length === 0 && turnx == true) {
       setBox5("x");
-    } else {
-      setBox5("o");
-    }
   } else {
     null;
   }
 };
 
 const auto6xo = () => {
-  if (box6.length === 0) {
-    if (turnx === true) {
+  if (box6.length === 0 && turnx == true) {
       setBox6("x");
-    } else {
-      setBox6("o");
-    }
   } else {
     null;
   }
 };
 
 const auto7xo = () => {
-  if (box7.length === 0) {
-    if (turnx === true) {
+  if (box7.length === 0 && turnx == true) {
       setBox7("x");
-    } else {
-      setBox7("o");
-    }
   } else {
     null;
   }
 };
 
 const auto8xo = () => {
-  if (box8.length === 0) {
-    if (turnx === true) {
+  if (box8.length === 0 && turnx == true) {
       setBox8("x");
-    } else {
-      setBox8("o");
-    }
   } else {
     null;
   }
 };
 
 const auto9xo = () => {
-  if (box9.length === 0) {
-    if (turnx === true) {
+  if (box9.length === 0 && turnx == true) {
       setBox9("x");
-    } else {
-      setBox9("o");
-    }
   } else {
     null;
   }

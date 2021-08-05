@@ -55,11 +55,15 @@ const App = ({ navigation }) => {
   const { idGlobal, setIdGlobal } = useContext(idContext);
 
 
+
+
   useEffect(() => {
+    if (idGlobal){
     const itemtoupdate = firebase.firestore().collection("users").doc(idGlobal);
     itemtoupdate.update({
       active: true,
     });
+  }
   }, []);
 
   const firestore = firebase.firestore();
