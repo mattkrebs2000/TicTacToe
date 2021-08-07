@@ -57,94 +57,97 @@ const TicTacToeGrid = ({
   const [remaining, setRemaining] = useState([]);
   const [newnumber, setNewnumber] = useState(-1)
   const [output, setOutput] = useState(0);
+
   
 const { idGlobal, setIdGlobal } = useContext(idContext);
 
 
   useEffect(() => {
 
-    checkwinner();
-    console.log("TurnX", turnx, "TurnX")
+      checkwinner();
+      console.log("TurnXandRemaining", turnx,  remaining, "TurnXandRemaining")
+   
+
   }, [box1, box2, box3, box4, box5, box6, box7, box8, box9]);
 
 useEffect(() => {
+ 
  if (idGlobal.length < 2 && turnx == false ) {
-   setOutput(0);
-  random();
+  
+
+     setOutput(0);
+    random();
+ 
+ 
  }
+
 }, [turnx])
 
 const random = () => {
-  setNewnumber(-1);
-  setRemaining([]);
-if (box1.length < 1){
-  remaining.push(1);
-}
-if (box2.length < 1){
-  remaining.push(2);
-}
-if (box3.length < 1){
-  remaining.push(3);
-}
-if (box4.length < 1){
-  remaining.push(4);
-}
-if (box5.length < 1){
-  remaining.push(5);
-}
-if (box6.length < 1){
-  remaining.push(6);
-}
-if (box7.length < 1){
-  remaining.push(7);
-}
-if (box8.length < 1){
-  remaining.push(8);
-}
-if (box9.length < 1){
-  remaining.push(9);
-}
 
-if (box1.length > 0 || remaining.includes(1) && box2.length > 0 || remaining.includes(2) && box3.length > 0 || remaining.includes(3) && box4.length > 0 || remaining.includes(4) && box5.length > 0 || remaining.includes(5) && box6.length > 0 || remaining.includes(6) && box7.length > 0 || remaining.includes(7) && box8.length > 0 || remaining.includes(8) && box9.length > 0 || remaining.includes(9)) {
-
-  console.log("here is the remaining length", remaining.length)
-
-
-  setTimeout(() => {
+ 
+    setNewnumber(-1);
+    setOutput(0);
+    setRemaining([]);
   
-  setNewnumber(Math.floor(Math.random() * (remaining.length )));
-
-  if (remaining[newnumber] == null) {
-
-    setOutput(remaining[0]);
-
-  console.log("AA this is the remaining", remaining, "this is the remaining","This is the newNumber", newnumber, "This is the newNumber", "this is the newValue", remaining[newnumber], "This is the newValue")
-
-  } else {
-
-  const newValue = remaining[newnumber];
-  setOutput(newValue);
-
-  console.log("BB this is the remaining", remaining, "this is the remaining","This is the newNumber", newnumber, "This is the newNumber", "this is the newValue", newValue, "This is the newValue")
+  if (box1.length < 1){
+    remaining.push(1);
   }
-
-  
-}, 250);
-
+  if (box2.length < 1){
+    remaining.push(2);
+  }
+  if (box3.length < 1){
+    remaining.push(3);
+  }
+  if (box4.length < 1){
+    remaining.push(4);
+  }
+  if (box5.length < 1){
+    remaining.push(5);
+  }
+  if (box6.length < 1){
+    remaining.push(6);
+  }
+  if (box7.length < 1){
+    remaining.push(7);
+  }
+  if (box8.length < 1){
+    remaining.push(8);
+  }
+  if (box9.length < 1){
+    remaining.push(9);
 }
 };
 
+useEffect(() => {
+
+  if (box1.length > 0 || remaining.includes(1) && box2.length > 0 || remaining.includes(2) && box3.length > 0 || remaining.includes(3) && box4.length > 0 || remaining.includes(4) && box5.length > 0 || remaining.includes(5) && box6.length > 0 || remaining.includes(6) && box7.length > 0 || remaining.includes(7) && box8.length > 0 || remaining.includes(8) && box9.length > 0 || remaining.includes(9)) {
+
+  const yournumber = Math.floor(Math.random() * remaining.length);
+  console.log("randomnumbergenerated", yournumber)
+
+ 
+    console.log("there is not a problem", yournumber)
+    setNewnumber(yournumber);
+
+    const newValue = remaining[newnumber];
+   
+    setOutput(newValue);
+  
+    console.log("this is the remaining", remaining, "this is the remaining","This is the newNumber", newnumber, "This is the newNumber", "this is the newValue", newValue, "This is the newValue")
+  }
+
+}, [remaining])
 
 
 useEffect(() => {
-  console.log("is this the last thing to get run", output)
+  console.log("outputAndTurnX",
+  output, turnx, "outputandTurnX");
 
   if (output > 0 ){
-    
-  setRemaining([])
- 
+  
 
-if (turnx == false && idGlobal.length < 2 && remaining.length < 9) {
+if (turnx == false && idGlobal.length < 2) {
 
   
 if (box1 == "o" && box2 == "o" && box3 == "") {
@@ -319,13 +322,14 @@ else if (output == 7) {
 else if (output == 8) {
   setBox8("o")
 }
-else {
+else if (output == 9){
   setBox9("o")
 }
- 
+else {
+  null
 }
-console.log( "this is the output", output, "this is the output")
-
+}
+console.log("Output",output, "Output")
 }
 }
 }, [ output ])
@@ -377,22 +381,13 @@ useEffect(() => {
       setMethod1(true);
       setGameon(false);
 
-      if (idGlobal.length < 2) {
-        alert("You won!")
-      } 
-
       setTimeout(() => {
-        
         reset();
       }, 2000);
     }
     else if (box1 === "o" && box2 === "o" && box3 === "o") {
       setMethod1(true);
       setGameon(false);
-
-      if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } 
 
       setTimeout(() => {
         reset();
@@ -402,10 +397,6 @@ useEffect(() => {
       setMethod2(true);
       setGameon(false);
 
-      if (idGlobal.length < 2) {
-        alert("You won!")
-      } 
-
       setTimeout(() => {
         reset();
       }, 2000);
@@ -413,10 +404,6 @@ useEffect(() => {
     else if (box4 === "o" && box5 === "o" && box6 === "o") {
       setMethod2(true);
       setGameon(false);
-
-      if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } 
 
       setTimeout(() => {
         reset();
@@ -426,10 +413,6 @@ useEffect(() => {
       setMethod3(true);
       setGameon(false);
 
-      if (idGlobal.length < 2) {
-        alert("You won!")
-      } 
-
       setTimeout(() => {
         reset();
       }, 2000);
@@ -437,10 +420,6 @@ useEffect(() => {
     else if (box7 === "o" && box8 === "o" && box9 === "o") {
       setMethod3(true);
       setGameon(false);
-
-      if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } 
 
       setTimeout(() => {
         reset();
@@ -450,10 +429,6 @@ useEffect(() => {
       setMethod4(true);
       setGameon(false);
 
-      if (idGlobal.length < 2) {
-        alert("You won!")
-      } 
-
       setTimeout(() => {
         reset();
       }, 2000);
@@ -461,10 +436,6 @@ useEffect(() => {
     else if (box1 === "o" && box4 === "o" && box7 === "o") {
       setMethod4(true);
       setGameon(false);
-
-      if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } 
 
       setTimeout(() => {
         reset();
@@ -474,10 +445,6 @@ useEffect(() => {
       setMethod5(true);
       setGameon(false);
 
-      if (idGlobal.length < 2) {
-        alert("You won!")
-      } 
-
       setTimeout(() => {
         reset();
       }, 2000);
@@ -485,10 +452,6 @@ useEffect(() => {
     else if (box2 === "o" && box5 === "o" && box8 === "o") {
       setMethod5(true);
       setGameon(false);
-
-      if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } 
 
       setTimeout(() => {
         reset();
@@ -498,9 +461,6 @@ useEffect(() => {
       setMethod6(true);
       setGameon(false);
 
-      if (idGlobal.length < 2) {
-        alert("You won!")
-      } 
       setTimeout(() => {
         reset();
       }, 2000);
@@ -508,10 +468,6 @@ useEffect(() => {
     else if (box3 === "o" && box6 === "o" && box9 === "o") {
       setMethod6(true);
       setGameon(false);
-
-      if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } 
 
       setTimeout(() => {
         reset();
@@ -521,10 +477,6 @@ useEffect(() => {
       setMethod7(true);
       setGameon(false);
 
-      if (idGlobal.length < 2) {
-        alert("You won!")
-      } 
-
       setTimeout(() => {
         reset();
       }, 2000);
@@ -532,10 +484,6 @@ useEffect(() => {
     else if (box1 === "o" && box5 === "o" && box9 === "o") {
       setMethod7(true);
       setGameon(false);
-
-      if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } 
 
       setTimeout(() => {
         reset();
@@ -545,10 +493,6 @@ useEffect(() => {
       setMethod8(true);
       setGameon(false);
 
-      if (idGlobal.length < 2) {
-        alert("You won!")
-      } 
-
       setTimeout(() => {
         reset();
       }, 2000);
@@ -556,10 +500,6 @@ useEffect(() => {
     else if (box3 === "o" && box5 === "o" && box7 === "o") {
       setMethod8(true);
       setGameon(false);
-
-      if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } 
 
       setTimeout(() => {
         reset();
@@ -577,11 +517,6 @@ useEffect(() => {
       box9.length > 0
     ) {
       setGameon(false);
-
-      if (idGlobal.length < 2) {
-        alert("You Tied!")
-      } 
-
       setTimeout(() => {
         reset();
       }, 2000);

@@ -73,7 +73,7 @@ const App = ({ navigation }) => {
 
   useEffect(() => {
     if (active) {
-      console.log("this one got activated",gameId, idGlobal, groupGlobal, active, "this one got activated");
+      // console.log("this one got activated",gameId, idGlobal, groupGlobal, active, "this one got activated");
       getOtherusers();
     }
   }, [active]);
@@ -84,7 +84,6 @@ const App = ({ navigation }) => {
 
   useEffect(() => {
     if (checkGame) {
-      console.log("this is being run now", gameId);
       populate();
     }
   }, [checkGame]);
@@ -113,7 +112,7 @@ const getRecords = () => {
       querySnapshot.forEach(function (doc) {
         let newData = doc.data();
         if (recordsdata.indexOf(newData.id)=== -1) {
-          console.log("include this in the data", newData.id);
+          // console.log("include this in the data", newData.id);
           setRecordsdata((arr) => {
             return [...arr, newData];
           });
@@ -156,7 +155,7 @@ const getAllrecords = () => {
   const headerHeight = useHeaderHeight();
 
   const leave = () => {
-    console.log("leave function was just run", gameId, "leave function was just run");
+    // console.log("leave function was just run", gameId, "leave function was just run");
    
       let id = idGlobal;
       const itemtoupdate = firebase.firestore().collection("users").doc(id);
@@ -169,13 +168,13 @@ const getAllrecords = () => {
       setEmailGlobal("");
       setIdGlobal("");
       navigation.navigate("SignIn");
-      console.log(
-        "this is the email and the group",
-        emailGlobal,
-        groupGlobal,
-        idGlobal,
-        "this is the email and the group"
-      );
+      // console.log(
+      //   "this is the email and the group",
+      //   emailGlobal,
+      //   groupGlobal,
+      //   idGlobal,
+      //   "this is the email and the group"
+      // );
  
   };
 
@@ -229,11 +228,11 @@ const getAllrecords = () => {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data();
           setGameId(newData.gameId)
-          console.log(
-            "this is the document data",
-            doc.data(),
-            "this is the document data"
-          );
+          // console.log(
+          //   "this is the document data",
+          //   doc.data(),
+          //   "this is the document data"
+          // );
           if (groupmatedata.indexOf(newData.id) === -1) {
             setGroupmatedata((arr) => {
               return [...arr, newData];
@@ -249,7 +248,6 @@ const getAllrecords = () => {
 
 
   const populate = (data) => {
-    console.log("this here has been", gameId, "this here has been");
     const usersRef = firebase.firestore().collection("game");
     usersRef
       .where("id", "==", gameId)
@@ -257,7 +255,7 @@ const getAllrecords = () => {
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
           let newData = doc.data();
-          console.log(newData, "yyyyyyo");
+          // console.log(newData, "yyyyyyo");
           setBox1(newData.box1);
           setBox2(newData.box2);
           setBox3(newData.box3);
