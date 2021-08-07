@@ -62,9 +62,7 @@ const { idGlobal, setIdGlobal } = useContext(idContext);
 
 
   useEffect(() => {
-
     checkwinner();
-    console.log("TurnX", turnx, "TurnX")
   }, [box1, box2, box3, box4, box5, box6, box7, box8, box9]);
 
 useEffect(() => {
@@ -373,13 +371,25 @@ useEffect(() => {
   };
 
   const checkwinner = () => {
+
+    const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+      
     if (box1 === "x" && box2 === "x" && box3 === "x") {
       setMethod1(true);
       setGameon(false);
-
       if (idGlobal.length < 2) {
         alert("You won!")
-      } 
+      } else {
+      
+            itemtoupdate4.update({
+              wins:firebase.firestore.FieldValue.increment(1)
+            });
+            itemtoupdate5.update({
+              losses: firebase.firestore.FieldValue.increment(1)
+            });
+
+      }
 
       setTimeout(() => {
         
@@ -392,7 +402,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } 
+      } else {
+      
+        itemtoupdate5.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate4.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -404,7 +423,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } 
+      } else {
+      
+        itemtoupdate4.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate5.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -416,7 +444,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } 
+      } else {
+      
+        itemtoupdate5.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate4.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -428,7 +465,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } 
+      } else {
+      
+        itemtoupdate4.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate5.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -440,7 +486,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } 
+      } else {
+      
+        itemtoupdate5.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate4.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -452,7 +507,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } 
+      } else {
+      
+        itemtoupdate4.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate5.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -464,7 +528,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } 
+      } else {
+      
+        itemtoupdate5.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate4.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -476,7 +549,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } 
+      } else {
+      
+        itemtoupdate4.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate5.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -488,7 +570,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } 
+      } else {
+      
+        itemtoupdate5.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate4.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -500,7 +591,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } 
+      } else {
+      
+        itemtoupdate4.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate5.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
       setTimeout(() => {
         reset();
       }, 2000);
@@ -511,7 +611,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } 
+      } else {
+      
+        itemtoupdate5.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate4.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -523,7 +632,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } 
+      } else {
+      
+        itemtoupdate4.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate5.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -535,7 +653,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } 
+      } else {
+      
+        itemtoupdate5.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate4.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -547,7 +674,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } 
+      } else {
+      
+        itemtoupdate4.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate5.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -559,7 +695,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } 
+      } else {
+      
+        itemtoupdate5.update({
+          wins:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate4.update({
+          losses: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();
@@ -580,7 +725,16 @@ useEffect(() => {
 
       if (idGlobal.length < 2) {
         alert("You Tied!")
-      } 
+      } else {
+      
+        itemtoupdate4.update({
+          ties:firebase.firestore.FieldValue.increment(1)
+        });
+        itemtoupdate5.update({
+          ties: firebase.firestore.FieldValue.increment(1)
+        });
+
+  }
 
       setTimeout(() => {
         reset();

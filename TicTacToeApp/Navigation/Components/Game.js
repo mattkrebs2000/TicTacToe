@@ -12,6 +12,7 @@ import {
 import TicTacToe from "./Subcomponents/TicTacToeGrid";
 import Groupdata from "./Subcomponents/Groupdata";
 import Records from "./Subcomponents/Records";
+import Everyonesrecords from "./Subcomponents/Everyonesrecords"
 import emailContext from "../Emailcontext.js";
 import groupContext from "../Groupcontext.js";
 import idContext from "../Idcontext.js";
@@ -386,6 +387,9 @@ const getAllrecords = () => {
                           username={info.username}
                           group={info.group}
                           id={info.id}
+                          wins={info.wins}
+                          losses={info.losses}
+                          ties={info.ties}
                           idGlobal={idGlobal}
                         />
                       </View>
@@ -410,11 +414,14 @@ const getAllrecords = () => {
                     <View key={value}>
                       <View>
                         <View style={styles.scrollview}>
-                          <Records
+                          <Everyonesrecords
                             email={info.email}
                             username={info.username}
                             group={info.group}
                             id={info.id}
+                            wins={info.wins}
+                            losses={info.losses}
+                            ties={info.ties}
                             idGlobal={idGlobal}
                           />
                         </View>

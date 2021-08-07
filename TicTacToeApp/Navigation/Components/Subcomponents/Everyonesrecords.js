@@ -5,7 +5,7 @@ import firebase from "../../Firebase/Config.js";
 
 import { AppLoading, Font } from "expo";
 
-const Records = ({ username, email, group, id, idGlobal, box1, setBox1, box2, setBox2, box3, setBox3, box4, setBox4, box5, setBox5, box6, setBox6, box7, setBox7, box8, setBox8, box9, setBox9, turnx, setTurnx, gameon, setGameon, gameId, setGameId, populate wins, losses, ties}) => {
+const Everyonesrecords = ({ username, email, group, id, idGlobal, box1, setBox1, box2, setBox2, box3, setBox3, box4, setBox4, box5, setBox5, box6, setBox6, box7, setBox7, box8, setBox8, box9, setBox9, turnx, setTurnx, gameon, setGameon, gameId, setGameId, populate, wins, losses, ties}) => {
 
   return (
 
@@ -17,7 +17,7 @@ const Records = ({ username, email, group, id, idGlobal, box1, setBox1, box2, se
   </View>
 )};
 
-export default Records;
+export default Everyonesrecords;
 
 const styles = ScaledSheet.create({
   container: {
