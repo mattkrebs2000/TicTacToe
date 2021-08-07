@@ -371,16 +371,15 @@ useEffect(() => {
   };
 
   const checkwinner = () => {
-
+      
+    if (box1 === "x" && box2 === "x" && box3 === "x") { 
     const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
     const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
-      
-    if (box1 === "x" && box2 === "x" && box3 === "x") {
       setMethod1(true);
       setGameon(false);
       if (idGlobal.length < 2) {
         alert("You won!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
             itemtoupdate4.update({
               wins:firebase.firestore.FieldValue.increment(1)
@@ -396,13 +395,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box1 === "o" && box2 === "o" && box3 === "o") {
+    else if (box1 === "o" && box2 === "o" && box3 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod1(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -417,13 +417,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box4 === "x" && box5 === "x" && box6 === "x") {
+    else if (box4 === "x" && box5 === "x" && box6 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod2(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -438,13 +439,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box4 === "o" && box5 === "o" && box6 === "o") {
+    else if (box4 === "o" && box5 === "o" && box6 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod2(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -459,13 +461,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box7 === "x" && box8 === "x" && box9 === "x") {
+    else if (box7 === "x" && box8 === "x" && box9 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod3(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -480,13 +483,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box7 === "o" && box8 === "o" && box9 === "o") {
+    else if (box7 === "o" && box8 === "o" && box9 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod3(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -501,13 +505,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box1 === "x" && box4 === "x" && box7 === "x") {
+    else if (box1 === "x" && box4 === "x" && box7 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod4(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -522,13 +527,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box1 === "o" && box4 === "o" && box7 === "o") {
+    else if (box1 === "o" && box4 === "o" && box7 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod4(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -543,13 +549,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box2 === "x" && box5 === "x" && box8 === "x") {
+    else if (box2 === "x" && box5 === "x" && box8 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod5(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -564,13 +571,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box2 === "o" && box5 === "o" && box8 === "o") {
+    else if (box2 === "o" && box5 === "o" && box8 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod5(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -585,13 +593,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box3 === "x" && box6 === "x" && box9 === "x") {
+    else if (box3 === "x" && box6 === "x" && box9 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod6(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -605,13 +614,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box3 === "o" && box6 === "o" && box9 === "o") {
+    else if (box3 === "o" && box6 === "o" && box9 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod6(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -626,13 +636,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box1 === "x" && box5 === "x" && box9 === "x") {
+    else if (box1 === "x" && box5 === "x" && box9 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod7(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -647,13 +658,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box1 === "o" && box5 === "o" && box9 === "o") {
+    else if (box1 === "o" && box5 === "o" && box9 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod7(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -668,13 +680,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box3 === "x" && box5 === "x" && box7 === "x") {
+    else if (box3 === "x" && box5 === "x" && box7 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod8(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You won!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -689,13 +702,14 @@ useEffect(() => {
         reset();
       }, 2000);
     }
-    else if (box3 === "o" && box5 === "o" && box7 === "o") {
+    else if (box3 === "o" && box5 === "o" && box7 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setMethod8(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You Lost!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
           wins:firebase.firestore.FieldValue.increment(1)
@@ -721,11 +735,13 @@ useEffect(() => {
       box8.length > 0 &&
       box9.length > 0
     ) {
+      const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
+    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setGameon(false);
 
       if (idGlobal.length < 2) {
         alert("You Tied!")
-      } else {
+      } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
           ties:firebase.firestore.FieldValue.increment(1)
