@@ -73,13 +73,7 @@ const SignIn = ({ navigation }) => {
   };
 
   useEffect(() => {
-    console.log(
-      "this is the email and the group",
-      emailGlobal,
-      groupGlobal,
-      idGlobal,
-      "this is the email and the group"
-    );
+   
     if (emailGlobal.length > 2) {
       setTimeout(() => {
         navigation.navigate("PrimaryPage");

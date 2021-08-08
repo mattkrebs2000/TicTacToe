@@ -58,27 +58,39 @@ const App = ({ navigation }) => {
 
 
 
-  useEffect(() => {
-    if (idGlobal){
-    const itemtoupdate = firebase.firestore().collection("users").doc(idGlobal);
-    itemtoupdate.update({
-      active: true,
-    });
-  }
-  }, []);
+  // useEffect(() => {
+  //   if (idGlobal){
+      
+  //   const itemtoupdate = firebase.firestore().collection("users").doc(idGlobal);
+  //   itemtoupdate.update({
+  //     active: true,
+  //   });
+  // }
+  // }, []);
 
   const firestore = firebase.firestore();
-  const messagesRef = firestore.collection("users");
-  const query = messagesRef;
-  const [active] = useCollectionData(query, { idField: "active" });
+  // const messagesRef = firestore.collection("users");
+  // const query = messagesRef;
+  // const [active] = useCollectionData(query, { idField: "id" });
 
-  useEffect(() => {
-    if (active) {
-      // console.log("this one got activated",gameId, idGlobal, groupGlobal, active, "this one got activated");
-      getOtherusers();
-    }
-  }, [active]);
+  // useEffect(() => {
 
+  //   console.log(
+  //     "this is the email and the group",
+  //     emailGlobal,
+  //     groupGlobal,
+  //     idGlobal,"gameId here",
+  //     gameId,
+  //     "gameId here",
+  //     "this is the email and the group"
+  //   );
+
+  //   if (active) {
+  //     getOtherusers();
+  //   }
+  // }, [active]);
+
+  //this one works perfectly
   const gameRef = firestore.collection("game");
   const query2 = gameRef;
   const [checkGame] = useCollectionData(query2, { idField: "id" });
@@ -89,31 +101,33 @@ const App = ({ navigation }) => {
     }
   }, [checkGame]);
  
-  const query3 = gameRef;
-  const [gameon2] = useCollectionData(query3, { idField: "gameon" });
+//   const query3 = gameRef;
+//   const [gameon2] = useCollectionData(query3, { idField: "id" });
 
-  useEffect(() => {
-    if (gameon == true && gameId.length>2) {
-   
-    getRecords();
-    getAllrecords();
-    
-  }
-}, [gameon]);
+//   useEffect(() => {
+//     if (gameon == true && gameId.length>2) {
+//    if (gameon2) {
+//     getRecords();
+//     getAllrecords();
+//     }
+//   }
+// }, [gameon2]);
 
 
 
 const getRecords = () => {
+console.log("how many times is this run?")  
   setRecordsdata([]);
+  let newData = [];
   const usersRef = firebase.firestore().collection("users");
   usersRef
     .where("group", "==", groupGlobal)
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        let newData = doc.data();
+        newData = doc.data();
         if (recordsdata.indexOf(newData.id)=== -1) {
-          // console.log("include this in the data", newData.id);
+          console.log("the redcords data is being set");
           setRecordsdata((arr) => {
             return [...arr, newData];
           });
@@ -128,15 +142,16 @@ const getRecords = () => {
 
 const getAllrecords = () => {
   setAllrecordsdata([]);
+  let newData = [];
   const usersRef = firebase.firestore().collection("users");
   usersRef
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        let newData = doc.data();
+        newData = doc.data();
        
-        if (recordsdata.indexOf(newData.id)=== -1) {
-          console.log("include this in the data", newData.id);
+        if (allrecordsdata.indexOf(newData.id)=== -1) {
+          console.log("the allredcords data is being set");
           setAllrecordsdata((arr) => {
             return [...arr, newData];
           });
@@ -174,7 +189,7 @@ const getAllrecords = () => {
       //   emailGlobal,
       //   groupGlobal,
       //   idGlobal,
-      //   "this is the email and the group"
+      //   " group"
       // );
  
   };
@@ -217,34 +232,33 @@ const getAllrecords = () => {
   //   getOtherusers();
   // }, []);
 
-  const getOtherusers = () => {
-    setGroupmatedata([]);
-    const usersRef = firebase.firestore().collection("users");
-    usersRef
-      .where("group", "==", groupGlobal)
-      .where("id", "!=", idGlobal)
-      .where("active", "==", true)
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          let newData = doc.data();
-          setGameId(newData.gameId)
-          // console.log(
-          //   "this is the document data",
-          //   doc.data(),
-          //   "this is the document data"
-          // );
-          if (groupmatedata.indexOf(newData.id) === -1) {
-            setGroupmatedata((arr) => {
-              return [...arr, newData];
-            });
-          } else {
-            console.log("this is a duplicate");
-          }
-        });
-      })
-      .catch((e) => console.log(e));
-  };
+  // const getOtherusers = () => {
+  //   setGroupmatedata([]);
+  //   const usersRef = firebase.firestore().collection("users");
+  //   usersRef
+  //     .where("group", "==", groupGlobal)
+  //     .where("id", "!=", idGlobal)
+  //     .where("active", "==", true)
+  //     .get()
+  //     .then(function (querySnapshot) {
+  //       querySnapshot.forEach(function (doc) {
+  //         let newData = doc.data();
+
+  //         // setGameId(newData.gameId)
+
+  //         console.log("was the game ID set here?")
+  //         if (groupmatedata.indexOf(newData.id) === -1) {
+  //           console.log("the groupmate data is being set", "gameId", gameId, "gameId");
+  //           setGroupmatedata((arr) => {
+  //             return [...arr, newData];
+  //           });
+  //         } else {
+  //           console.log("this is a duplicate");
+  //         }
+  //       });
+  //     })
+  //     .catch((e) => console.log(e));
+  // };
 
 
 
@@ -274,7 +288,7 @@ const getAllrecords = () => {
       })
       .catch((e) => console.log(e));
   };
-
+console.log( "GameIdbeforeRender", gameId, "GameIdbeforeRender")
   return (
     <SafeAreaView
       style={{ height: windowHeight - headerHeight, backgroundColor: "black" }}
@@ -311,61 +325,46 @@ const getAllrecords = () => {
           />
         </View>
 
-        {gameId.length < 1 && idGlobal.length > 2 ? (
+        {gameId.length < 2 && idGlobal.length > 2 ? (
           <View
             style={{
               flex: windowHeight - windowWidth - headerHeight,
               alignItems: "center",
             }}
           >
-            <View style={styles.container}>
-              <Text style={styles.text}> Choose an available player</Text>
-            </View>
-            <ScrollView>
-              {groupmatedata.length > 0 &&
-                groupmatedata.map((info, value) => (
-                  <View key={value}>
-                    <View>
-                      <View style={styles.scrollview}>
-                        <Groupdata
-                          email={info.email}
-                          username={info.username}
-                          group={info.group}
-                          id={info.id}
-                          idGlobal={idGlobal}
-                          box1={box1}
-                          setBox1={setBox1}
-                          box2={box2}
-                          setBox2={setBox2}
-                          box3={box3}
-                          setBox3={setBox3}
-                          box4={box4}
-                          setBox4={setBox4}
-                          box5={box5}
-                          setBox5={setBox5}
-                          box6={box6}
-                          setBox6={setBox6}
-                          box7={box7}
-                          setBox7={setBox7}
-                          box8={box8}
-                          setBox8={setBox8}
-                          box9={box9}
-                          setBox9={setBox9}
-                          turnx={turnx}
-                          setTurnx={setTurnx}
-                          gameon={gameon}
-                          setGameon={setGameon}
-                          gameId={gameId}
-                          setGameId={setGameId}
-                          populate={populate}
-                        />
-                      </View>
-                    </View>
-                  </View>
-                ))}
-            </ScrollView>
+          <Groupdata
+          populate = {populate}
+          gameId = {gameId}
+          box1={box1}
+            setBox1={setBox1}
+            box2={box2}
+            setBox2={setBox2}
+            box3={box3}
+            setBox3={setBox3}
+            box4={box4}
+            setBox4={setBox4}
+            box5={box5}
+            setBox5={setBox5}
+            box6={box6}
+            setBox6={setBox6}
+            box7={box7}
+            setBox7={setBox7}
+            box8={box8}
+            setBox8={setBox8}
+            box9={box9}
+            setBox9={setBox9}
+            turnx={turnx}
+            setTurnx={setTurnx}
+            gameon={gameon}
+            setGameon={setGameon}
+            setGameId={setGameId}
+            getRecords = {getRecords}
+            getAllrecords= {getAllrecords}
+          />
           </View>
-        )   : gameId.length > 2 && idGlobal.length > 2 && grouponly ? (
+          
+        
+        ):gameId.length > 2 && idGlobal.length > 2 && grouponly ? ( 
           <View
             style={{
               flex: windowHeight - windowWidth - headerHeight,
