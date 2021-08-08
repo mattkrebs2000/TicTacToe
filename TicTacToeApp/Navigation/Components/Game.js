@@ -171,7 +171,6 @@ const getAllrecords = () => {
   const headerHeight = useHeaderHeight();
 
   const leave = () => {
-    // console.log("leave function was just run", gameId, "leave function was just run");
    
       let id = idGlobal;
       const itemtoupdate = firebase.firestore().collection("users").doc(id);
@@ -179,10 +178,17 @@ const getAllrecords = () => {
         active: false,
         gameId: "",
       });
+      if (gameId){
+      const itemtoupdate2 = firebase.firestore().collection("game").doc(gameId);
+      itemtoupdate2.update({
+        gameon: false 
+      });
+    }
 
       setGroupGlobal("");
       setEmailGlobal("");
       setIdGlobal("");
+      setGameId("")
       navigation.navigate("SignIn");
       // console.log(
       //   "this is the email and the group",
@@ -263,13 +269,16 @@ const getAllrecords = () => {
 
 
   const populate = (data) => {
+    
     const usersRef = firebase.firestore().collection("game");
     usersRef
       .where("id", "==", gameId)
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
+
           let newData = doc.data();
+          
           // console.log(newData, "yyyyyyo");
           setBox1(newData.box1);
           setBox2(newData.box2);

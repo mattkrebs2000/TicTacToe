@@ -41,7 +41,9 @@ db.add({
   gameon: true })
 
 .then((docRef) => {
+
   setGameId(docRef.id);
+
   console.log("or was the game Id set here?")
   const itemtoupdate = firebase.firestore().collection("game").doc(docRef.id);
   const itemtoupdate2 = firebase.firestore().collection("users").doc(id);

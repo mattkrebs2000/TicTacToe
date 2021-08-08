@@ -94,7 +94,9 @@ const Groupdata = ({ populate, gameId, box1,
         querySnapshot.forEach(function (doc) {
           let newData = doc.data();
 
-          // setGameId(newData.gameId)
+if (idGlobal == newData.id) {
+          setGameId(newData.gameId)
+}
 
           console.log("was the game ID set here?")
           if (groupmatedata.indexOf(newData.id) === -1) {

@@ -337,6 +337,8 @@ console.log( "this is the output", output, "this is the output")
     }
   }, [turnx]);
 
+ 
+
 useEffect(() => {
   if (gameId.length > 2){
   if (!gameon) {
@@ -350,6 +352,10 @@ useEffect(() => {
 
 
   const reset = () => {
+
+    
+     
+   
     setBox1("");
     setBox2("");
     setBox3("");
