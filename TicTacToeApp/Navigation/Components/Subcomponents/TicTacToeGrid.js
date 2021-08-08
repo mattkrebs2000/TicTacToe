@@ -382,10 +382,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
             itemtoupdate4.update({
-              wins:firebase.firestore.FieldValue.increment(1)
+              wins:firebase.firestore.FieldValue.increment(.5)
             });
             itemtoupdate5.update({
-              losses: firebase.firestore.FieldValue.increment(1)
+              losses: firebase.firestore.FieldValue.increment(.5)
             });
 
       }
@@ -405,10 +405,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -427,10 +427,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -449,10 +449,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -471,10 +471,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -493,10 +493,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -515,10 +515,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -537,10 +537,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -559,10 +559,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -581,10 +581,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -603,10 +603,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -624,10 +624,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -646,10 +646,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -668,10 +668,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -690,10 +690,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -712,10 +712,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(1)
+          wins:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(1)
+          losses: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
@@ -744,10 +744,10 @@ useEffect(() => {
       } else if (idGlobal.length > 2 && gameId.length > 2 ){
       
         itemtoupdate4.update({
-          ties:firebase.firestore.FieldValue.increment(1)
+          ties:firebase.firestore.FieldValue.increment(.5)
         });
         itemtoupdate5.update({
-          ties: firebase.firestore.FieldValue.increment(1)
+          ties: firebase.firestore.FieldValue.increment(.5)
         });
 
   }
