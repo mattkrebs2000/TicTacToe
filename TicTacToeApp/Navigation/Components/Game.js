@@ -97,9 +97,71 @@ const App = ({ navigation }) => {
 
   useEffect(() => {
     if (checkGame) {
+checkforyourgame();
       populate();
     }
   }, [checkGame]);
+
+  useEffect(() => {
+    const usersRef = firebase.firestore().collection("game");
+    usersRef
+    .where("player1", "==", idGlobal)
+    .where("gameon", "==", true)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          let newData = doc.data();
+          const itemtoupdate = firebase.firestore().collection("game").doc(newData.id);
+          itemtoupdate.update({
+            gameon: false
+          });
+        });
+      })
+      .catch((e) => console.log(e));
+  
+  }, [])
+
+
+  useEffect(() => {
+    const usersRef = firebase.firestore().collection("game");
+    usersRef
+    .where("player2", "==", idGlobal)
+    .where("gameon", "==", true)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          let newData = doc.data();
+          const itemtoupdate = firebase.firestore().collection("game").doc(newData.id);
+          itemtoupdate.update({
+            gameon: false
+          });
+        });
+      })
+      .catch((e) => console.log(e));
+  
+  }, [])
+  
+  
+
+
+  const checkforyourgame = (data) => {
+    
+    const usersRef = firebase.firestore().collection("game");
+    usersRef
+    .where("player1", "==", idGlobal)
+    .where("gameon", "==", true)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          let newData = doc.data();
+          console.log("here is the GameId", newData.gameId, "here is the GameId");
+          setGameId(newData.id);
+     
+        });
+      })
+      .catch((e) => console.log(e));
+  };
+
  
 //   const query3 = gameRef;
 //   const [gameon2] = useCollectionData(query3, { idField: "id" });

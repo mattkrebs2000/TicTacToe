@@ -43,11 +43,13 @@ db.add({
 .then((docRef) => {
 
   setGameId(docRef.id);
-
+const playerone = docRef.id;
+const playertwo = docRef.idGlobal;
   console.log("or was the game Id set here?")
   const itemtoupdate = firebase.firestore().collection("game").doc(docRef.id);
   const itemtoupdate2 = firebase.firestore().collection("users").doc(id);
   const itemtoupdate3 = firebase.firestore().collection("users").doc(idGlobal);
+
 
       itemtoupdate.update({
         id: docRef.id
@@ -58,7 +60,7 @@ db.add({
       itemtoupdate3.update({
         gameId: docRef.id
       });
-     
+ 
 
   console.log("Document written with ID: ", docRef.id);
 })

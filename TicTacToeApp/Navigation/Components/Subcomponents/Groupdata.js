@@ -81,6 +81,9 @@ const Groupdata = ({ populate, gameId, box1,
     }
   }, [active]);
 
+
+
+
   const getOtherusers = () => {
     setGroupmatedata([]);
     let newData = [];
@@ -98,7 +101,7 @@ if (idGlobal == newData.id) {
           setGameId(newData.gameId)
 }
 
-          console.log("was the game ID set here?")
+          console.log(idGlobal, "was the game ID set here?",newData.id)
           if (groupmatedata.indexOf(newData.id) === -1) {
             console.log("the groupmate data is being set", "gameId", gameId, "gameId");
             setGroupmatedata((arr) => {
