@@ -2,17 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 
 import firebase from "../../Firebase/Config.js";
 
-import {
-  Dimensions,
-  StyleSheet,
-  View,
-  Text,
-  SafeAreaView, 
-} from "react-native";
+import { Dimensions, StyleSheet, View, Text, SafeAreaView } from "react-native";
 
-import {
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 import idContext from "../../Idcontext.js";
 
@@ -44,7 +36,7 @@ const TicTacToeGrid = ({
   gameId,
   setGameId,
   player1,
-  player2, 
+  player2,
 }) => {
   const [method1, setMethod1] = useState(false);
   const [method2, setMethod2] = useState(false);
@@ -55,307 +47,258 @@ const TicTacToeGrid = ({
   const [method7, setMethod7] = useState(false);
   const [method8, setMethod8] = useState(false);
   const [remaining, setRemaining] = useState([]);
-  const [newnumber, setNewnumber] = useState(-1)
+  const [newnumber, setNewnumber] = useState(-1);
   const [output, setOutput] = useState(0);
-  
-const { idGlobal, setIdGlobal } = useContext(idContext);
 
+  const { idGlobal, setIdGlobal } = useContext(idContext);
 
   useEffect(() => {
+    console.log("is this the last thing to be run?");
     checkwinner();
   }, [box1, box2, box3, box4, box5, box6, box7, box8, box9]);
 
-useEffect(() => {
- if (idGlobal.length < 2 && turnx == false ) {
-   setOutput(0);
-  random();
- }
-}, [turnx])
+  useEffect(() => {
+    if (idGlobal.length < 2 && turnx == false) {
+      setOutput(0);
+      random();
+    }
+  }, [turnx]);
 
-const random = () => {
-  setNewnumber(-1);
-  setRemaining([]);
-if (box1.length < 1){
-  remaining.push(1);
-}
-if (box2.length < 1){
-  remaining.push(2);
-}
-if (box3.length < 1){
-  remaining.push(3);
-}
-if (box4.length < 1){
-  remaining.push(4);
-}
-if (box5.length < 1){
-  remaining.push(5);
-}
-if (box6.length < 1){
-  remaining.push(6);
-}
-if (box7.length < 1){
-  remaining.push(7);
-}
-if (box8.length < 1){
-  remaining.push(8);
-}
-if (box9.length < 1){
-  remaining.push(9);
-}
+  const random = () => {
+    setNewnumber(-1);
+    setRemaining([]);
+    if (box1.length < 1) {
+      remaining.push(1);
+    }
+    if (box2.length < 1) {
+      remaining.push(2);
+    }
+    if (box3.length < 1) {
+      remaining.push(3);
+    }
+    if (box4.length < 1) {
+      remaining.push(4);
+    }
+    if (box5.length < 1) {
+      remaining.push(5);
+    }
+    if (box6.length < 1) {
+      remaining.push(6);
+    }
+    if (box7.length < 1) {
+      remaining.push(7);
+    }
+    if (box8.length < 1) {
+      remaining.push(8);
+    }
+    if (box9.length < 1) {
+      remaining.push(9);
+    }
 
-if (box1.length > 0 || remaining.includes(1) && box2.length > 0 || remaining.includes(2) && box3.length > 0 || remaining.includes(3) && box4.length > 0 || remaining.includes(4) && box5.length > 0 || remaining.includes(5) && box6.length > 0 || remaining.includes(6) && box7.length > 0 || remaining.includes(7) && box8.length > 0 || remaining.includes(8) && box9.length > 0 || remaining.includes(9)) {
+    if (
+      box1.length > 0 ||
+      (remaining.includes(1) && box2.length > 0) ||
+      (remaining.includes(2) && box3.length > 0) ||
+      (remaining.includes(3) && box4.length > 0) ||
+      (remaining.includes(4) && box5.length > 0) ||
+      (remaining.includes(5) && box6.length > 0) ||
+      (remaining.includes(6) && box7.length > 0) ||
+      (remaining.includes(7) && box8.length > 0) ||
+      (remaining.includes(8) && box9.length > 0) ||
+      remaining.includes(9)
+    ) {
+      console.log("here is the remaining length", remaining.length);
 
-  console.log("here is the remaining length", remaining.length)
+      setTimeout(() => {
+        setNewnumber(Math.floor(Math.random() * remaining.length));
 
+        if (remaining[newnumber] == null) {
+          setOutput(remaining[0]);
 
-  setTimeout(() => {
-  
-  setNewnumber(Math.floor(Math.random() * (remaining.length )));
+          console.log(
+            "AA this is the remaining",
+            remaining,
+            "this is the remaining",
+            "This is the newNumber",
+            newnumber,
+            "This is the newNumber",
+            "this is the newValue",
+            remaining[newnumber],
+            "This is the newValue"
+          );
+        } else {
+          const newValue = remaining[newnumber];
+          setOutput(newValue);
 
-  if (remaining[newnumber] == null) {
-
-    setOutput(remaining[0]);
-
-  console.log("AA this is the remaining", remaining, "this is the remaining","This is the newNumber", newnumber, "This is the newNumber", "this is the newValue", remaining[newnumber], "This is the newValue")
-
-  } else {
-
-  const newValue = remaining[newnumber];
-  setOutput(newValue);
-
-  console.log("BB this is the remaining", remaining, "this is the remaining","This is the newNumber", newnumber, "This is the newNumber", "this is the newValue", newValue, "This is the newValue")
-  }
-
-  
-}, 250);
-
-}
-};
-
-
-
-useEffect(() => {
-  console.log("is this the last thing to get run", output)
-
-  if (output > 0 ){
-    
-  setRemaining([])
- 
-
-if (turnx == false && idGlobal.length < 2 && remaining.length < 9) {
-
-  
-if (box1 == "o" && box2 == "o" && box3 == "") {
-  setBox3("o")
-}
-else if (box2 == "o" && box3 == "o" && box1 == "") {
-  setBox1("o")
-}
-else if (box1 == "o" && box3 == "o" && box2 == "") {
-  setBox2("o")
-}
-else if (box4 == "o" && box5 == "o" && box6 == "") {
-  setBox6("o")
-}
-else if (box5 == "o" && box6 == "o" && box4 == "") {
-  setBox4("o")
-}
-else if (box4 == "o" && box6 == "o" && box5 == "") {
-  setBox5("o")
-} 
-else if (box7 == "o" && box8 == "o" && box9 == "") {
-  setBox9("o")
-}
-else if (box8 == "o" && box9 == "o" && box7 == "") {
-  setBox7("o")
-}
-else if (box7 == "o" && box9 == "o" && box8 == "") {
-  setBox8("o")
-} 
-else if (box1 == "o" && box4 == "o" && box7 == "") {
-  setBox7("o")
-}
-else if (box4 == "o" && box7 == "o" && box1 == "") {
-  setBox1("o")
-}
-else if (box1 == "o" && box7 == "o" && box4 == "") {
-  setBox4("o")
-} 
-else if (box2 == "o" && box5 == "o" && box8 == "") {
-  setBox6("o")
-}
-else if (box5 == "o" && box8 == "o" && box2 == "") {
-  setBox2("o")
-}
-else if (box2 == "o" && box8 == "o" && box5 == "") {
-  setBox5("o")
-} 
-else if (box3 == "o" && box6 == "o" && box9 == "") {
-  setBox9("o")
-}
-else if (box6 == "o" && box9 == "o" && box3 == "") {
-  setBox3("o")
-}
-else if (box3 == "o" && box9 == "o" && box6 == "") {
-  setBox6("o")
-} 
-else if (box1 == "o" && box5 == "o" && box9 == "") {
-  setBox9("o")
-}
-else if (box5 == "o" && box9 == "o" && box1 == "") {
-  setBox1("o")
-}
-else if (box1 == "o" && box9 == "o" && box5 == "") {
-  setBox5("o")
-} 
-else if (box3 == "o" && box5 == "o" && box7 == "") {
-  setBox7("o")
-}
-else if (box5 == "o" && box7 == "o" && box3 == "") {
-  setBox3("o")
-}
-else if (box3 == "o" && box7 == "o" && box5 == "") {
-  setBox5("o")
-} 
-
-else if (box1 == "x" && box2 == "x" && box3 == "") {
-  setBox3("o")
-}
-else if (box2 == "x" && box3 == "x" && box1 == "") {
-  setBox1("o")
-}
-else if (box1 == "x" && box3 == "x" && box2 == "") {
-  setBox2("o")
-}
-else if (box4 == "x" && box5 == "x" && box6 == "") {
-  setBox6("o")
-}
-else if (box5 == "x" && box6 == "x" && box4 == "") {
-  setBox4("o")
-}
-else if (box4 == "x" && box6 == "x" && box5 == "") {
-  setBox5("o")
-} 
-else if (box7 == "x" && box8 == "x" && box9 == "") {
-  setBox9("o")
-}
-else if (box8 == "x" && box9 == "x" && box7 == "") {
-  setBox7("o")
-}
-else if (box7 == "x" && box9 == "x" && box8 == "") {
-  setBox8("o")
-} 
-else if (box1 == "x" && box4 == "x" && box7 == "") {
-  setBox7("o")
-}
-else if (box4 == "x" && box7 == "x" && box1 == "") {
-  setBox1("o")
-}
-else if (box1 == "x" && box7 == "x" && box4 == "") {
-  setBox4("o")
-} 
-else if (box2 == "x" && box5 == "x" && box8 == "") {
-  setBox6("o")
-}
-else if (box5 == "x" && box8 == "x" && box2 == "") {
-  setBox2("o")
-}
-else if (box2 == "x" && box8 == "x" && box5 == "") {
-  setBox5("o")
-} 
-else if (box3 == "x" && box6 == "x" && box9 == "") {
-  setBox9("o")
-}
-else if (box6 == "x" && box9 == "x" && box3 == "") {
-  setBox3("o")
-}
-else if (box3 == "x" && box9 == "x" && box6 == "") {
-  setBox6("o")
-} 
-else if (box1 == "x" && box5 == "x" && box9 == "") {
-  setBox9("o")
-}
-else if (box5 == "x" && box9 == "x" && box1 == "") {
-  setBox1("o")
-}
-else if (box1 == "x" && box9 == "x" && box5 == "") {
-  setBox5("o")
-} 
-else if (box3 == "x" && box5 == "x" && box7 == "") {
-  setBox7("o")
-}
-else if (box5 == "x" && box7 == "x" && box3 == "") {
-  setBox3("o")
-}
-else if (box3 == "x" && box7 == "x" && box5 == "") {
-  setBox5("o")
-} 
-
-else {
-
- if (output == 1) {
-   setBox1("o")
- }
- else if (output == 2) {
-  setBox2("o")
-}
-else if (output == 3) {
-  setBox3("o")
-}
-else if (output == 4) {
-  setBox4("o")
-}
-else if (output == 5) {
-  setBox5("o")
-}
-else if (output == 6) {
-  setBox6("o")
-}
-else if (output == 7) {
-  setBox7("o")
-}
-else if (output == 8) {
-  setBox8("o")
-}
-else {
-  setBox9("o")
-}
- 
-}
-console.log( "this is the output", output, "this is the output")
-
-}
-}
-}, [ output ])
+          console.log(
+            "BB this is the remaining",
+            remaining,
+            "this is the remaining",
+            "This is the newNumber",
+            newnumber,
+            "This is the newNumber",
+            "this is the newValue",
+            newValue,
+            "This is the newValue"
+          );
+        }
+      }, 250);
+    }
+  };
 
   useEffect(() => {
-    if (gameId.length > 2){
+    console.log("is this the last thing to get run", output);
+
+    if (output > 0) {
+      setRemaining([]);
+
+      if (turnx == false && idGlobal.length < 2 && remaining.length < 9) {
+        if (box1 == "o" && box2 == "o" && box3 == "") {
+          setBox3("o");
+        } else if (box2 == "o" && box3 == "o" && box1 == "") {
+          setBox1("o");
+        } else if (box1 == "o" && box3 == "o" && box2 == "") {
+          setBox2("o");
+        } else if (box4 == "o" && box5 == "o" && box6 == "") {
+          setBox6("o");
+        } else if (box5 == "o" && box6 == "o" && box4 == "") {
+          setBox4("o");
+        } else if (box4 == "o" && box6 == "o" && box5 == "") {
+          setBox5("o");
+        } else if (box7 == "o" && box8 == "o" && box9 == "") {
+          setBox9("o");
+        } else if (box8 == "o" && box9 == "o" && box7 == "") {
+          setBox7("o");
+        } else if (box7 == "o" && box9 == "o" && box8 == "") {
+          setBox8("o");
+        } else if (box1 == "o" && box4 == "o" && box7 == "") {
+          setBox7("o");
+        } else if (box4 == "o" && box7 == "o" && box1 == "") {
+          setBox1("o");
+        } else if (box1 == "o" && box7 == "o" && box4 == "") {
+          setBox4("o");
+        } else if (box2 == "o" && box5 == "o" && box8 == "") {
+          setBox6("o");
+        } else if (box5 == "o" && box8 == "o" && box2 == "") {
+          setBox2("o");
+        } else if (box2 == "o" && box8 == "o" && box5 == "") {
+          setBox5("o");
+        } else if (box3 == "o" && box6 == "o" && box9 == "") {
+          setBox9("o");
+        } else if (box6 == "o" && box9 == "o" && box3 == "") {
+          setBox3("o");
+        } else if (box3 == "o" && box9 == "o" && box6 == "") {
+          setBox6("o");
+        } else if (box1 == "o" && box5 == "o" && box9 == "") {
+          setBox9("o");
+        } else if (box5 == "o" && box9 == "o" && box1 == "") {
+          setBox1("o");
+        } else if (box1 == "o" && box9 == "o" && box5 == "") {
+          setBox5("o");
+        } else if (box3 == "o" && box5 == "o" && box7 == "") {
+          setBox7("o");
+        } else if (box5 == "o" && box7 == "o" && box3 == "") {
+          setBox3("o");
+        } else if (box3 == "o" && box7 == "o" && box5 == "") {
+          setBox5("o");
+        } else if (box1 == "x" && box2 == "x" && box3 == "") {
+          setBox3("o");
+        } else if (box2 == "x" && box3 == "x" && box1 == "") {
+          setBox1("o");
+        } else if (box1 == "x" && box3 == "x" && box2 == "") {
+          setBox2("o");
+        } else if (box4 == "x" && box5 == "x" && box6 == "") {
+          setBox6("o");
+        } else if (box5 == "x" && box6 == "x" && box4 == "") {
+          setBox4("o");
+        } else if (box4 == "x" && box6 == "x" && box5 == "") {
+          setBox5("o");
+        } else if (box7 == "x" && box8 == "x" && box9 == "") {
+          setBox9("o");
+        } else if (box8 == "x" && box9 == "x" && box7 == "") {
+          setBox7("o");
+        } else if (box7 == "x" && box9 == "x" && box8 == "") {
+          setBox8("o");
+        } else if (box1 == "x" && box4 == "x" && box7 == "") {
+          setBox7("o");
+        } else if (box4 == "x" && box7 == "x" && box1 == "") {
+          setBox1("o");
+        } else if (box1 == "x" && box7 == "x" && box4 == "") {
+          setBox4("o");
+        } else if (box2 == "x" && box5 == "x" && box8 == "") {
+          setBox6("o");
+        } else if (box5 == "x" && box8 == "x" && box2 == "") {
+          setBox2("o");
+        } else if (box2 == "x" && box8 == "x" && box5 == "") {
+          setBox5("o");
+        } else if (box3 == "x" && box6 == "x" && box9 == "") {
+          setBox9("o");
+        } else if (box6 == "x" && box9 == "x" && box3 == "") {
+          setBox3("o");
+        } else if (box3 == "x" && box9 == "x" && box6 == "") {
+          setBox6("o");
+        } else if (box1 == "x" && box5 == "x" && box9 == "") {
+          setBox9("o");
+        } else if (box5 == "x" && box9 == "x" && box1 == "") {
+          setBox1("o");
+        } else if (box1 == "x" && box9 == "x" && box5 == "") {
+          setBox5("o");
+        } else if (box3 == "x" && box5 == "x" && box7 == "") {
+          setBox7("o");
+        } else if (box5 == "x" && box7 == "x" && box3 == "") {
+          setBox3("o");
+        } else if (box3 == "x" && box7 == "x" && box5 == "") {
+          setBox5("o");
+        } else {
+          if (output == 1) {
+            setBox1("o");
+          } else if (output == 2) {
+            setBox2("o");
+          } else if (output == 3) {
+            setBox3("o");
+          } else if (output == 4) {
+            setBox4("o");
+          } else if (output == 5) {
+            setBox5("o");
+          } else if (output == 6) {
+            setBox6("o");
+          } else if (output == 7) {
+            setBox7("o");
+          } else if (output == 8) {
+            setBox8("o");
+          } else {
+            setBox9("o");
+          }
+        }
+        console.log("this is the output", output, "this is the output");
+      }
+    }
+  }, [output]);
+
+  useEffect(() => {
+    if (gameId.length > 2) {
       const itemtoupdate = firebase.firestore().collection("game").doc(gameId);
       itemtoupdate.update({
-        turnx: turnx
+        turnx: turnx,
       });
     }
   }, [turnx]);
 
- 
-
-useEffect(() => {
-  if (gameId.length > 2){
-  if (!gameon) {
-  const itemtoupdate = firebase.firestore().collection("game").doc(gameId);
-  itemtoupdate.update({
-    gameon: false 
-  });
-}
-  }
-}, [gameon])
-
+  useEffect(() => {
+    if (gameId.length > 2) {
+      if (!gameon) {
+        const itemtoupdate = firebase
+          .firestore()
+          .collection("game")
+          .doc(gameId);
+        itemtoupdate.update({
+          gameon: false,
+        });
+      }
+    }
+  }, [gameon]);
 
   const reset = () => {
-
-    
-     
-   
     setBox1("");
     setBox2("");
     setBox3("");
@@ -373,364 +316,459 @@ useEffect(() => {
     setMethod6(false);
     setMethod7(false);
     setMethod8(false);
-    setGameId("")
+    setGameId("");
   };
 
   const checkwinner = () => {
-      
-    if (box1 === "x" && box2 === "x" && box3 === "x") { 
-    const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    console.log("is this the last thing to be run??");
+
+    if (box1 === "x" && box2 === "x" && box3 === "x") {
       setMethod1(true);
       setGameon(false);
       if (idGlobal.length < 2) {
-        alert("You won!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
-            itemtoupdate4.update({
-              wins:firebase.firestore.FieldValue.increment(.5)
-            });
-            itemtoupdate5.update({
-              losses: firebase.firestore.FieldValue.increment(.5)
-            });
+        alert("You won!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
 
+        itemtoupdate4.update({
+          wins: firebase.firestore.FieldValue.increment(0.5),
+        });
+        itemtoupdate5.update({
+          losses: firebase.firestore.FieldValue.increment(0.5),
+        });
       }
 
       setTimeout(() => {
-        
         reset();
       }, 2000);
-    }
-    else if (box1 === "o" && box2 === "o" && box3 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box1 === "o" && box2 === "o" && box3 === "o") {
       setMethod1(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You Lost!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box4 === "x" && box5 === "x" && box6 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box4 === "x" && box5 === "x" && box6 === "x") {
       setMethod2(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You won!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You won!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box4 === "o" && box5 === "o" && box6 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box4 === "o" && box5 === "o" && box6 === "o") {
       setMethod2(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You Lost!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box7 === "x" && box8 === "x" && box9 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box7 === "x" && box8 === "x" && box9 === "x") {
       setMethod3(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You won!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You won!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box7 === "o" && box8 === "o" && box9 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box7 === "o" && box8 === "o" && box9 === "o") {
       setMethod3(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You Lost!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box1 === "x" && box4 === "x" && box7 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box1 === "x" && box4 === "x" && box7 === "x") {
       setMethod4(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You won!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You won!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box1 === "o" && box4 === "o" && box7 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box1 === "o" && box4 === "o" && box7 === "o") {
       setMethod4(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You Lost!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box2 === "x" && box5 === "x" && box8 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box2 === "x" && box5 === "x" && box8 === "x") {
       setMethod5(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You won!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You won!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box2 === "o" && box5 === "o" && box8 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box2 === "o" && box5 === "o" && box8 === "o") {
       setMethod5(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You Lost!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box3 === "x" && box6 === "x" && box9 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box3 === "x" && box6 === "x" && box9 === "x") {
       setMethod6(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You won!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You won!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box3 === "o" && box6 === "o" && box9 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box3 === "o" && box6 === "o" && box9 === "o") {
       setMethod6(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You Lost!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box1 === "x" && box5 === "x" && box9 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box1 === "x" && box5 === "x" && box9 === "x") {
       setMethod7(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You won!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You won!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box1 === "o" && box5 === "o" && box9 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box1 === "o" && box5 === "o" && box9 === "o") {
       setMethod7(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You Lost!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box3 === "x" && box5 === "x" && box7 === "x") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box3 === "x" && box5 === "x" && box7 === "x") {
       setMethod8(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You won!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You won!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate4.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate5.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (box3 === "o" && box5 === "o" && box7 === "o") { const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
+    } else if (box3 === "o" && box5 === "o" && box7 === "o") {
       setMethod8(true);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You Lost!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You Lost!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+        console.log("seeing if this was run");
+
         itemtoupdate5.update({
-          wins:firebase.firestore.FieldValue.increment(.5)
+          wins: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate4.update({
-          losses: firebase.firestore.FieldValue.increment(.5)
+          losses: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
       }, 2000);
-    }
-    else if (
+    } else if (
       box1.length > 0 &&
       box2.length > 0 &&
       box3.length > 0 &&
@@ -741,22 +779,27 @@ useEffect(() => {
       box8.length > 0 &&
       box9.length > 0
     ) {
-      const itemtoupdate4 = firebase.firestore().collection("users").doc(player1);
-    const itemtoupdate5 = firebase.firestore().collection("users").doc(player2);
       setGameon(false);
 
       if (idGlobal.length < 2) {
-        alert("You Tied!")
-      } else if (idGlobal.length > 2 && gameId.length > 2 ){
-      
+        alert("You Tied!");
+      } else if (idGlobal.length > 2 && gameId.length > 2) {
+        const itemtoupdate4 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player1);
+        const itemtoupdate5 = firebase
+          .firestore()
+          .collection("users")
+          .doc(player2);
+
         itemtoupdate4.update({
-          ties:firebase.firestore.FieldValue.increment(.5)
+          ties: firebase.firestore.FieldValue.increment(0.5),
         });
         itemtoupdate5.update({
-          ties: firebase.firestore.FieldValue.increment(.5)
+          ties: firebase.firestore.FieldValue.increment(0.5),
         });
-
-  }
+      }
 
       setTimeout(() => {
         reset();
@@ -766,79 +809,77 @@ useEffect(() => {
     }
   };
 
-
   const auto1xo = () => {
-      if (box1.length === 0 && turnx == true) {
-          setBox1("x");
-      } else {
-        null;
-      }
-    };
-
-  const auto2xo = () => {
-    if (box2.length === 0 && turnx == true) {
-        setBox2("x");
+    if (box1.length === 0 && turnx == true) {
+      setBox1("x");
     } else {
       null;
     }
   };
-  
 
-const auto3xo = () => {
-  if (box3.length === 0 && turnx == true) {
+  const auto2xo = () => {
+    if (box2.length === 0 && turnx == true) {
+      setBox2("x");
+    } else {
+      null;
+    }
+  };
+
+  const auto3xo = () => {
+    if (box3.length === 0 && turnx == true) {
       setBox3("x");
-  } else {
-    null;
-  }
-};
+    } else {
+      null;
+    }
+  };
 
-const auto4xo = () => {
-  if (box4.length === 0 && turnx == true) {
+  const auto4xo = () => {
+    if (box4.length === 0 && turnx == true) {
       setBox4("x");
-  } else {
-    null;
-  }
-};
+    } else {
+      null;
+    }
+  };
 
-const auto5xo = () => {
-  if (box5.length === 0 && turnx == true) {
+  const auto5xo = () => {
+    if (box5.length === 0 && turnx == true) {
       setBox5("x");
-  } else {
-    null;
-  }
-};
+    } else {
+      null;
+    }
+  };
 
-const auto6xo = () => {
-  if (box6.length === 0 && turnx == true) {
+  const auto6xo = () => {
+    if (box6.length === 0 && turnx == true) {
       setBox6("x");
-  } else {
-    null;
-  }
-};
+    } else {
+      null;
+    }
+  };
 
-const auto7xo = () => {
-  if (box7.length === 0 && turnx == true) {
+  const auto7xo = () => {
+    if (box7.length === 0 && turnx == true) {
       setBox7("x");
-  } else {
-    null;
-  }
-};
+    } else {
+      null;
+    }
+  };
 
-const auto8xo = () => {
-  if (box8.length === 0 && turnx == true) {
+  const auto8xo = () => {
+    if (box8.length === 0 && turnx == true) {
       setBox8("x");
-  } else {
-    null;
-  }
-};
+    } else {
+      null;
+    }
+  };
 
-const auto9xo = () => {
-  if (box9.length === 0 && turnx == true) {
+  const auto9xo = () => {
+    if (box9.length === 0 && turnx == true) {
       setBox9("x");
-  } else {
-    null;
-  }
-};
+    } else {
+      null;
+    }
+  };
 
   const determine1xo = () => {
     if (gameon) {
@@ -858,18 +899,17 @@ const auto9xo = () => {
 
   useEffect(() => {
     if (idGlobal.length > 2) {
-   let id = gameId; 
-    if (box1.length > 0) {
-      let box = box1;
-      const itemtoupdate = firebase.firestore().collection("game").doc(id);
+      let id = gameId;
+      if (box1.length > 0) {
+        let box = box1;
+        const itemtoupdate = firebase.firestore().collection("game").doc(id);
 
-      itemtoupdate.update({
-        box1: box,
-      });
+        itemtoupdate.update({
+          box1: box,
+        });
+      }
     }
-  }
-  }, [box1])
-
+  }, [box1]);
 
   const determine2xo = () => {
     if (gameon) {
@@ -889,17 +929,17 @@ const auto9xo = () => {
 
   useEffect(() => {
     if (idGlobal.length > 2) {
-    let id = gameId; 
-     if (box2.length > 0) {
-       let box = box2;
-       const itemtoupdate = firebase.firestore().collection("game").doc(id);
- 
-       itemtoupdate.update({
-         box2: box,
-       });
-     }
+      let id = gameId;
+      if (box2.length > 0) {
+        let box = box2;
+        const itemtoupdate = firebase.firestore().collection("game").doc(id);
+
+        itemtoupdate.update({
+          box2: box,
+        });
+      }
     }
-   }, [box2])
+  }, [box2]);
 
   const determine3xo = () => {
     if (gameon) {
@@ -919,17 +959,17 @@ const auto9xo = () => {
 
   useEffect(() => {
     if (idGlobal.length > 2) {
-    let id = gameId; 
-     if (box3.length > 0) {
-       let box = box3;
-       const itemtoupdate = firebase.firestore().collection("game").doc(id);
- 
-       itemtoupdate.update({
-         box3: box,
-       });
-     }
+      let id = gameId;
+      if (box3.length > 0) {
+        let box = box3;
+        const itemtoupdate = firebase.firestore().collection("game").doc(id);
+
+        itemtoupdate.update({
+          box3: box,
+        });
+      }
     }
-   }, [box3])
+  }, [box3]);
 
   const determine4xo = () => {
     if (gameon) {
@@ -949,18 +989,17 @@ const auto9xo = () => {
 
   useEffect(() => {
     if (idGlobal.length > 2) {
-    let id = gameId; 
-     if (box4.length > 0) {
-       let box = box4;
-       const itemtoupdate = firebase.firestore().collection("game").doc(id);
- 
-       itemtoupdate.update({
-         box4: box,
-       });
-     }
-    }
-   }, [box4])
+      let id = gameId;
+      if (box4.length > 0) {
+        let box = box4;
+        const itemtoupdate = firebase.firestore().collection("game").doc(id);
 
+        itemtoupdate.update({
+          box4: box,
+        });
+      }
+    }
+  }, [box4]);
 
   const determine5xo = () => {
     if (gameon) {
@@ -980,18 +1019,17 @@ const auto9xo = () => {
 
   useEffect(() => {
     if (idGlobal.length > 2) {
-    let id = gameId; 
-     if (box5.length > 0) {
-       let box = box5;
-       const itemtoupdate = firebase.firestore().collection("game").doc(id);
- 
-       itemtoupdate.update({
-         box5: box,
-       });
-     }
-    }
-   }, [box5])
+      let id = gameId;
+      if (box5.length > 0) {
+        let box = box5;
+        const itemtoupdate = firebase.firestore().collection("game").doc(id);
 
+        itemtoupdate.update({
+          box5: box,
+        });
+      }
+    }
+  }, [box5]);
 
   const determine6xo = () => {
     if (gameon) {
@@ -1011,17 +1049,17 @@ const auto9xo = () => {
 
   useEffect(() => {
     if (idGlobal.length > 2) {
-    let id = gameId; 
-     if (box6.length > 0) {
-       let box = box6;
-       const itemtoupdate = firebase.firestore().collection("game").doc(id);
- 
-       itemtoupdate.update({
-         box6: box,
-       });
-     }
+      let id = gameId;
+      if (box6.length > 0) {
+        let box = box6;
+        const itemtoupdate = firebase.firestore().collection("game").doc(id);
+
+        itemtoupdate.update({
+          box6: box,
+        });
+      }
     }
-   }, [box6])
+  }, [box6]);
 
   const determine7xo = () => {
     if (gameon) {
@@ -1041,17 +1079,17 @@ const auto9xo = () => {
 
   useEffect(() => {
     if (idGlobal.length > 2) {
-    let id = gameId; 
-     if (box7.length > 0) {
-       let box = box7;
-       const itemtoupdate = firebase.firestore().collection("game").doc(id);
- 
-       itemtoupdate.update({
-         box7: box,
-       });
-     }
+      let id = gameId;
+      if (box7.length > 0) {
+        let box = box7;
+        const itemtoupdate = firebase.firestore().collection("game").doc(id);
+
+        itemtoupdate.update({
+          box7: box,
+        });
+      }
     }
-   }, [box7])
+  }, [box7]);
 
   const determine8xo = () => {
     if (gameon) {
@@ -1071,17 +1109,17 @@ const auto9xo = () => {
 
   useEffect(() => {
     if (idGlobal.length > 2) {
-    let id = gameId; 
-     if (box8.length > 0) {
-       let box = box8;
-       const itemtoupdate = firebase.firestore().collection("game").doc(id);
- 
-       itemtoupdate.update({
-         box8: box,
-       });
-     }
+      let id = gameId;
+      if (box8.length > 0) {
+        let box = box8;
+        const itemtoupdate = firebase.firestore().collection("game").doc(id);
+
+        itemtoupdate.update({
+          box8: box,
+        });
+      }
     }
-   }, [box8])
+  }, [box8]);
 
   const determine9xo = () => {
     if (gameon) {
@@ -1101,1534 +1139,1526 @@ const auto9xo = () => {
 
   useEffect(() => {
     if (idGlobal.length > 2) {
-    let id = gameId; 
-     if (box9.length > 0) {
-       let box = box9;
-       const itemtoupdate = firebase.firestore().collection("game").doc(id);
- 
-       itemtoupdate.update({
-         box9: box,
-       });
-     }
+      let id = gameId;
+      if (box9.length > 0) {
+        let box = box9;
+        const itemtoupdate = firebase.firestore().collection("game").doc(id);
+
+        itemtoupdate.update({
+          box9: box,
+        });
+      }
     }
-   }, [box9])
+  }, [box9]);
 
   const windowWidth = Dimensions.get("window").width;
 
   return (
     <View>
-    {idGlobal.length < 2 ? 
-
-      <Grid style={{ width: windowWidth }}>
-      <Row style={{ height: windowWidth / 3 }}>
-        <Col style={{ backgroundColor: "white" }}>
-
-
-         <TouchableOpacity
-            onPress={() => {
-              auto1xo();
-            }}> 
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method1 || method4 || method7
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box1}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              auto2xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method1 || method5
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box2}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              auto3xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method1 || method6 || method8
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box3}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-      </Row>
-
-      <Row style={{ backgroundColor: "black", height: 6 }}>
-        <Col style={{ backgroundColor: "black", width: "100%"}}></Col>
-      </Row>
-
-      <Row style={{ height: windowWidth / 3 }}>
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              auto4xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method2 || method4
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box4}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              auto5xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method2 || method5 || method7 || method8
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box5}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              auto6xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method2 || method6
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box6}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-      </Row>
-      <Row style={{ backgroundColor: "black", height: 6 }}>
-        <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
-      </Row>
-      <Row style={{ height: windowWidth / 3 }}>
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              auto7xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method3 || method4 || method8
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box7}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              auto8xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method3 || method5
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box8}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              auto9xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method3 || method6 || method7
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box9}
-              </Text>
-            </View>
-          </TouchableOpacity>
-          </Col>
-          </Row>
-          </Grid>
-      : idGlobal == player1 && turnx == true ? 
-      <Grid style={{ width: windowWidth }}>
-      <Row style={{ height: windowWidth / 3 }}>
-        <Col style={{ backgroundColor: "white" }}>
-
-
-         <TouchableOpacity
-            onPress={() => {
-              determine1xo();
-            }}> 
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method1 || method4 || method7
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box1}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              determine2xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method1 || method5
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box2}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              determine3xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method1 || method6 || method8
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box3}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-      </Row>
-
-      <Row style={{ backgroundColor: "black", height: 6 }}>
-        <Col style={{ backgroundColor: "black", width: "100%"}}></Col>
-      </Row>
-
-      <Row style={{ height: windowWidth / 3 }}>
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              determine4xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method2 || method4
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box4}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              determine5xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method2 || method5 || method7 || method8
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box5}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              determine6xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method2 || method6
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box6}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-      </Row>
-      <Row style={{ backgroundColor: "black", height: 6 }}>
-        <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
-      </Row>
-      <Row style={{ height: windowWidth / 3 }}>
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              determine7xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method3 || method4 || method8
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box7}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              determine8xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method3 || method5
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box8}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-            onPress={() => {
-              determine9xo();
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method3 || method6 || method7
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box9}
-              </Text>
-            </View>
-          </TouchableOpacity>
-          </Col>
-          </Row>
-          </Grid>
-
-
-          : idGlobal == player1 && turnx == false ?
-
-         <Grid style={{ width: windowWidth }}>
-          <Row style={{ height: windowWidth / 3 }}>
-        <Col style={{ backgroundColor: "white" }}>
-          <View> 
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method1 || method4 || method7
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box1}
-            </Text>
-          </View>
-        </View>
-      </Col>
-
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-      <Col style={{ backgroundColor: "white" }}>
-        <View>
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method1 || method5
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box2}
-            </Text>
-          </View>
-        </View>
-      </Col>
-
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-      <Col style={{ backgroundColor: "white" }}>
-        <View>
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method1 || method6 || method8
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box3}
-            </Text>
-          </View>
-        </View>
-      </Col>
-    </Row>
-
-    <Row style={{ backgroundColor: "black", height: 6 }}>
-      <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
-    </Row>
-    <Row style={{ height: windowWidth / 3 }}>
-      <Col style={{ backgroundColor: "white" }}>
-        <View>
-          <View
-            style={{
-              alignItems: "center",
-
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method2 || method4
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box4}
-            </Text>
-          </View>
-        </View>
-      </Col>
-
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-      <Col style={{ backgroundColor: "white" }}>
-        <View>
-          <View
-            style={{
-              alignItems: "center",
-
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method2 || method5 || method7 || method8
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box5}
-            </Text>
-          </View>
-        </View>
-      </Col>
-
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-      <Col style={{ backgroundColor: "white" }}>
-        <View>
-          <View
-            style={{
-              alignItems: "center",
-
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method2 || method6
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box6}
-            </Text>
-          </View>
-        </View>
-      </Col>
-    </Row>
-    <Row style={{ backgroundColor: "black", height: 6 }}>
-      <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
-    </Row>
-    <Row style={{ height: windowWidth / 3 }}>
-      <Col style={{ backgroundColor: "white" }}>
-        <View>
-          <View
-            style={{
-              alignItems: "center",
-
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method3 || method4 || method8
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box7}
-            </Text>
-          </View>
-        </View>
-      </Col>
-
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-      <Col style={{ backgroundColor: "white" }}>
-        <View>
-          <View
-            style={{
-              alignItems: "center",
-
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method3 || method5
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box8}
-            </Text>
-          </View>
-        </View>
-      </Col>
-
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-      <Col style={{ backgroundColor: "white" }}>
-        <View>
-          <View
-            style={{
-              alignItems: "center",
-
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method3 || method6 || method7
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box9}
-            </Text>
-          </View>
-        </View>
-        </Col>
-        </Row>
-        </Grid>
-        : idGlobal == player2 && turnx == true ?
+      {idGlobal.length < 2 ? (
         <Grid style={{ width: windowWidth }}>
-        <Row style={{ height: windowWidth / 3 }}>
-        <Col style={{ backgroundColor: "white" }}>
-        <View> 
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method1 || method4 || method7
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  auto1xo();
+                }}
               >
-                {box1}
-              </Text>
-            </View>
-          </View>
-        </Col>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method4 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box1}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
 
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-        <Col style={{ backgroundColor: "white" }}>
-          <View>
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method1 || method5
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  auto2xo();
+                }}
               >
-                {box2}
-              </Text>
-            </View>
-          </View>
-        </Col>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box2}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
 
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-        <Col style={{ backgroundColor: "white" }}>
-          <View>
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method1 || method6 || method8
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  auto3xo();
+                }}
               >
-                {box3}
-              </Text>
-            </View>
-          </View>
-        </Col>
-      </Row>
-
-      <Row style={{ backgroundColor: "black", height: 6 }}>
-        <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
-      </Row>
-      <Row style={{ height: windowWidth / 3 }}>
-        <Col style={{ backgroundColor: "white" }}>
-          <View>
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method2 || method4
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box4}
-              </Text>
-            </View>
-          </View>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <View>
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method2 || method5 || method7 || method8
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box5}
-              </Text>
-            </View>
-          </View>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <View>
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method2 || method6
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box6}
-              </Text>
-            </View>
-          </View>
-        </Col>
-      </Row>
-      <Row style={{ backgroundColor: "black", height: 6 }}>
-        <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
-      </Row>
-      <Row style={{ height: windowWidth / 3 }}>
-        <Col style={{ backgroundColor: "white" }}>
-          <View>
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method3 || method4 || method8
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box7}
-              </Text>
-            </View>
-          </View>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <View>
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method3 || method5
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box8}
-              </Text>
-            </View>
-          </View>
-        </Col>
-
-        <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-        <Col style={{ backgroundColor: "white" }}>
-          <View>
-            <View
-              style={{
-                alignItems: "center",
-
-                backgroundColor: "#8959DF",
-                height: "100%",
-              }}
-            >
-              <Text
-                style={
-                  method3 || method6 || method7
-                    ? { fontSize: 100, color: "white" }
-                    : { fontSize: 100, color: "black" }
-                }
-              >
-                {box9}
-              </Text>
-            </View>
-          </View>
-          </Col>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method6 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box3}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
           </Row>
-          </Grid>
-          : idGlobal == player2 && turnx == false ?
-          <Grid style={{ width: windowWidth }}>
+
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
+
           <Row style={{ height: windowWidth / 3 }}>
-          <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity
-          onPress={() => {
-            determine1xo();
-          }}> 
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method1 || method4 || method7
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box1}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  auto4xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
 
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method4
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box4}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
 
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity
-          onPress={() => {
-            determine2xo();
-          }}
-        >
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method1 || method5
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box2}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  auto5xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
 
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity
-          onPress={() => {
-            determine3xo();
-          }}
-        >
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method1 || method6 || method8
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box3}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
-    </Row>
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method5 || method7 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box5}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
 
-    <Row style={{ backgroundColor: "black", height: 6 }}>
-      <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
-    </Row>
-    <Row style={{ height: windowWidth / 3 }}>
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity
-          onPress={() => {
-            determine4xo();
-          }}
-        >
-          <View
-            style={{
-              alignItems: "center",
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method2 || method4
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box4}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  auto6xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
 
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity
-          onPress={() => {
-            determine5xo();
-          }}
-        >
-          <View
-            style={{
-              alignItems: "center",
-
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method2 || method5 || method7 || method8
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box5}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
-
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity
-          onPress={() => {
-            determine6xo();
-          }}
-        >
-          <View
-            style={{
-              alignItems: "center",
-
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method2 || method6
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box6}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
-    </Row>
-    <Row style={{ backgroundColor: "black", height: 6 }}>
-      <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
-    </Row>
-    <Row style={{ height: windowWidth / 3 }}>
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity
-          onPress={() => {
-            determine7xo();
-          }}
-        >
-          <View
-            style={{
-              alignItems: "center",
-
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method3 || method4 || method8
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box7}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
-
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity
-          onPress={() => {
-            determine8xo();
-          }}
-        >
-          <View
-            style={{
-              alignItems: "center",
-
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method3 || method5
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box8}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
-
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
-
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity
-          onPress={() => {
-            determine9xo();
-          }}
-        >
-          <View
-            style={{
-              alignItems: "center",
-
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method3 || method6 || method7
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box9}
-            </Text>
-          </View>
-        </TouchableOpacity>
-        
-        </Col>
-      </Row>
-      </Grid>
-      :
-      <Grid style={{ width: windowWidth }}>
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method6
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box6}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+          </Row>
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
           <Row style={{ height: windowWidth / 3 }}>
-          <Col style={{ backgroundColor: "white" }}>
-          <TouchableOpacity> 
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method1 || method4 || method7
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box1}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  auto7xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
 
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method4 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box7}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
 
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity>
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method1 || method5
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box2}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  auto8xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
 
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity>
-          <View
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method1 || method6 || method8
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box3}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
-    </Row>
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box8}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
 
-    <Row style={{ backgroundColor: "black", height: 6 }}>
-      <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
-    </Row>
-    <Row style={{ height: windowWidth / 3 }}>
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity>
-          <View
-            style={{
-              alignItems: "center",
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method2 || method4
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box4}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  auto9xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
 
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method6 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box9}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+          </Row>
+        </Grid>
+      ) : idGlobal == player1 && turnx == true ? (
+        <Grid style={{ width: windowWidth }}>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine1xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method4 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box1}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
 
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity>
-          <View
-            style={{
-              alignItems: "center",
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method2 || method5 || method7 || method8
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box5}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine2xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box2}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
 
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity>
-          <View
-            style={{
-              alignItems: "center",
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine3xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method6 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box3}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+          </Row>
 
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method2 || method6
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box6}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
-    </Row>
-    <Row style={{ backgroundColor: "black", height: 6 }}>
-      <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
-    </Row>
-    <Row style={{ height: windowWidth / 3 }}>
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity>
-          <View
-            style={{
-              alignItems: "center",
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
 
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method3 || method4 || method8
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box7}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine4xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
 
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method4
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box4}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
 
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity>
-          <View
-            style={{
-              alignItems: "center",
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method3 || method5
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box8}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Col>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine5xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
 
-      <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method5 || method7 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box5}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
 
-      <Col style={{ backgroundColor: "white" }}>
-        <TouchableOpacity>
-          <View
-            style={{
-              alignItems: "center",
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
 
-              backgroundColor: "#8959DF",
-              height: "100%",
-            }}
-          >
-            <Text
-              style={
-                method3 || method6 || method7
-                  ? { fontSize: 100, color: "white" }
-                  : { fontSize: 100, color: "black" }
-              }
-            >
-              {box9}
-            </Text>
-          </View>
-        </TouchableOpacity>
-        
-        </Col>
-      </Row>
-      </Grid>
-}
-</View>
-  
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine6xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method6
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box6}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+          </Row>
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine7xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method4 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box7}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine8xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box8}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine9xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method6 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box9}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+          </Row>
+        </Grid>
+      ) : idGlobal == player1 && turnx == false ? (
+        <Grid style={{ width: windowWidth }}>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method4 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box1}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box2}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method6 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box3}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+          </Row>
+
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method4
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box4}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method5 || method7 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box5}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method6
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box6}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+          </Row>
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method4 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box7}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box8}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method6 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box9}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+          </Row>
+        </Grid>
+      ) : idGlobal == player2 && turnx == true ? (
+        <Grid style={{ width: windowWidth }}>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method4 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box1}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box2}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method6 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box3}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+          </Row>
+
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method4
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box4}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method5 || method7 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box5}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method6
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box6}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+          </Row>
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method4 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box7}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box8}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method6 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box9}
+                  </Text>
+                </View>
+              </View>
+            </Col>
+          </Row>
+        </Grid>
+      ) : idGlobal == player2 && turnx == false ? (
+        <Grid style={{ width: windowWidth }}>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine1xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method4 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box1}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine2xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box2}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine3xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method6 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box3}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+          </Row>
+
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine4xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method4
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box4}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine5xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method5 || method7 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box5}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine6xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method6
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box6}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+          </Row>
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine7xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method4 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box7}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine8xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box8}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  determine9xo();
+                }}
+              >
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method6 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box9}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+          </Row>
+        </Grid>
+      ) : (
+        <Grid style={{ width: windowWidth }}>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method4 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box1}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box2}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method1 || method6 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box3}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+          </Row>
+
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method4
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box4}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method5 || method7 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box5}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method2 || method6
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box6}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+          </Row>
+          <Row style={{ backgroundColor: "black", height: 6 }}>
+            <Col style={{ backgroundColor: "black", width: "100%" }}></Col>
+          </Row>
+          <Row style={{ height: windowWidth / 3 }}>
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method4 || method8
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box7}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method5
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box8}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+
+            <Col style={{ backgroundColor: "black", width: 6 }}></Col>
+
+            <Col style={{ backgroundColor: "white" }}>
+              <TouchableOpacity>
+                <View
+                  style={{
+                    alignItems: "center",
+
+                    backgroundColor: "#8959DF",
+                    height: "100%",
+                  }}
+                >
+                  <Text
+                    style={
+                      method3 || method6 || method7
+                        ? { fontSize: 100, color: "white" }
+                        : { fontSize: 100, color: "black" }
+                    }
+                  >
+                    {box9}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </Col>
+          </Row>
+        </Grid>
+      )}
+    </View>
   );
 };
 

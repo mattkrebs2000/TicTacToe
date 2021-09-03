@@ -96,6 +96,7 @@ const App = ({ navigation }) => {
   const [checkGame] = useCollectionData(query2, { idField: "id" });
 
   useEffect(() => {
+    console.log("This was just run!!!")
     if (checkGame) {
 checkforyourgame();
       populate();
@@ -361,6 +362,9 @@ const getAllrecords = () => {
   };
 console.log( "GameIdbeforeRender", gameId, "GameIdbeforeRender")
   return (
+    
+    console.log( "GameIdbeforeRender2", gameId, "GameIdbeforeRender2"),
+
     <SafeAreaView
       style={{ height: windowHeight - headerHeight, backgroundColor: "black" }}
     >
