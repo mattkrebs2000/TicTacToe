@@ -54,7 +54,10 @@ const TicTacToeGrid = ({
 
   useEffect(() => {
     console.log("is this the last thing to be run?");
+if (remaining.length < 8) {
+
     checkwinner();
+}
   }, [box1, box2, box3, box4, box5, box6, box7, box8, box9]);
 
   useEffect(() => {
@@ -150,6 +153,7 @@ const TicTacToeGrid = ({
     console.log("is this the last thing to get run", output);
 
     if (output > 0) {
+      setNewnumber(-1);
       setRemaining([]);
 
       if (turnx == false && idGlobal.length < 2 && remaining.length < 9) {
@@ -317,16 +321,27 @@ const TicTacToeGrid = ({
     setMethod7(false);
     setMethod8(false);
     setGameId("");
+    
+    if (idGlobal.length < 2){
+      setTurnx(true)
+    }
   };
 
   const checkwinner = () => {
+
+
     console.log("is this the last thing to be run??");
 
     if (box1 === "x" && box2 === "x" && box3 === "x") {
+      
       setMethod1(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
       if (idGlobal.length < 2) {
-        alert("You won!");
+        setTimeout(() => {
+        alert("You Won!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -350,11 +365,16 @@ const TicTacToeGrid = ({
         reset();
       }, 2000);
     } else if (box1 === "o" && box2 === "o" && box3 === "o") {
+      
       setMethod1(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
+        setTimeout(() => {
         alert("You Lost!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -379,10 +399,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box4 === "x" && box5 === "x" && box6 === "x") {
       setMethod2(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
-        alert("You won!");
+        setTimeout(() => {
+        alert("You Won!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -407,10 +431,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box4 === "o" && box5 === "o" && box6 === "o") {
       setMethod2(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
+        setTimeout(() => {
         alert("You Lost!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -435,10 +463,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box7 === "x" && box8 === "x" && box9 === "x") {
       setMethod3(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
-        alert("You won!");
+        setTimeout(() => {
+        alert("You Won!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -460,13 +492,18 @@ const TicTacToeGrid = ({
 
       setTimeout(() => {
         reset();
+       
       }, 2000);
     } else if (box7 === "o" && box8 === "o" && box9 === "o") {
       setMethod3(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
+        setTimeout(() => {
         alert("You Lost!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -491,10 +528,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box1 === "x" && box4 === "x" && box7 === "x") {
       setMethod4(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
-        alert("You won!");
+        setTimeout(() => {
+        alert("You Won!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -519,10 +560,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box1 === "o" && box4 === "o" && box7 === "o") {
       setMethod4(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
+        setTimeout(() => {
         alert("You Lost!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -547,10 +592,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box2 === "x" && box5 === "x" && box8 === "x") {
       setMethod5(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
-        alert("You won!");
+        setTimeout(() => {
+        alert("You Won!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -575,10 +624,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box2 === "o" && box5 === "o" && box8 === "o") {
       setMethod5(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
+        setTimeout(() => {
         alert("You Lost!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -603,10 +656,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box3 === "x" && box6 === "x" && box9 === "x") {
       setMethod6(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
-        alert("You won!");
+        setTimeout(() => {
+        alert("You Won!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -630,10 +687,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box3 === "o" && box6 === "o" && box9 === "o") {
       setMethod6(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
+        setTimeout(() => {
         alert("You Lost!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -658,10 +719,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box1 === "x" && box5 === "x" && box9 === "x") {
       setMethod7(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
-        alert("You won!");
+        setTimeout(() => {
+        alert("You Won!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -686,10 +751,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box1 === "o" && box5 === "o" && box9 === "o") {
       setMethod7(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
+        setTimeout(() => {
         alert("You Lost!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -714,10 +783,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box3 === "x" && box5 === "x" && box7 === "x") {
       setMethod8(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
-        alert("You won!");
+        setTimeout(() => {
+        alert("You Won!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -742,10 +815,14 @@ const TicTacToeGrid = ({
       }, 2000);
     } else if (box3 === "o" && box5 === "o" && box7 === "o") {
       setMethod8(true);
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
+        setTimeout(() => {
         alert("You Lost!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -779,10 +856,14 @@ const TicTacToeGrid = ({
       box8.length > 0 &&
       box9.length > 0
     ) {
-      setGameon(false);
+      setGameon(false);setRemaining([]);
+    setOutput(0);
+    setNewnumber(-1);
 
       if (idGlobal.length < 2) {
+        setTimeout(() => {
         alert("You Tied!");
+      }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
         const itemtoupdate4 = firebase
           .firestore()
@@ -807,7 +888,7 @@ const TicTacToeGrid = ({
     } else {
       setTurnx(!turnx);
     }
-  };
+};
 
   const auto1xo = () => {
     if (box1.length === 0 && turnx == true) {
