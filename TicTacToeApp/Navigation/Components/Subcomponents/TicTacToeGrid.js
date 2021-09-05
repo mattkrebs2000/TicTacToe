@@ -37,6 +37,8 @@ const TicTacToeGrid = ({
   setGameId,
   player1,
   player2,
+  idglobal2,
+  namethisuser,
 }) => {
   const [method1, setMethod1] = useState(false);
   const [method2, setMethod2] = useState(false);
@@ -343,6 +345,17 @@ const TicTacToeGrid = ({
           alert("You Won!");
         }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
+
+
+        if (player1 == idglobal2){
+          alert(namethisuser + " you won!");
+        } else {
+          alert(namethisuser + " you lost!")
+        }
+        
+
+
+
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -375,7 +388,18 @@ const TicTacToeGrid = ({
         setTimeout(() => {
           alert("You Lost!")
         }, 500);
-      } else if (idGlobal.length > 2 && gameId.length > 2) {
+      } else if (idGlobal.length > 2 && gameId.length > 2) {if (player1 == idglobal2){
+          alert(namethisuser + " you lost!");
+        } else {
+          alert(namethisuser + " you won!")
+        }
+
+        
+        
+
+
+
+
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -409,6 +433,15 @@ const TicTacToeGrid = ({
           alert("You Won!");
         }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
+
+        if (player1 == idglobal2){
+          alert(namethisuser + " you won!");
+        } else {
+          alert(namethisuser + " you lost!")
+        }
+        
+
+
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -441,7 +474,11 @@ const TicTacToeGrid = ({
         setTimeout(() => {
           alert("You Lost!")
         }, 500);
-      } else if (idGlobal.length > 2 && gameId.length > 2) {
+      } else if (idGlobal.length > 2 && gameId.length > 2) {if (player1 == idglobal2){
+          alert(namethisuser + " you lost!");
+        } else {
+          alert(namethisuser + " you won!")
+        }
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -475,6 +512,14 @@ const TicTacToeGrid = ({
           alert("You Won!");
         }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
+
+        if (player1 == idglobal2){
+          alert(namethisuser + " you won!");
+        } else {
+          alert(namethisuser + " you lost!")
+        }
+        
+
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -507,7 +552,11 @@ const TicTacToeGrid = ({
         setTimeout(() => {
           alert("You Lost!")
         }, 500);
-      } else if (idGlobal.length > 2 && gameId.length > 2) {
+      } else if (idGlobal.length > 2 && gameId.length > 2) {if (player1 == idglobal2){
+          alert(namethisuser + " you lost!");
+        } else {
+          alert(namethisuser + " you won!")
+        }
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -541,6 +590,15 @@ const TicTacToeGrid = ({
           alert("You Won!");
         }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
+
+        if (player1 == idglobal2){
+          alert(namethisuser + " you won!");
+        } else {
+          alert(namethisuser + " you lost!")
+        }
+        
+
+
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -573,7 +631,11 @@ const TicTacToeGrid = ({
         setTimeout(() => {
           alert("You Lost!")
         }, 500);
-      } else if (idGlobal.length > 2 && gameId.length > 2) {
+      } else if (idGlobal.length > 2 && gameId.length > 2) {if (player1 == idglobal2){
+          alert(namethisuser + " you lost!");
+        } else {
+          alert(namethisuser + " you won!")
+        }
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -607,6 +669,14 @@ const TicTacToeGrid = ({
           alert("You Won!");
         }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
+
+        if (player1 == idglobal2){
+          alert(namethisuser + " you won!");
+        } else {
+          alert(namethisuser + " you lost!")
+        }
+        
+
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -639,7 +709,11 @@ const TicTacToeGrid = ({
         setTimeout(() => {
           alert("You Lost!")
         }, 500);
-      } else if (idGlobal.length > 2 && gameId.length > 2) {
+      } else if (idGlobal.length > 2 && gameId.length > 2) {if (player1 == idglobal2){
+          alert(namethisuser + " you lost!");
+        } else {
+          alert(namethisuser + " you won!")
+        }
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -673,6 +747,14 @@ const TicTacToeGrid = ({
           alert("You Won!");
         }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
+
+        if (player1 == idglobal2){
+          alert(namethisuser + " you won!");
+        } else {
+          alert(namethisuser + " you lost!")
+        }
+        
+
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -704,7 +786,11 @@ const TicTacToeGrid = ({
         setTimeout(() => {
           alert("You Lost!")
         }, 500);
-      } else if (idGlobal.length > 2 && gameId.length > 2) {
+      } else if (idGlobal.length > 2 && gameId.length > 2) {if (player1 == idglobal2){
+          alert(namethisuser + " you lost!");
+        } else {
+          alert(namethisuser + " you won!")
+        }
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -738,6 +824,14 @@ const TicTacToeGrid = ({
           alert("You Won!");
         }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
+
+        if (player1 == idglobal2){
+          alert(namethisuser + " you won!");
+        } else {
+          alert(namethisuser + " you lost!")
+        }
+        
+
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -770,7 +864,11 @@ const TicTacToeGrid = ({
         setTimeout(() => {
           alert("You Lost!")
         }, 500);
-      } else if (idGlobal.length > 2 && gameId.length > 2) {
+      } else if (idGlobal.length > 2 && gameId.length > 2) {if (player1 == idglobal2){
+          alert(namethisuser + " you lost!");
+        } else {
+          alert(namethisuser + " you won!")
+        }
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -804,6 +902,14 @@ const TicTacToeGrid = ({
           alert("You Won!");
         }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
+
+        if (player1 == idglobal2){
+          alert(namethisuser + " you won!");
+        } else {
+          alert(namethisuser + " you lost!")
+        }
+        
+
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -836,7 +942,11 @@ const TicTacToeGrid = ({
         setTimeout(() => {
           alert("You Lost!")
         }, 500);
-      } else if (idGlobal.length > 2 && gameId.length > 2) {
+      } else if (idGlobal.length > 2 && gameId.length > 2) {if (player1 == idglobal2){
+          alert(namethisuser + " you lost!");
+        } else {
+          alert(namethisuser + " you won!")
+        }
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")
@@ -879,6 +989,15 @@ const TicTacToeGrid = ({
           alert("You Tied!");
         }, 500);
       } else if (idGlobal.length > 2 && gameId.length > 2) {
+
+        if (player1 == idglobal2){
+          alert(namethisuser + " you tied!");
+        } else {
+          alert(namethisuser + " you tied!")
+        }
+        
+
+
         const itemtoupdate4 = firebase
           .firestore()
           .collection("users")

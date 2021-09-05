@@ -16,6 +16,7 @@ import Everyonesrecords from "./Subcomponents/Everyonesrecords"
 import emailContext from "../Emailcontext.js";
 import groupContext from "../Groupcontext.js";
 import idContext from "../Idcontext.js";
+import nameContext from "../Namecontext.js";
 import firebase from "../Firebase/Config.js";
 import { createStackNavigator, useHeaderHeight } from "@react-navigation/stack";
 import { scale, ScaledSheet } from "react-native-size-matters";
@@ -51,9 +52,11 @@ const App = ({ navigation }) => {
   const [gameId, setGameId] = useState("");
   const [whourplaying, setWhourplaying] = useState("");
   const [grouponly, setGrouponly] = useState(true);
+  const [namethisuser, setNamethisuser]= useState("");
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);
   const { idGlobal, setIdGlobal } = useContext(idContext);
+  const { nameGlobal, setNameGlobal } = useContext(nameContext);
 
 
 
@@ -102,6 +105,12 @@ checkforyourgame();
       populate();
     }
   }, [checkGame]);
+
+  useEffect(() => {
+    if (nameGlobal){
+    setNamethisuser(nameGlobal);
+    }
+  }, [nameGlobal]);
 
   useEffect(() => {
     const usersRef = firebase.firestore().collection("game");
@@ -397,6 +406,8 @@ console.log( "GameIdbeforeRender", gameId, "GameIdbeforeRender")
             setGameId={setGameId}
             player1={player1}
             player2={player2}
+            idglobal2={idGlobal}
+            namethisuser={namethisuser}
           />
         </View>
 

@@ -16,6 +16,7 @@ import {
 import emailContext from "./Emailcontext";
 import groupContext from "./Groupcontext";
 import idContext from "./Idcontext";
+import nameContext from "./Namecontext";
 import SignIn from "./Components/SignIn";
 import CreateAccount from "./Components/CreateAccount";
 import PrimaryPage from "./Components/Game";
@@ -38,6 +39,8 @@ export const Navigation = ({ navigation }) => {
   const [emailGlobal, setEmailGlobal] = useState("");
   const [groupGlobal, setGroupGlobal] = useState("");
   const [idGlobal, setIdGlobal] = useState("");
+  const [nameGlobal, setNameGlobal] = useState("");
+
 
   const AuthStack = createStackNavigator();
   const AuthStackScreen = () => (
@@ -123,6 +126,14 @@ export const Navigation = ({ navigation }) => {
   //   );
 
   return (
+    <nameContext.Provider
+    value={{
+      nameGlobal,
+      setNameGlobal,
+    }}
+  >
+
+
     <idContext.Provider
     value={{
       idGlobal,
@@ -147,5 +158,6 @@ export const Navigation = ({ navigation }) => {
       </emailContext.Provider>
     </groupContext.Provider>
     </idContext.Provider>
+    </nameContext.Provider>
   );
 };

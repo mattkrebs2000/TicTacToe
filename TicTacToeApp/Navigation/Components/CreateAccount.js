@@ -142,7 +142,7 @@ useEffect(() => {
           group,
           username,
           admin,
-          active,
+          active: false,
           wins: 0,
           losses: 0,
           ties: 0, 

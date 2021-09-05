@@ -4,7 +4,8 @@ import CryptoES from "crypto-es";
 import Groupdata from "./Subcomponents/Groupdata";
 import emailContext from "../Emailcontext.js";
 import groupContext from "../Groupcontext.js";
-import idContext from "../Idcontext.js"
+import idContext from "../Idcontext.js";
+import nameContext from "../Namecontext.js";
 
 import {
   View,
@@ -29,6 +30,7 @@ const SignIn = ({ navigation }) => {
   const { emailGlobal, setEmailGlobal } = useContext(emailContext);
   const { groupGlobal, setGroupGlobal } = useContext(groupContext);
   const { idGlobal, setIdGlobal } = useContext(idContext);
+  const { nameGlobal, setNameGlobal } = useContext(nameContext);
   const [password, setPassword] = useState("");
   const [group, setGroup] = useState("");
   const [didKeyboardShow, setKeyboardShow] = useState(false);
@@ -101,6 +103,7 @@ const SignIn = ({ navigation }) => {
       setGroupGlobal(user.group);
       setIdGlobal(user.id);
       setEmailGlobal(user.email);
+      setNameGlobal(user.username);
     }, 1000);
     
   };
