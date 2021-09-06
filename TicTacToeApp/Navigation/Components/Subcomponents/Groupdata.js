@@ -85,6 +85,9 @@ const Groupdata = ({ populate, gameId, box1,
 
 
   const getOtherusers = () => {
+    console.log("this has been run!!!!!!!!!!!!!!!");
+
+    if (gameon == false) {
     setGroupmatedata([]);
     let newData = [];
     const usersRef = firebase.firestore().collection("users");
@@ -113,7 +116,8 @@ if (idGlobal == newData.id) {
         });
       })
       .catch((e) => console.log(e));
-  };
+    }
+};
 
 return (
 
